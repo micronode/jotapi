@@ -10,12 +10,12 @@ x-examples:
       dir: 'http://example.com'
       sent-by: 'mailto:joecool@example.com'
       language: en-US
-    dtstart: 19971015T050000Z
-    dtend: 19971016T050000Z
+    dtstart: '2019-08-24T14:15:22Z'
+    dtend: '2019-08-24T14:15:22Z'
     url: 'http://www.example.com/calendar/busytime/jsmith.ifb'
     fbperiods:
-      - start: 19970101T180000Z
-        end: 19970102T070000Z
+      - start: '2019-08-24T14:15:22Z'
+        end: '2019-08-24T14:15:22Z'
         fbtype: BUSY
         duration: PT5H30M
     attendee:
@@ -46,11 +46,9 @@ properties:
   dtstart:
     type: string
     format: date-time
-    example: 19971015T050000Z
   dtend:
     type: string
     format: date-time
-    example: 19971016T050000Z
   url:
     type: string
     example: 'http://www.example.com/calendar/busytime/jsmith.ifb'

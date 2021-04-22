@@ -18,30 +18,7 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/calendar.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      calscale: GREGORIAN
-                      name: string
-                      description: string
-                      last-modified: '2019-08-24T14:15:22Z'
-                      url: 'http://example.com'
-                      categories:
-                        - string
-                      refresh-interval: string
-                      source: 'http://example.com'
-                      color: string
-                      image: string
-                      conference: 'http://example.com'
-          headers: {}
+          $ref: '#/components/responses/calendar-list'
       operationId: list-calendars
       description: Retrieve a list of visible calendars
     parameters: []
@@ -50,11 +27,7 @@ paths:
       operationId: create-calendar
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/calendar.v1.yaml
+          $ref: '#/components/responses/calendar'
       requestBody:
         content:
           application/json:
@@ -81,224 +54,26 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/event.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      organizer: string
-                      summary: string
-                      dtstart: '2019-08-24T14:15:22Z'
-                      sequence: 0
-                      recurrence-id: string
-                      class: PUBLIC
-                      priority: 0
-                      status: TENTATIVE
-                      dtend: '2019-08-24T14:15:22Z'
-                      duration: string
-                      rrule: string
-                      description: string
-                      url: 'http://example.com'
-                      geo: string
-                      location: string
-                      last-modified: '2019-08-24T14:15:22Z'
-                      created: '2019-08-24T14:15:22Z'
-                      categories:
-                        - string
-                      comments:
-                        - string
-                      resources:
-                        - id: string
-                          altrep: 'CID:part3.msg.970415T083000@example.com'
-                      attachments:
-                        - id: string
-                          fmttype: string
-                          url: 'http://example.com'
-                      related-to:
-                        - id: 19960401-080045-4000F192713-0052@example.com
-                          reltype: PARENT
-                      rdates:
-                        - '2019-08-24T14:15:22Z'
-                      exdates:
-                        - '2019-08-24T14:15:22Z'
-                      attendees:
-                        - cal-address: 'mailto:joecool@example.com'
-                          cu-type: INDIVIDUAL
-                          member: 'mailto:DEV-GROUP@example.com'
-                          role: REQ-PARTICIPANT
-                          partstat: NEEDS-ACTION
-                          rsvp: false
-                          delto: 'mailto:joecool@example.com'
-                          delfrom: 'mailto:joecool@example.com'
-                          sentby: 'mailto:joecool@example.com'
-                          cn: string
-                          dir: 'http://example.com'
-                          language: en-US
-                      transp: OPAQUE
-                      alarms:
-                        - id: string
-                          action: AUDIO
-                          trigger:
-                            dtstart: '2019-08-24T14:15:22Z'
-                          description: string
-                          duration: PT15M
-                          repeat: 1
-                          summary: string
-                          attendees:
-                            - cal-address: 'mailto:joecool@example.com'
-                              cu-type: INDIVIDUAL
-                              member: 'mailto:DEV-GROUP@example.com'
-                              role: REQ-PARTICIPANT
-                              partstat: NEEDS-ACTION
-                              rsvp: false
-                              delto: 'mailto:joecool@example.com'
-                              delfrom: 'mailto:joecool@example.com'
-                              sentby: 'mailto:joecool@example.com'
-                              cn: string
-                              dir: 'http://example.com'
-                              language: en-US
-                          attachments:
-                            - id: string
-                              fmttype: string
-                              url: 'http://example.com'
+          $ref: '#/components/responses/event-list'
       operationId: list-events
       description: Return a list of visible events
       parameters:
-        - schema:
-            type: string
-          in: query
-          name: calendar
-          description: Unique id of a calendar to filter events
+        - $ref: '#/components/parameters/calendar'
         - schema:
             type: string
           in: query
           name: organizer
           description: Owner of the events
-        - schema:
-            type: string
-            uniqueItems: true
-            example: 'APPOINTMENT,EDUCATION'
-          in: query
-          name: categories
-          description: List of categories to filter results
-        - schema:
-            type: string
-            example: PRIVATE
-            enum:
-              - PUBLIC
-              - PRIVATE
-              - CONFIDENTIAL
-            default: PUBLIC
-          in: query
-          name: class
-          description: Event classification
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: fromDate
-          description: Minimum start date of results
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: toDate
-          description: Maximum start date of results
+        - $ref: '#/components/parameters/categories'
+        - $ref: '#/components/parameters/class'
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
     post:
       summary: ''
       operationId: create-event
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/event.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    id: string
-                    organizer: string
-                    summary: string
-                    dtstart: '2019-08-24T14:15:22Z'
-                    sequence: 0
-                    recurrence-id: string
-                    class: PUBLIC
-                    priority: 0
-                    status: TENTATIVE
-                    dtend: '2019-08-24T14:15:22Z'
-                    duration: string
-                    rrule: string
-                    description: string
-                    url: 'http://example.com'
-                    geo: string
-                    location: string
-                    last-modified: '2019-08-24T14:15:22Z'
-                    created: '2019-08-24T14:15:22Z'
-                    categories:
-                      - string
-                    comments:
-                      - string
-                    resources:
-                      - id: string
-                        altrep: 'CID:part3.msg.970415T083000@example.com'
-                    attachments:
-                      - id: string
-                        fmttype: string
-                        url: 'http://example.com'
-                    related-to:
-                      - id: 19960401-080045-4000F192713-0052@example.com
-                        reltype: PARENT
-                    rdates:
-                      - '2019-08-24T14:15:22Z'
-                    exdates:
-                      - '2019-08-24T14:15:22Z'
-                    attendees:
-                      - cal-address: 'mailto:joecool@example.com'
-                        cu-type: INDIVIDUAL
-                        member: 'mailto:DEV-GROUP@example.com'
-                        role: REQ-PARTICIPANT
-                        partstat: NEEDS-ACTION
-                        rsvp: false
-                        delto: 'mailto:joecool@example.com'
-                        delfrom: 'mailto:joecool@example.com'
-                        sentby: 'mailto:joecool@example.com'
-                        cn: string
-                        dir: 'http://example.com'
-                        language: en-US
-                    transp: OPAQUE
-                    alarms:
-                      - id: string
-                        action: AUDIO
-                        trigger:
-                          dtstart: '2019-08-24T14:15:22Z'
-                        description: string
-                        duration: PT15M
-                        repeat: 1
-                        summary: string
-                        attendees:
-                          - cal-address: 'mailto:joecool@example.com'
-                            cu-type: INDIVIDUAL
-                            member: 'mailto:DEV-GROUP@example.com'
-                            role: REQ-PARTICIPANT
-                            partstat: NEEDS-ACTION
-                            rsvp: false
-                            delto: 'mailto:joecool@example.com'
-                            delfrom: 'mailto:joecool@example.com'
-                            sentby: 'mailto:joecool@example.com'
-                            cn: string
-                            dir: 'http://example.com'
-                            language: en-US
-                        attachments:
-                          - id: string
-                            fmttype: string
-                            url: 'http://example.com'
+          $ref: '#/components/responses/event'
       requestBody:
         content:
           application/json:
@@ -332,24 +107,20 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/todo.v1.yaml
+          $ref: '#/components/responses/todo-list'
       operationId: list-todos
+      parameters:
+        - $ref: '#/components/parameters/calendar'
+        - $ref: '#/components/parameters/class'
+        - $ref: '#/components/parameters/categories'
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
     post:
       summary: ''
       operationId: create-todo
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/todo.v1.yaml
+          $ref: '#/components/responses/todo'
       description: Create a new todo component
       requestBody:
         content:
@@ -379,24 +150,20 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/journal.v1.yaml
+          $ref: '#/components/responses/journal-list'
       operationId: list-journals
+      parameters:
+        - $ref: '#/components/parameters/calendar'
+        - $ref: '#/components/parameters/class'
+        - $ref: '#/components/parameters/categories'
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
     post:
       summary: ''
       operationId: create-journal
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/journal.v1.yaml
+          $ref: '#/components/responses/journal'
       requestBody:
         content:
           application/json:
@@ -425,11 +192,7 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/freebusy.v1.yaml
+          $ref: '#/components/responses/freebusy'
       operationId: request-freebusy
       requestBody:
         content:
@@ -444,20 +207,11 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/calendar.v1.yaml
+          $ref: '#/components/responses/calendar'
       operationId: get-calendar
       description: Retrieve detail of a specific calendar
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
-        description: Calendar unique identifier
+      - $ref: '#/components/parameters/Uid'
     put:
       summary: ''
       operationId: set-calendar
@@ -468,7 +222,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/calendar.v1.yaml
+              $ref: ../models/calendar.v1.yaml
             examples:
               example-1:
                 value:
@@ -495,7 +249,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/calendar.v1.yaml
+              $ref: ../models/calendar.v1.yaml
             examples:
               example-1:
                 value:
@@ -524,41 +278,7 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/alarm.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      action: AUDIO
-                      trigger:
-                        dtstart: '2019-08-24T14:15:22Z'
-                      description: string
-                      duration: PT15M
-                      repeat: 1
-                      summary: string
-                      attendees:
-                        - cal-address: 'mailto:joecool@example.com'
-                          cu-type: INDIVIDUAL
-                          member: 'mailto:DEV-GROUP@example.com'
-                          role: REQ-PARTICIPANT
-                          partstat: NEEDS-ACTION
-                          rsvp: false
-                          delto: 'mailto:joecool@example.com'
-                          delfrom: 'mailto:joecool@example.com'
-                          sentby: 'mailto:joecool@example.com'
-                          cn: string
-                          dir: 'http://example.com'
-                          language: en-US
-                      attachments:
-                        - id: string
-                          fmttype: string
-                          url: 'http://example.com'
+          $ref: '#/components/responses/alarm-list'
       operationId: list-alarms
       description: Return a list of visible alarms
     post:
@@ -566,39 +286,7 @@ paths:
       operationId: create-alarm
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/alarm.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    id: string
-                    action: AUDIO
-                    trigger:
-                      dtstart: '2019-08-24T14:15:22Z'
-                    description: string
-                    duration: PT15M
-                    repeat: 1
-                    summary: string
-                    attendees:
-                      - cal-address: 'mailto:joecool@example.com'
-                        cu-type: INDIVIDUAL
-                        member: 'mailto:DEV-GROUP@example.com'
-                        role: REQ-PARTICIPANT
-                        partstat: NEEDS-ACTION
-                        rsvp: false
-                        delto: 'mailto:joecool@example.com'
-                        delfrom: 'mailto:joecool@example.com'
-                        sentby: 'mailto:joecool@example.com'
-                        cn: string
-                        dir: 'http://example.com'
-                        language: en-US
-                    attachments:
-                      - id: string
-                        fmttype: string
-                        url: 'http://example.com'
+          $ref: '#/components/responses/alarm'
       requestBody:
         content:
           application/json:
@@ -613,8 +301,8 @@ paths:
                     - EMAIL
                 trigger:
                   oneOf:
-                    - $ref: ./models/trigger.v1.yaml
-                    - $ref: ./models/triggerRel.v1.yaml
+                    - $ref: ../models/trigger.v1.yaml
+                    - $ref: ../models/triggerRel.v1.yaml
             examples:
               example-1:
                 value:
@@ -622,23 +310,14 @@ paths:
                   trigger:
                     dtstart: '2019-08-24T14:15:22Z'
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
-        description: Unique identifier of parent component
+      - $ref: '#/components/parameters/Uid'
   '/alarm/{Id}':
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/alarm.v1.yaml
+          $ref: '#/components/responses/alarm'
       operationId: get-alarm
     parameters:
       - schema:
@@ -657,7 +336,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/alarm.v1.yaml
+              $ref: ../models/alarm.v1.yaml
             examples:
               example-1:
                 value:
@@ -686,6 +365,9 @@ paths:
                     - id: string
                       fmttype: string
                       url: 'http://example.com'
+          application/xml:
+            schema:
+              $ref: ../models/alarm.v1.yaml
     patch:
       summary: ''
       operationId: update-alarm
@@ -696,7 +378,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/alarm.v1.yaml
+              $ref: ../models/alarm.v1.yaml
     delete:
       summary: ''
       operationId: delete-alarm
@@ -709,106 +391,13 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/event.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      organizer: string
-                      summary: string
-                      dtstart: '2019-08-24T14:15:22Z'
-                      sequence: 0
-                      recurrence-id: string
-                      class: PUBLIC
-                      priority: 0
-                      status: TENTATIVE
-                      dtend: '2019-08-24T14:15:22Z'
-                      duration: string
-                      rrule: string
-                      description: string
-                      url: 'http://example.com'
-                      geo: string
-                      location: string
-                      last-modified: '2019-08-24T14:15:22Z'
-                      created: '2019-08-24T14:15:22Z'
-                      categories:
-                        - string
-                      comments:
-                        - string
-                      resources:
-                        - id: string
-                          altrep: 'CID:part3.msg.970415T083000@example.com'
-                      attachments:
-                        - id: string
-                          fmttype: string
-                          url: 'http://example.com'
-                      related-to:
-                        - id: 19960401-080045-4000F192713-0052@example.com
-                          reltype: PARENT
-                      rdates:
-                        - '2019-08-24T14:15:22Z'
-                      exdates:
-                        - '2019-08-24T14:15:22Z'
-                      attendees:
-                        - cal-address: 'mailto:joecool@example.com'
-                          cu-type: INDIVIDUAL
-                          member: 'mailto:DEV-GROUP@example.com'
-                          role: REQ-PARTICIPANT
-                          partstat: NEEDS-ACTION
-                          rsvp: false
-                          delto: 'mailto:joecool@example.com'
-                          delfrom: 'mailto:joecool@example.com'
-                          sentby: 'mailto:joecool@example.com'
-                          cn: string
-                          dir: 'http://example.com'
-                          language: en-US
-                      transp: OPAQUE
-                      alarms:
-                        - id: string
-                          action: AUDIO
-                          trigger:
-                            dtstart: '2019-08-24T14:15:22Z'
-                          description: string
-                          duration: PT15M
-                          repeat: 1
-                          summary: string
-                          attendees:
-                            - cal-address: 'mailto:joecool@example.com'
-                              cu-type: INDIVIDUAL
-                              member: 'mailto:DEV-GROUP@example.com'
-                              role: REQ-PARTICIPANT
-                              partstat: NEEDS-ACTION
-                              rsvp: false
-                              delto: 'mailto:joecool@example.com'
-                              delfrom: 'mailto:joecool@example.com'
-                              sentby: 'mailto:joecool@example.com'
-                              cn: string
-                              dir: 'http://example.com'
-                              language: en-US
-                          attachments:
-                            - id: string
-                              fmttype: string
-                              url: 'http://example.com'
+          $ref: '#/components/responses/event-list'
       operationId: get-event
       description: 'Return a list of event components representing the latest version, recurrence overrides, and optionally past revisions.'
       parameters:
-        - schema:
-            type: boolean
-            default: 'false'
-          in: query
-          name: includeRevisions
+        - $ref: '#/components/parameters/includeRevisions'
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/Uid'
     put:
       summary: ''
       operationId: set-event
@@ -819,86 +408,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/event.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  sequence: 0
-                  recurrence-id: string
-                  class: PUBLIC
-                  priority: 0
-                  status: TENTATIVE
-                  dtend: '2019-08-24T14:15:22Z'
-                  duration: string
-                  rrule: string
-                  description: string
-                  url: 'http://example.com'
-                  geo: string
-                  location: string
-                  last-modified: '2019-08-24T14:15:22Z'
-                  created: '2019-08-24T14:15:22Z'
-                  categories:
-                    - string
-                  comments:
-                    - string
-                  resources:
-                    - id: string
-                      altrep: 'CID:part3.msg.970415T083000@example.com'
-                  attachments:
-                    - id: string
-                      fmttype: string
-                      url: 'http://example.com'
-                  related-to:
-                    - id: 19960401-080045-4000F192713-0052@example.com
-                      reltype: PARENT
-                  rdates:
-                    - '2019-08-24T14:15:22Z'
-                  exdates:
-                    - '2019-08-24T14:15:22Z'
-                  attendees:
-                    - cal-address: 'mailto:joecool@example.com'
-                      cu-type: INDIVIDUAL
-                      member: 'mailto:DEV-GROUP@example.com'
-                      role: REQ-PARTICIPANT
-                      partstat: NEEDS-ACTION
-                      rsvp: false
-                      delto: 'mailto:joecool@example.com'
-                      delfrom: 'mailto:joecool@example.com'
-                      sentby: 'mailto:joecool@example.com'
-                      cn: string
-                      dir: 'http://example.com'
-                      language: en-US
-                  transp: OPAQUE
-                  alarms:
-                    - id: string
-                      action: AUDIO
-                      trigger:
-                        dtstart: '2019-08-24T14:15:22Z'
-                      description: string
-                      duration: PT15M
-                      repeat: 1
-                      summary: string
-                      attendees:
-                        - cal-address: 'mailto:joecool@example.com'
-                          cu-type: INDIVIDUAL
-                          member: 'mailto:DEV-GROUP@example.com'
-                          role: REQ-PARTICIPANT
-                          partstat: NEEDS-ACTION
-                          rsvp: false
-                          delto: 'mailto:joecool@example.com'
-                          delfrom: 'mailto:joecool@example.com'
-                          sentby: 'mailto:joecool@example.com'
-                          cn: string
-                          dir: 'http://example.com'
-                          language: en-US
-                      attachments:
-                        - id: string
-                          fmttype: string
-                          url: 'http://example.com'
+              $ref: ../models/event.v1.yaml
+            examples: {}
       description: Create a new revision by replacing the entire component content with the supplied values.
     patch:
       summary: ''
@@ -910,86 +421,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/event.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  sequence: 0
-                  recurrence-id: string
-                  class: PUBLIC
-                  priority: 0
-                  status: TENTATIVE
-                  dtend: '2019-08-24T14:15:22Z'
-                  duration: string
-                  rrule: string
-                  description: string
-                  url: 'http://example.com'
-                  geo: string
-                  location: string
-                  last-modified: '2019-08-24T14:15:22Z'
-                  created: '2019-08-24T14:15:22Z'
-                  categories:
-                    - string
-                  comments:
-                    - string
-                  resources:
-                    - id: string
-                      altrep: 'CID:part3.msg.970415T083000@example.com'
-                  attachments:
-                    - id: string
-                      fmttype: string
-                      url: 'http://example.com'
-                  related-to:
-                    - id: 19960401-080045-4000F192713-0052@example.com
-                      reltype: PARENT
-                  rdates:
-                    - '2019-08-24T14:15:22Z'
-                  exdates:
-                    - '2019-08-24T14:15:22Z'
-                  attendees:
-                    - cal-address: 'mailto:joecool@example.com'
-                      cu-type: INDIVIDUAL
-                      member: 'mailto:DEV-GROUP@example.com'
-                      role: REQ-PARTICIPANT
-                      partstat: NEEDS-ACTION
-                      rsvp: false
-                      delto: 'mailto:joecool@example.com'
-                      delfrom: 'mailto:joecool@example.com'
-                      sentby: 'mailto:joecool@example.com'
-                      cn: string
-                      dir: 'http://example.com'
-                      language: en-US
-                  transp: OPAQUE
-                  alarms:
-                    - id: string
-                      action: AUDIO
-                      trigger:
-                        dtstart: '2019-08-24T14:15:22Z'
-                      description: string
-                      duration: PT15M
-                      repeat: 1
-                      summary: string
-                      attendees:
-                        - cal-address: 'mailto:joecool@example.com'
-                          cu-type: INDIVIDUAL
-                          member: 'mailto:DEV-GROUP@example.com'
-                          role: REQ-PARTICIPANT
-                          partstat: NEEDS-ACTION
-                          rsvp: false
-                          delto: 'mailto:joecool@example.com'
-                          delfrom: 'mailto:joecool@example.com'
-                          sentby: 'mailto:joecool@example.com'
-                          cn: string
-                          dir: 'http://example.com'
-                          language: en-US
-                      attachments:
-                        - id: string
-                          fmttype: string
-                          url: 'http://example.com'
+              $ref: ../models/event.v1.yaml
+            examples: {}
         description: ''
     delete:
       summary: ''
@@ -1003,29 +436,13 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/journal.v1.yaml
-              examples: {}
+          $ref: '#/components/responses/journal-list'
       operationId: get-journal
       description: 'Return a list of journal components representing the latest revision, recurrence overrides, and optionally past revisions.'
       parameters:
-        - schema:
-            type: boolean
-            default: 'false'
-          in: query
-          name: includeRevisions
-          description: Include all component revisions in results
+        - $ref: '#/components/parameters/includeRevisions'
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/Uid'
     put:
       summary: ''
       operationId: set-journal
@@ -1037,7 +454,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/journal.v1.yaml
+              $ref: ../models/journal.v1.yaml
         description: ''
     patch:
       summary: ''
@@ -1057,27 +474,13 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/todo.v1.yaml
+          $ref: '#/components/responses/todo-list'
       operationId: get-todo
       description: 'Return a list of todo components representing the latest version, recurrence overrides, and optionally past revisions.'
       parameters:
-        - schema:
-            type: boolean
-            default: 'false'
-          in: query
-          name: includeRevisions
+        - $ref: '#/components/parameters/includeRevisions'
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/Uid'
     delete:
       summary: ''
       operationId: delete-todo
@@ -1094,11 +497,7 @@ paths:
       operationId: update-todo
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/todo.v1.yaml
+          $ref: '#/components/responses/todo'
       description: Update an existing todo component
     put:
       summary: ''
@@ -1111,29 +510,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/todo.v1.yaml
+              $ref: ../models/todo.v1.yaml
   '/availability/{Organizer}':
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/availability.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      organizer: string
-                      summary: string
-                      dtstart: '2019-08-24T14:15:22Z'
-                      dtend: '2019-08-24T14:15:22Z'
-                      rrule: string
+          $ref: '#/components/responses/availability-list'
       operationId: get-availability
     put:
       summary: ''
@@ -1145,7 +529,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/availability.v1.yaml
+              $ref: ../models/availability.v1.yaml
             examples:
               example-1:
                 value:
@@ -1166,7 +550,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/availability.v1.yaml
+              $ref: ../models/availability.v1.yaml
             examples:
               example-1:
                 value:
@@ -1189,30 +573,14 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./models/attachment.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      fmttype: string
-                      url: 'http://example.com'
+          $ref: '#/components/responses/attachment-list'
       operationId: get-attachments
     post:
       summary: ''
       operationId: upload-attachment
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/attachment.v1.yaml
+          $ref: '#/components/responses/attachment'
       requestBody:
         content:
           application/json:
@@ -1232,29 +600,14 @@ paths:
                   fmttype: string
                   url: 'http://example.com'
     parameters:
-      - schema:
-          type: string
-        name: Uid
-        in: path
-        required: true
-        description: Unique identifier of a component
+      - $ref: '#/components/parameters/Uid'
   '/attachment/{Id}':
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./models/attachment.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    id: string
-                    fmttype: string
-                    url: 'http://example.com'
+          $ref: '#/components/responses/attachment'
       operationId: get-attachment
     parameters:
       - schema:
@@ -1273,7 +626,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./models/attachment.v1.yaml
+              $ref: ../models/attachment.v1.yaml
     delete:
       summary: ''
       operationId: delete-attachment
@@ -1282,3 +635,271 @@ paths:
           description: OK
 components:
   schemas: {}
+  responses:
+    event-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/event.v1.yaml
+    todo-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/todo.v1.yaml
+    journal-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/journal.v1.yaml
+    event:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/event.v1.yaml
+          examples: {}
+    journal:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/journal.v1.yaml
+    todo:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/todo.v1.yaml
+    calendar:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/calendar.v1.yaml
+          examples:
+            example-1:
+              value:
+                id: string
+                calscale: GREGORIAN
+                name: string
+                description: string
+                last-modified: '2019-08-24T14:15:22Z'
+                url: 'http://example.com'
+                categories:
+                  - string
+                refresh-interval: string
+                source: 'http://example.com'
+                color: string
+                image: string
+                conference: 'http://example.com'
+    calendar-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/calendar.v1.yaml
+          examples:
+            example-1:
+              value:
+                - id: string
+                  calscale: GREGORIAN
+                  name: string
+                  description: string
+                  last-modified: '2019-08-24T14:15:22Z'
+                  url: 'http://example.com'
+                  categories:
+                    - string
+                  refresh-interval: string
+                  source: 'http://example.com'
+                  color: string
+                  image: string
+                  conference: 'http://example.com'
+    alarm-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/alarm.v1.yaml
+          examples:
+            example-1:
+              value:
+                - id: string
+                  action: AUDIO
+                  trigger:
+                    dtstart: '2019-08-24T14:15:22Z'
+                  description: string
+                  duration: PT15M
+                  repeat: 1
+                  summary: string
+                  attendees:
+                    - cal-address: 'mailto:joecool@example.com'
+                      cu-type: INDIVIDUAL
+                      member: 'mailto:DEV-GROUP@example.com'
+                      role: REQ-PARTICIPANT
+                      partstat: NEEDS-ACTION
+                      rsvp: false
+                      delto: 'mailto:joecool@example.com'
+                      delfrom: 'mailto:joecool@example.com'
+                      sentby: 'mailto:joecool@example.com'
+                      cn: string
+                      dir: 'http://example.com'
+                      language: en-US
+                  attachments:
+                    - id: string
+                      fmttype: string
+                      url: 'http://example.com'
+    alarm:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/alarm.v1.yaml
+          examples:
+            example-1:
+              value:
+                id: string
+                action: AUDIO
+                trigger:
+                  dtstart: '2019-08-24T14:15:22Z'
+                description: string
+                duration: PT15M
+                repeat: 1
+                summary: string
+                attendees:
+                  - cal-address: 'mailto:joecool@example.com'
+                    cu-type: INDIVIDUAL
+                    member: 'mailto:DEV-GROUP@example.com'
+                    role: REQ-PARTICIPANT
+                    partstat: NEEDS-ACTION
+                    rsvp: false
+                    delto: 'mailto:joecool@example.com'
+                    delfrom: 'mailto:joecool@example.com'
+                    sentby: 'mailto:joecool@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    language: en-US
+                attachments:
+                  - id: string
+                    fmttype: string
+                    url: 'http://example.com'
+    availability-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/availability.v1.yaml
+          examples:
+            example-1:
+              value:
+                - id: string
+                  organizer: string
+                  summary: string
+                  dtstart: '2019-08-24T14:15:22Z'
+                  dtend: '2019-08-24T14:15:22Z'
+                  rrule: string
+    attachment-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/attachment.v1.yaml
+          examples:
+            example-1:
+              value:
+                - id: string
+                  fmttype: string
+                  url: 'http://example.com'
+    attachment:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/attachment.v1.yaml
+          examples:
+            example-1:
+              value:
+                id: string
+                fmttype: string
+                url: 'http://example.com'
+    freebusy:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/freebusy.v1.yaml
+          examples: {}
+  parameters:
+    Uid:
+      name: Uid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for a component or calendar
+    includeRevisions:
+      name: includeRevisions
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: 'false'
+      description: Include previous revisions of requested component
+    calendar:
+      name: calendar
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Unique id of a calendar to filter components
+    class:
+      name: class
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - PUBLIC
+          - PRIVATE
+          - CONFIDENTIAL
+        default: PUBLIC
+      description: Component classification filter
+    categories:
+      name: categories
+      in: query
+      required: false
+      schema:
+        type: string
+      description: List of categories to filter results
+    fromDate:
+      name: fromDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      description: Minimum start date of results
+    toDate:
+      name: toDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      description: Maximum start date of results

@@ -1,14 +1,18 @@
 title: fbperiod
 type: object
+x-examples:
+  example-1:
+    start: '2019-08-24T14:15:22Z'
+    end: '2019-08-24T14:15:22Z'
+    fbtype: BUSY
+    duration: PT5H30M
 properties:
   start:
     type: string
     format: date-time
-    example: 19970101T180000Z
   end:
     type: string
     format: date-time
-    example: 19970102T070000Z
   fbtype:
     type: string
     enum:
@@ -21,9 +25,3 @@ properties:
     type: string
     format: duration
     example: PT5H30M
-x-examples:
-  example-1:
-    start: 19970101T180000Z
-    end: 19970102T070000Z
-    fbtype: BUSY
-    duration: PT5H30M
