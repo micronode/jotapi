@@ -5,6 +5,7 @@ info:
   description: A collaboration API based on the iCalendar specification
   license:
     name: MIT
+    url: 'https://raw.githubusercontent.com/micronode/jotapi/main/LICENSE'
   contact:
     name: Micronode
     url: 'https://micronode.com/jot'
@@ -21,6 +22,8 @@ paths:
           $ref: '#/components/responses/calendar-list'
       operationId: list-calendars
       description: Retrieve a list of visible calendars
+      parameters:
+        - $ref: '#/components/parameters/organizer'
     parameters: []
     post:
       summary: ''
@@ -59,11 +62,7 @@ paths:
       description: Return a list of visible events
       parameters:
         - $ref: '#/components/parameters/calendar'
-        - schema:
-            type: string
-          in: query
-          name: organizer
-          description: Owner of the events
+        - $ref: '#/components/parameters/organizer'
         - $ref: '#/components/parameters/categories'
         - $ref: '#/components/parameters/class'
         - $ref: '#/components/parameters/fromDate'
@@ -115,6 +114,7 @@ paths:
         - $ref: '#/components/parameters/categories'
         - $ref: '#/components/parameters/fromDate'
         - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/organizer'
     post:
       summary: ''
       operationId: create-todo
@@ -158,6 +158,7 @@ paths:
         - $ref: '#/components/parameters/categories'
         - $ref: '#/components/parameters/fromDate'
         - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/organizer'
     post:
       summary: ''
       operationId: create-journal
@@ -274,7 +275,7 @@ paths:
           description: OK
   '/alarms/{Uid}':
     get:
-      summary: Your GET endpoint
+      summary: List component alarms
       tags: []
       responses:
         '200':
@@ -282,7 +283,7 @@ paths:
       operationId: list-alarms
       description: Return a list of visible alarms
     post:
-      summary: ''
+      summary: Create alarm
       operationId: create-alarm
       responses:
         '200':
@@ -309,16 +310,18 @@ paths:
                   action: AUDIO
                   trigger:
                     dtstart: '2019-08-24T14:15:22Z'
+      description: Create a new component alarm
     parameters:
       - $ref: '#/components/parameters/Uid'
   '/alarm/{Id}':
     get:
-      summary: Your GET endpoint
+      summary: Get a component alarm
       tags: []
       responses:
         '200':
           $ref: '#/components/responses/alarm'
       operationId: get-alarm
+      description: Get an existing component alarm
     parameters:
       - schema:
           type: string
@@ -327,7 +330,7 @@ paths:
         required: true
         description: Alarm identifier unique in the context of the parent component
     put:
-      summary: ''
+      summary: Set a component alarm
       operationId: set-alarm
       responses:
         '200':
@@ -368,8 +371,9 @@ paths:
           application/xml:
             schema:
               $ref: ../models/alarm.v1.yaml
+      description: Replace an existing component alarm
     patch:
-      summary: ''
+      summary: Update a component alarm
       operationId: update-alarm
       responses:
         '200':
@@ -379,12 +383,14 @@ paths:
           application/json:
             schema:
               $ref: ../models/alarm.v1.yaml
+      description: Update an existing component alarm
     delete:
-      summary: ''
+      summary: Delete a component alarm
       operationId: delete-alarm
       responses:
         '200':
           description: OK
+      description: Delete an existing component alarm
   '/event/{Uid}':
     get:
       summary: Your GET endpoint
@@ -511,14 +517,17 @@ paths:
           application/json:
             schema:
               $ref: ../models/todo.v1.yaml
-  '/availability/{Organizer}':
+  '/availability/{Uid}':
     get:
-      summary: Your GET endpoint
+      summary: Get resource availability
       tags: []
       responses:
         '200':
           $ref: '#/components/responses/availability-list'
       operationId: get-availability
+      description: Return availability definitions for specified uid
+      parameters:
+        - $ref: '#/components/parameters/includeRevisions'
     put:
       summary: ''
       operationId: set-availability
@@ -540,6 +549,7 @@ paths:
                   dtend: '2019-08-24T14:15:22Z'
                   rrule: string
         description: ''
+      description: Replace an existing availability definition
     patch:
       summary: ''
       operationId: update-availability
@@ -560,13 +570,14 @@ paths:
                   dtstart: '2019-08-24T14:15:22Z'
                   dtend: '2019-08-24T14:15:22Z'
                   rrule: string
+      description: Update an existing availability definition
     parameters:
-      - schema:
-          type: string
-        name: Organizer
+      - name: Uid
         in: path
         required: true
-        description: URI of organizer
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
   '/attachments/{Uid}':
     get:
       summary: Your GET endpoint
@@ -633,11 +644,28 @@ paths:
       responses:
         '200':
           description: OK
+  /availability:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/availability-list'
+      operationId: list-availability
+      description: Return a list of availability definitions matching request criteria
+      parameters:
+        - $ref: '#/components/parameters/organizer'
+    post:
+      summary: ''
+      operationId: create-availability
+      responses:
+        '200':
+          $ref: '#/components/responses/availability'
 components:
   schemas: {}
   responses:
     event-list:
-      description: Example response
+      description: A list of calendar events
       content:
         application/json:
           schema:
@@ -645,7 +673,7 @@ components:
             items:
               $ref: ../models/event.v1.yaml
     todo-list:
-      description: Example response
+      description: A list of calendar todos
       content:
         application/json:
           schema:
@@ -653,7 +681,7 @@ components:
             items:
               $ref: ../models/todo.v1.yaml
     journal-list:
-      description: Example response
+      description: A list of calendar journals
       content:
         application/json:
           schema:
@@ -661,26 +689,26 @@ components:
             items:
               $ref: ../models/journal.v1.yaml
     event:
-      description: Example response
+      description: A calendar event
       content:
         application/json:
           schema:
             $ref: ../models/event.v1.yaml
           examples: {}
     journal:
-      description: Example response
+      description: A calendar journal component
       content:
         application/json:
           schema:
             $ref: ../models/journal.v1.yaml
     todo:
-      description: Example response
+      description: A calendar todo component
       content:
         application/json:
           schema:
             $ref: ../models/todo.v1.yaml
     calendar:
-      description: Example response
+      description: A grouping of calendar components
       content:
         application/json:
           schema:
@@ -702,7 +730,7 @@ components:
                 image: string
                 conference: 'http://example.com'
     calendar-list:
-      description: Example response
+      description: A list of calendar definitions
       content:
         application/json:
           schema:
@@ -726,7 +754,7 @@ components:
                   image: string
                   conference: 'http://example.com'
     alarm-list:
-      description: Example response
+      description: A list of component alarms
       content:
         application/json:
           schema:
@@ -762,7 +790,7 @@ components:
                       fmttype: string
                       url: 'http://example.com'
     alarm:
-      description: Example response
+      description: A component alarm
       content:
         application/json:
           schema:
@@ -796,7 +824,7 @@ components:
                     fmttype: string
                     url: 'http://example.com'
     availability-list:
-      description: Example response
+      description: A list of user availability definitions
       content:
         application/json:
           schema:
@@ -813,7 +841,7 @@ components:
                   dtend: '2019-08-24T14:15:22Z'
                   rrule: string
     attachment-list:
-      description: Example response
+      description: A list of component attachments
       content:
         application/json:
           schema:
@@ -827,7 +855,7 @@ components:
                   fmttype: string
                   url: 'http://example.com'
     attachment:
-      description: Example response
+      description: A component attachment
       content:
         application/json:
           schema:
@@ -839,12 +867,18 @@ components:
                 fmttype: string
                 url: 'http://example.com'
     freebusy:
-      description: Example response
+      description: A free/busy schedule definition
       content:
         application/json:
           schema:
             $ref: ../models/freebusy.v1.yaml
           examples: {}
+    availability:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/availability.v1.yaml
   parameters:
     Uid:
       name: Uid
@@ -903,3 +937,11 @@ components:
         type: string
         format: date
       description: Maximum start date of results
+    organizer:
+      name: organizer
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Owner of calendars and components
+  securitySchemes: {}
