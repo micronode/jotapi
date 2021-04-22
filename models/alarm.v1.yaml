@@ -1,0 +1,66 @@
+title: alarm
+type: object
+x-examples:
+  example-1:
+    id: string
+    action: AUDIO
+    trigger:
+      dtstart: '2019-08-24T14:15:22Z'
+    description: string
+    duration: PT15M
+    repeat: 1
+    summary: string
+    attendees:
+      - cal-address: 'http://example.com'
+        cu-type: INDIVIDUAL
+        member: 'http://example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'http://example.com'
+        delfrom: 'http://example.com'
+        sentby: 'http://example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    attachments:
+      - id: string
+        fmttype: string
+        url: 'http://example.com'
+properties:
+  id:
+    type: string
+  action:
+    type: string
+    enum:
+      - AUDIO
+      - DISPLAY
+      - EMAIL
+  trigger:
+    oneOf:
+      - $ref: ./trigger.v1.yaml
+      - $ref: ./triggerRel.v1.yaml
+  description:
+    type: string
+  duration:
+    type: string
+    format: duration
+    example: PT15M
+  repeat:
+    type: integer
+    format: int32
+    minimum: 1
+  summary:
+    type: string
+  attendees:
+    type: array
+    items:
+      $ref: ./attendee.v1.yaml
+  attachments:
+    type: array
+    items:
+      $ref: ./attachment.v1.yaml
+required:
+  - id
+  - action
+  - trigger

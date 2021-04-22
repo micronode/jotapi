@@ -1,0 +1,9 @@
+title: trigger
+type: object
+description: Explicit alarm trigger
+properties:
+  dtstart:
+    type: string
+    format: date-time
+required:
+  - dtstart

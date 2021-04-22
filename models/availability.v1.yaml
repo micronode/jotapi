@@ -1,0 +1,28 @@
+title: availability
+type: object
+properties:
+  id:
+    type: string
+  organizer:
+    type: string
+  summary:
+    type: string
+  dtstart:
+    type: string
+    format: date-time
+  dtend:
+    type: string
+    format: date-time
+  rrule:
+    type: string
+required:
+  - id
+  - organizer
+x-examples:
+  example-1:
+    id: string
+    organizer: string
+    summary: string
+    dtstart: '2019-08-24T14:15:22Z'
+    dtend: '2019-08-24T14:15:22Z'
+    rrule: string

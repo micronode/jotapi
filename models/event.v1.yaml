@@ -1,0 +1,197 @@
+title: event
+type: object
+description: A calendar event
+x-examples:
+  example-1:
+    id: string
+    organizer:
+      cal-address: 'mailto:jane_doe@example.com'
+      cn: string
+      dir: 'http://example.com'
+      sent-by: 'mailto:joecool@example.com'
+      language: en-US
+    summary: string
+    dtstart: '2019-08-24T14:15:22Z'
+    sequence: 0
+    recurrence-id: string
+    class: PUBLIC
+    priority: 0
+    status: TENTATIVE
+    dtend: '2019-08-24T14:15:22Z'
+    duration: string
+    rrule: string
+    description: string
+    url: 'http://example.com'
+    geo: string
+    location: string
+    last-modified: '2019-08-24T14:15:22Z'
+    created: '2019-08-24T14:15:22Z'
+    categories:
+      - string
+    comments:
+      - text: string
+        altrep: string
+    resources:
+      - id: string
+        altrep: 'CID:part3.msg.970415T083000@example.com'
+    attachments:
+      - id: string
+        fmttype: string
+        url: 'http://example.com'
+    related-to:
+      - id: 19960401-080045-4000F192713-0052@example.com
+        reltype: PARENT
+    rdates:
+      - '2019-08-24T14:15:22Z'
+    exdates:
+      - '2019-08-24T14:15:22Z'
+    attendees:
+      - cal-address: 'mailto:joecool@example.com'
+        cu-type: INDIVIDUAL
+        member: 'mailto:DEV-GROUP@example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    transp: OPAQUE
+    alarms:
+      - id: string
+        action: AUDIO
+        trigger:
+          dtstart: '2019-08-24T14:15:22Z'
+        description: string
+        duration: PT15M
+        repeat: 1
+        summary: string
+        attendees:
+          - cal-address: 'mailto:joecool@example.com'
+            cu-type: INDIVIDUAL
+            member: 'mailto:DEV-GROUP@example.com'
+            role: REQ-PARTICIPANT
+            partstat: NEEDS-ACTION
+            rsvp: false
+            delto: 'mailto:joecool@example.com'
+            delfrom: 'mailto:joecool@example.com'
+            sentby: 'mailto:joecool@example.com'
+            cn: string
+            dir: 'http://example.com'
+            language: en-US
+        attachments:
+          - id: string
+            fmttype: string
+            url: 'http://example.com'
+    contacts:
+      - text: string
+        altrep: string
+properties:
+  id:
+    type: string
+  organizer:
+    $ref: ./organizer.v1.yaml
+  summary:
+    type: string
+  dtstart:
+    type: string
+    format: date-time
+  sequence:
+    type: integer
+    minimum: 0
+  recurrence-id:
+    type: string
+  class:
+    type: string
+    enum:
+      - PUBLIC
+      - PRIVATE
+      - CONFIDENTIAL
+  priority:
+    type: integer
+    minimum: 0
+    maximum: 9
+  status:
+    type: string
+    enum:
+      - TENTATIVE
+      - CONFIRMED
+      - CANCELLED
+  dtend:
+    type: string
+    format: date-time
+  duration:
+    type: string
+    format: duration
+  rrule:
+    type: string
+  description:
+    type: string
+  url:
+    type: string
+    format: uri
+  geo:
+    type: string
+  location:
+    type: string
+  last-modified:
+    type: string
+    format: date-time
+  created:
+    type: string
+    format: date-time
+  categories:
+    type: array
+    items:
+      type: string
+  comments:
+    type: array
+    items:
+      $ref: ./comment.v1.yaml
+  resources:
+    type: array
+    items:
+      $ref: ./resource.v1.yaml
+  attachments:
+    type: array
+    items:
+      $ref: ./attachment.v1.yaml
+  related-to:
+    type: array
+    items:
+      $ref: ./related.v1.yaml
+  rdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  exdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  attendees:
+    type: array
+    items:
+      $ref: ./attendee.v1.yaml
+  transp:
+    type: string
+    enum:
+      - OPAQUE
+      - TRANSPARENT
+    default: OPAQUE
+  alarms:
+    type: array
+    items:
+      $ref: ./alarm.v1.yaml
+  contacts:
+    type: array
+    items:
+      $ref: ./contact.v1.yaml
+required:
+  - id
+  - organizer
+  - summary
+  - dtstart

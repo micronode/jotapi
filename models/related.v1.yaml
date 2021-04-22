@@ -1,0 +1,17 @@
+title: related
+type: object
+properties:
+  id:
+    type: string
+    example: 19960401-080045-4000F192713-0052@example.com
+  reltype:
+    type: string
+    enum:
+      - PARENT
+      - CHILD
+      - SIBLING
+    default: PARENT
+x-examples:
+  example-1:
+    id: 19960401-080045-4000F192713-0052@example.com
+    reltype: PARENT

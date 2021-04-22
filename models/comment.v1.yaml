@@ -1,0 +1,9 @@
+title: comment
+type: object
+properties:
+  text:
+    type: string
+  altrep:
+    type: string
+required:
+  - text

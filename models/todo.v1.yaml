@@ -1,0 +1,27 @@
+title: todo
+type: object
+description: A calendar task component
+x-examples: {}
+properties:
+  id:
+    type: string
+  organizer:
+    $ref: ./organizer.v1.yaml
+  summary:
+    type: string
+  dtstart:
+    type: string
+  sequence:
+    type: integer
+    minimum: 0
+  recurrence-id:
+    type: string
+  class:
+    type: string
+  priority:
+    type: string
+  status:
+    type: string
+required:
+  - id
+  - organizer

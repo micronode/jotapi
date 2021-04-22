@@ -1,0 +1,54 @@
+title: calendar
+type: object
+description: A collection of calendar components
+x-examples:
+  example-1:
+    id: string
+    calscale: GREGORIAN
+    name: string
+    description: string
+    last-modified: '2019-08-24T14:15:22Z'
+    url: 'http://example.com'
+    categories:
+      - string
+    refresh-interval: string
+    source: 'http://example.com'
+    color: string
+    image: string
+    conference: 'http://example.com'
+properties:
+  id:
+    type: string
+  calscale:
+    type: string
+    enum:
+      - GREGORIAN
+  name:
+    type: string
+  description:
+    type: string
+  last-modified:
+    type: string
+    format: date-time
+  url:
+    type: string
+    format: uri
+  categories:
+    type: array
+    items:
+      type: string
+  refresh-interval:
+    type: string
+  source:
+    type: string
+    format: uri
+  color:
+    type: string
+  image:
+    type: string
+  conference:
+    type: string
+    format: uri
+required:
+  - id
+  - calscale

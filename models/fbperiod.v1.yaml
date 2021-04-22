@@ -1,0 +1,29 @@
+title: fbperiod
+type: object
+properties:
+  start:
+    type: string
+    format: date-time
+    example: 19970101T180000Z
+  end:
+    type: string
+    format: date-time
+    example: 19970102T070000Z
+  fbtype:
+    type: string
+    enum:
+      - FREE
+      - BUSY
+      - BUSY-UNAVAILABLE
+      - BUSY-TENTATIVE
+    default: BUSY
+  duration:
+    type: string
+    format: duration
+    example: PT5H30M
+x-examples:
+  example-1:
+    start: 19970101T180000Z
+    end: 19970102T070000Z
+    fbtype: BUSY
+    duration: PT5H30M

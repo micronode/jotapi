@@ -1,0 +1,71 @@
+title: freebusy
+type: object
+description: A calendar availability component
+x-examples:
+  example-1:
+    id: 19970901T082949Z-FA43EF@example.com
+    organizer:
+      cal-address: 'mailto:jane_doe@example.com'
+      cn: string
+      dir: 'http://example.com'
+      sent-by: 'mailto:joecool@example.com'
+      language: en-US
+    dtstart: 19971015T050000Z
+    dtend: 19971016T050000Z
+    url: 'http://www.example.com/calendar/busytime/jsmith.ifb'
+    fbperiods:
+      - start: 19970101T180000Z
+        end: 19970102T070000Z
+        fbtype: BUSY
+        duration: PT5H30M
+    attendee:
+      cal-address: 'mailto:joecool@example.com'
+      cu-type: INDIVIDUAL
+      member: 'mailto:DEV-GROUP@example.com'
+      role: REQ-PARTICIPANT
+      partstat: NEEDS-ACTION
+      rsvp: false
+      delto: 'mailto:joecool@example.com'
+      delfrom: 'mailto:joecool@example.com'
+      sentby: 'mailto:joecool@example.com'
+      cn: string
+      dir: 'http://example.com'
+      language: en-US
+    comment:
+      - text: string
+        altrep: string
+    contact:
+      text: string
+      altrep: string
+properties:
+  id:
+    type: string
+    example: 19970901T082949Z-FA43EF@example.com
+  organizer:
+    $ref: ./organizer.v1.yaml
+  dtstart:
+    type: string
+    format: date-time
+    example: 19971015T050000Z
+  dtend:
+    type: string
+    format: date-time
+    example: 19971016T050000Z
+  url:
+    type: string
+    example: 'http://www.example.com/calendar/busytime/jsmith.ifb'
+    format: uri
+  fbperiods:
+    type: array
+    items:
+      $ref: ./fbperiod.v1.yaml
+  attendee:
+    $ref: ./attendee.v1.yaml
+  comment:
+    type: array
+    items:
+      $ref: ./comment.v1.yaml
+  contact:
+    $ref: ./contact.v1.yaml
+required:
+  - id

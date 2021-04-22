@@ -1,0 +1,13 @@
+title: resource
+type: object
+properties:
+  id:
+    type: string
+  altrep:
+    type: string
+    format: uri
+    example: 'CID:part3.msg.970415T083000@example.com'
+x-examples:
+  example-1:
+    id: string
+    altrep: 'CID:part3.msg.970415T083000@example.com'

@@ -1,0 +1,17 @@
+title: attachment
+type: object
+properties:
+  id:
+    type: string
+  fmttype:
+    type: string
+  url:
+    type: string
+    format: uri
+required:
+  - id
+x-examples:
+  example-1:
+    id: string
+    fmttype: string
+    url: 'http://example.com'

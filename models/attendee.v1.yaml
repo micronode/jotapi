@@ -1,0 +1,75 @@
+title: attendee
+type: object
+x-examples:
+  example-1:
+    cal-address: 'mailto:joecool@example.com'
+    cu-type: INDIVIDUAL
+    member: 'mailto:DEV-GROUP@example.com'
+    role: REQ-PARTICIPANT
+    partstat: NEEDS-ACTION
+    rsvp: false
+    delto: 'mailto:joecool@example.com'
+    delfrom: 'mailto:joecool@example.com'
+    sentby: 'mailto:joecool@example.com'
+    cn: string
+    dir: 'http://example.com'
+    language: en-US
+properties:
+  cal-address:
+    type: string
+    format: uri
+    example: 'mailto:joecool@example.com'
+  cu-type:
+    type: string
+    enum:
+      - INDIVIDUAL
+      - GROUP
+      - RESOURCE
+      - ROOM
+      - UNKNOWN
+    default: INDIVIDUAL
+  member:
+    type: string
+    format: uri
+    example: 'mailto:DEV-GROUP@example.com'
+  role:
+    type: string
+    enum:
+      - CHAIR
+      - REQ-PARTICIPANT
+      - OPT-PARTICIPANT
+      - NON-PARTICIPANT
+    default: REQ-PARTICIPANT
+  partstat:
+    type: string
+    enum:
+      - NEEDS-ACTION
+      - ACCEPTED
+      - DECLINED
+      - TENTATIVE
+      - DELEGATED
+    default: NEEDS-ACTION
+  rsvp:
+    type: boolean
+    default: false
+  delto:
+    type: string
+    format: uri
+    example: 'mailto:joecool@example.com'
+  delfrom:
+    type: string
+    format: uri
+    example: 'mailto:joecool@example.com'
+  sentby:
+    type: string
+    format: uri
+    example: 'mailto:joecool@example.com'
+  cn:
+    type: string
+  dir:
+    type: string
+    format: uri
+  language:
+    type: string
+    example: en-US
+description: ''

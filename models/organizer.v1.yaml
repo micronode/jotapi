@@ -1,0 +1,26 @@
+title: organizer
+type: object
+properties:
+  cal-address:
+    type: string
+    example: 'mailto:jane_doe@example.com'
+    format: uri
+  cn:
+    type: string
+  dir:
+    type: string
+    format: uri
+  sent-by:
+    type: string
+    format: uri
+    example: 'mailto:joecool@example.com'
+  language:
+    type: string
+    example: en-US
+x-examples:
+  example-1:
+    cal-address: 'mailto:jane_doe@example.com'
+    cn: string
+    dir: 'http://example.com'
+    sent-by: 'mailto:joecool@example.com'
+    language: en-US
