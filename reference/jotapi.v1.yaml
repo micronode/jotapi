@@ -313,7 +313,7 @@ paths:
       description: Create a new component alarm
     parameters:
       - $ref: '#/components/parameters/Uid'
-  '/alarm/{Id}':
+  '/alarm/{Uid}':
     get:
       summary: Get a component alarm
       tags: []
@@ -323,12 +323,12 @@ paths:
       operationId: get-alarm
       description: Get an existing component alarm
     parameters:
-      - schema:
-          type: string
-        name: Id
+      - name: Uid
         in: path
         required: true
-        description: Alarm identifier unique in the context of the parent component
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
     put:
       summary: Set a component alarm
       operationId: set-alarm
@@ -416,6 +416,7 @@ paths:
             schema:
               $ref: ../models/event.v1.yaml
             examples: {}
+        description: ''
       description: Create a new revision by replacing the entire component content with the supplied values.
     patch:
       summary: ''
@@ -427,9 +428,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/event.v1.yaml
+              $ref: '#/components/schemas/event-patch'
             examples: {}
         description: ''
+      description: Create a new event revision using values provided in the payload
     delete:
       summary: ''
       operationId: delete-event
@@ -662,7 +664,14 @@ paths:
         '200':
           $ref: '#/components/responses/availability'
 components:
-  schemas: {}
+  schemas:
+    event-patch:
+      title: event-patch
+      type: object
+      properties:
+        id:
+          type: string
+      description: Partial event data used to update an existing event
   responses:
     event-list:
       description: A list of calendar events

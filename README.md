@@ -32,7 +32,7 @@ following endpoints and HTTP verbs are included in the Jot API:
 * GET
 * POST
 
-### /calendar
+### /calendar/{Uid}
 
 * GET
 * PUT
@@ -44,7 +44,7 @@ following endpoints and HTTP verbs are included in the Jot API:
 * GET
 * POST
 
-### /event
+### /event/{Uid}
 
 * GET
 * PUT
@@ -56,7 +56,7 @@ following endpoints and HTTP verbs are included in the Jot API:
 * GET
 * POST
 
-### /todo
+### /todo/{Uid}
 
 * GET
 * PUT
@@ -68,7 +68,7 @@ following endpoints and HTTP verbs are included in the Jot API:
 * GET
 * POST
 
-### /journal
+### /journal/{Uid}
 
 * GET
 * PUT
@@ -82,6 +82,11 @@ following endpoints and HTTP verbs are included in the Jot API:
 ### /availability
 
 * GET
+* POST
+
+### /availability/{Uid}
+
+* GET
 * PUT
 * PATCH
 
@@ -90,7 +95,7 @@ following endpoints and HTTP verbs are included in the Jot API:
 * GET
 * POST
 
-### /alarm
+### /alarm/{Uid}
 
 * GET
 * PUT
