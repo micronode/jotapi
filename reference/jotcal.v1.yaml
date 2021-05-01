@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Jot
+  title: JotCal
   version: '1.0'
-  description: A collaboration API based on the iCalendar specification
+  description: A scheduling data API based on the iCalendar specification
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/micronode/jotapi/main/LICENSE'
@@ -11,7 +11,15 @@ info:
     url: 'https://micronode.com/jot'
     email: fortuna@micronode.com
 servers:
-  - url: 'http://localhost:3000'
+  - url: '{protocol}://{host}/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      host:
+        default: api.example.com
 paths:
   /calendars:
     get:
@@ -282,6 +290,7 @@ paths:
           $ref: '#/components/responses/alarm-list'
       operationId: list-alarms
       description: Return a list of visible alarms
+      parameters: []
     post:
       summary: Create alarm
       operationId: create-alarm
@@ -365,8 +374,7 @@ paths:
                       dir: 'http://example.com'
                       language: en-US
                   attachments:
-                    - id: string
-                      fmttype: string
+                    - fmttype: string
                       url: 'http://example.com'
           application/xml:
             schema:
@@ -614,38 +622,57 @@ paths:
                   url: 'http://example.com'
     parameters:
       - $ref: '#/components/parameters/Uid'
-  '/attachment/{Id}':
+  '/attachment/{Uid}/{Index}':
     get:
       summary: Your GET endpoint
       tags: []
+      operationId: get-attachment
+      description: Return content of an encoded binary attachment
       responses:
         '200':
-          $ref: '#/components/responses/attachment'
-      operationId: get-attachment
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value: {}
     parameters:
-      - schema:
-          type: string
-        name: Id
+      - name: Uid
         in: path
         required: true
-        description: Attachment identifier unique in the context of the parent component
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
+      - schema:
+          type: string
+        name: Index
+        in: path
+        required: true
+        description: Index of the requested attachment
     put:
       summary: ''
       operationId: set-attachment
       responses:
         '200':
           description: OK
+      description: Replace an encoded binary attachment
       requestBody:
         content:
-          application/json:
+          application/octet-stream:
             schema:
-              $ref: ../models/attachment.v1.yaml
+              type: object
+              properties: {}
+        description: ''
     delete:
       summary: ''
       operationId: delete-attachment
       responses:
         '200':
           description: OK
+      description: Delete an encoded attachment
   /availability:
     get:
       summary: Your GET endpoint
@@ -795,8 +822,7 @@ components:
                       dir: 'http://example.com'
                       language: en-US
                   attachments:
-                    - id: string
-                      fmttype: string
+                    - fmttype: string
                       url: 'http://example.com'
     alarm:
       description: A component alarm
@@ -829,8 +855,7 @@ components:
                     dir: 'http://example.com'
                     language: en-US
                 attachments:
-                  - id: string
-                    fmttype: string
+                  - fmttype: string
                     url: 'http://example.com'
     availability-list:
       description: A list of user availability definitions
@@ -856,23 +881,21 @@ components:
           schema:
             type: array
             items:
-              $ref: ../models/attachment.v1.yaml
+              $ref: ../models/attachmentRef.v1.yaml
           examples:
             example-1:
               value:
-                - id: string
-                  fmttype: string
+                - fmttype: string
                   url: 'http://example.com'
     attachment:
       description: A component attachment
       content:
         application/json:
           schema:
-            $ref: ../models/attachment.v1.yaml
+            $ref: ../models/attachmentRef.v1.yaml
           examples:
             example-1:
               value:
-                id: string
                 fmttype: string
                 url: 'http://example.com'
     freebusy:

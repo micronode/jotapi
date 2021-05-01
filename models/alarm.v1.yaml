@@ -11,21 +11,20 @@ x-examples:
     repeat: 1
     summary: string
     attendees:
-      - cal-address: 'http://example.com'
+      - cal-address: 'mailto:joecool@example.com'
         cu-type: INDIVIDUAL
-        member: 'http://example.com'
+        member: 'mailto:DEV-GROUP@example.com'
         role: REQ-PARTICIPANT
         partstat: NEEDS-ACTION
         rsvp: false
-        delto: 'http://example.com'
-        delfrom: 'http://example.com'
-        sentby: 'http://example.com'
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
         cn: string
         dir: 'http://example.com'
         language: en-US
     attachments:
-      - id: string
-        fmttype: string
+      - fmttype: string
         url: 'http://example.com'
 properties:
   id:
@@ -59,7 +58,9 @@ properties:
   attachments:
     type: array
     items:
-      $ref: ./attachment.v1.yaml
+      oneOf:
+        - $ref: ./attachmentRef.v1.yaml
+        - $ref: ./attachment.v1.yaml
 required:
   - id
   - action

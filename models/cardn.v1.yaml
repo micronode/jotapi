@@ -1,0 +1,14 @@
+title: cardn.v1
+type: object
+description: A structured card name
+properties:
+  surnames:
+    type: string
+  given:
+    type: string
+  additional:
+    type: string
+  prefixes:
+    type: string
+  suffixes:
+    type: string

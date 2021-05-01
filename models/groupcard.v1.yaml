@@ -1,0 +1,23 @@
+title: groupcard.v1
+type: object
+properties:
+  id:
+    type: string
+  fn:
+    type: string
+  members:
+    type: array
+    format: uri
+    uniqueItems: true
+    items:
+      type: string
+      format: uri
+required:
+  - id
+  - fn
+x-examples:
+  example-1:
+    id: string
+    fn: string
+    members:
+      - 'http://example.com'

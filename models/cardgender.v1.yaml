@@ -1,0 +1,13 @@
+title: cardgender.v1
+type: object
+properties:
+  sex:
+    type: string
+    enum:
+      - M
+      - F
+      - O
+      - 'N'
+      - U
+  identity:
+    type: string

@@ -1,0 +1,16 @@
+title: cardorg.v1
+type: object
+x-examples:
+  example-1:
+    name: 'ABC\, Inc.'
+    ou:
+      - North American Division
+properties:
+  name:
+    type: string
+    example: 'ABC\, Inc.'
+  ou:
+    type: array
+    items:
+      type: string
+      example: North American Division

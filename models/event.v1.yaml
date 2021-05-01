@@ -35,8 +35,7 @@ x-examples:
       - id: string
         altrep: 'CID:part3.msg.970415T083000@example.com'
     attachments:
-      - id: string
-        fmttype: string
+      - fmttype: string
         url: 'http://example.com'
     related-to:
       - id: 19960401-080045-4000F192713-0052@example.com
@@ -59,32 +58,6 @@ x-examples:
         dir: 'http://example.com'
         language: en-US
     transp: OPAQUE
-    alarms:
-      - id: string
-        action: AUDIO
-        trigger:
-          dtstart: '2019-08-24T14:15:22Z'
-        description: string
-        duration: PT15M
-        repeat: 1
-        summary: string
-        attendees:
-          - cal-address: 'mailto:joecool@example.com'
-            cu-type: INDIVIDUAL
-            member: 'mailto:DEV-GROUP@example.com'
-            role: REQ-PARTICIPANT
-            partstat: NEEDS-ACTION
-            rsvp: false
-            delto: 'mailto:joecool@example.com'
-            delfrom: 'mailto:joecool@example.com'
-            sentby: 'mailto:joecool@example.com'
-            cn: string
-            dir: 'http://example.com'
-            language: en-US
-        attachments:
-          - id: string
-            fmttype: string
-            url: 'http://example.com'
     contacts:
       - text: string
         altrep: string
@@ -157,7 +130,9 @@ properties:
   attachments:
     type: array
     items:
-      $ref: ./attachment.v1.yaml
+      oneOf:
+        - $ref: ./attachmentRef.v1.yaml
+        - $ref: ./attachment.v1.yaml
   related-to:
     type: array
     items:
@@ -182,10 +157,6 @@ properties:
       - OPAQUE
       - TRANSPARENT
     default: OPAQUE
-  alarms:
-    type: array
-    items:
-      $ref: ./alarm.v1.yaml
   contacts:
     type: array
     items:
