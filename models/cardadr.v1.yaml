@@ -21,14 +21,4 @@ properties:
     type: string
     format: uri
     example: 'geo:12.3457,78.910'
-x-examples:
-  example-1:
-    pobox: string
-    extended: string
-    street: string
-    locality: string
-    region: string
-    postalcode: string
-    country: string
-    label: string
-    geo: 'geo:12.3457,78.910'
+x-examples: {}

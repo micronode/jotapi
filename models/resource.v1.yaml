@@ -1,13 +1,16 @@
 title: resource
 type: object
+x-examples:
+  example-1:
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    altrep: 'CID:part3.msg.970415T083000@example.com'
 properties:
   id:
     type: string
+    format: uuid
   altrep:
     type: string
     format: uri
     example: 'CID:part3.msg.970415T083000@example.com'
-x-examples:
-  example-1:
-    id: string
-    altrep: 'CID:part3.msg.970415T083000@example.com'
+required:
+  - id

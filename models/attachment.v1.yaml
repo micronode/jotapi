@@ -6,7 +6,4 @@ properties:
   binary:
     type: string
     format: binary
-x-examples:
-  example-1:
-    fmttype: string
-    binary: string
+x-examples: {}

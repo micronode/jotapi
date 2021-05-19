@@ -1,10 +1,14 @@
 title: groupcard.v1
 type: object
+x-examples: {}
 properties:
   id:
     type: string
+    format: uri
+    example: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
   fn:
     type: string
+    example: Funky distribution list
   members:
     type: array
     format: uri
@@ -12,12 +16,7 @@ properties:
     items:
       type: string
       format: uri
+      example: 'mailto:subscriber1@example.com'
 required:
   - id
   - fn
-x-examples:
-  example-1:
-    id: string
-    fn: string
-    members:
-      - 'http://example.com'

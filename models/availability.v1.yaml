@@ -1,10 +1,12 @@
 title: availability
 type: object
+x-examples: {}
 properties:
   id:
     type: string
+    format: uuid
   organizer:
-    type: string
+    $ref: ./organizer.v1.yaml
   summary:
     type: string
   dtstart:
@@ -15,14 +17,41 @@ properties:
     format: date-time
   rrule:
     type: string
+  sequence:
+    type: integer
+  class:
+    type: string
+    enum:
+      - PUBLIC
+      - PRIVATE
+      - CONFIDENTIAL
+  priority:
+    type: integer
+  description:
+    type: string
+  url:
+    type: string
+  location:
+    $ref: ./location.v1.yaml
+  last-modified:
+    type: string
+    format: date-time
+  created:
+    type: string
+    format: date-time
+  duration:
+    type: string
+    format: duration
+  busytype:
+    type: string
+    enum:
+      - BUSY
+      - BUSY-UNAVAILABLE
+      - BUSY-TENTATIVE
+  available:
+    type: array
+    items:
+      $ref: ./available.v1.yaml
 required:
   - id
   - organizer
-x-examples:
-  example-1:
-    id: string
-    organizer: string
-    summary: string
-    dtstart: '2019-08-24T14:15:22Z'
-    dtend: '2019-08-24T14:15:22Z'
-    rrule: string

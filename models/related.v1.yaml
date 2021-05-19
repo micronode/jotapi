@@ -1,9 +1,14 @@
 title: related
 type: object
+x-examples:
+  example-1:
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    reltype: PARENT
+description: ''
 properties:
   id:
     type: string
-    example: 19960401-080045-4000F192713-0052@example.com
+    format: uuid
   reltype:
     type: string
     enum:
@@ -11,7 +16,5 @@ properties:
       - CHILD
       - SIBLING
     default: PARENT
-x-examples:
-  example-1:
-    id: 19960401-080045-4000F192713-0052@example.com
-    reltype: PARENT
+required:
+  - id

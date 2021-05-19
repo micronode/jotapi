@@ -1,27 +1,165 @@
 title: todo
 type: object
 description: A calendar task component
-x-examples: {}
+x-examples:
+  example-1:
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    organizer:
+      cal-address: 'mailto:jane_doe@example.com'
+      cn: string
+      dir: 'http://example.com'
+      sent-by: 'mailto:joecool@example.com'
+      language: en-US
+    summary: string
+    dtstart: '2019-08-24T14:15:22Z'
+    sequence: 0
+    recurrence-id: '2019-08-24T14:15:22Z'
+    class: PUBLIC
+    priority: 0
+    status: NEEDS-ACTION
+    due: '2019-08-24T14:15:22Z'
+    duration: string
+    rrule: string
+    url: 'http://example.com'
+    geo: string
+    location:
+      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      name: The venue
+    last-modified: '2019-08-24T14:15:22Z'
+    created: '2019-08-24T14:15:22Z'
+    percent-complete: 0
+    description: string
+    categories:
+      - string
+    comments:
+      - string
+    resources:
+      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+        altrep: 'CID:part3.msg.970415T083000@example.com'
+    attachments:
+      - fmttype: string
+        url: 'http://example.com'
+    related-to:
+      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+        reltype: PARENT
+    rdates:
+      - string
+    exdates:
+      - string
+    attendees:
+      - cal-address: 'mailto:joecool@example.com'
+        cu-type: INDIVIDUAL
+        member: 'mailto:DEV-GROUP@example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    contacts:
+      - string
 properties:
   id:
     type: string
+    format: uuid
   organizer:
     $ref: ./organizer.v1.yaml
   summary:
     type: string
   dtstart:
     type: string
+    format: date-time
   sequence:
     type: integer
     minimum: 0
   recurrence-id:
     type: string
+    format: date-time
   class:
     type: string
+    enum:
+      - PUBLIC
+      - PRIVATE
+      - CONFIDENTIAL
   priority:
-    type: string
+    type: integer
+    minimum: 0
+    maximum: 9
   status:
     type: string
+    enum:
+      - NEEDS-ACTION
+      - COMPLETED
+      - IN-PROCESS
+      - CANCELLED
+  due:
+    type: string
+    format: date-time
+  duration:
+    type: string
+    format: duration
+  rrule:
+    type: string
+  url:
+    type: string
+    format: uri
+  geo:
+    type: string
+  location:
+    $ref: ./location.v1.yaml
+  last-modified:
+    type: string
+    format: date-time
+  created:
+    type: string
+    format: date-time
+  percent-complete:
+    type: integer
+    minimum: 0
+    maximum: 100
+  description:
+    type: string
+  categories:
+    type: array
+    items:
+      type: string
+  comments:
+    type: array
+    items:
+      type: string
+  resources:
+    type: array
+    items:
+      $ref: ./resource.v1.yaml
+  attachments:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./attachmentRef.v1.yaml
+        - $ref: ./attachment.v1.yaml
+  related-to:
+    type: array
+    items:
+      $ref: ./related.v1.yaml
+  rdates:
+    type: array
+    items:
+      type: string
+  exdates:
+    type: array
+    items:
+      type: string
+  attendees:
+    type: array
+    items:
+      $ref: ./attendee.v1.yaml
+  contacts:
+    type: array
+    items:
+      type: string
 required:
   - id
   - organizer

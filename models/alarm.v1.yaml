@@ -2,12 +2,12 @@ title: alarm
 type: object
 x-examples:
   example-1:
-    id: string
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     action: AUDIO
     trigger:
       dtstart: '2019-08-24T14:15:22Z'
     description: string
-    duration: PT15M
+    duration: string
     repeat: 1
     summary: string
     attendees:
@@ -26,9 +26,11 @@ x-examples:
     attachments:
       - fmttype: string
         url: 'http://example.com'
+description: ''
 properties:
   id:
     type: string
+    format: uuid
   action:
     type: string
     enum:
@@ -44,10 +46,8 @@ properties:
   duration:
     type: string
     format: duration
-    example: PT15M
   repeat:
     type: integer
-    format: int32
     minimum: 1
   summary:
     type: string
@@ -57,6 +57,7 @@ properties:
       $ref: ./attendee.v1.yaml
   attachments:
     type: array
+    uniqueItems: true
     items:
       oneOf:
         - $ref: ./attachmentRef.v1.yaml

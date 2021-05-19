@@ -1,0 +1,13 @@
+title: location.v1
+type: object
+x-examples:
+  example-1:
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    name: The venue
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    example: The venue

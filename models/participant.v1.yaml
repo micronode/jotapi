@@ -1,0 +1,12 @@
+title: participant.v1
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  type:
+    type: string
+  description:
+    type: string
+  location:
+    $ref: ./location.v1.yaml

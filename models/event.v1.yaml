@@ -3,7 +3,7 @@ type: object
 description: A calendar event
 x-examples:
   example-1:
-    id: string
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     organizer:
       cal-address: 'mailto:jane_doe@example.com'
       cn: string
@@ -23,7 +23,9 @@ x-examples:
     description: string
     url: 'http://example.com'
     geo: string
-    location: string
+    location:
+      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      name: The venue
     last-modified: '2019-08-24T14:15:22Z'
     created: '2019-08-24T14:15:22Z'
     categories:
@@ -32,7 +34,7 @@ x-examples:
       - text: string
         altrep: string
     resources:
-      - id: string
+      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
         altrep: 'CID:part3.msg.970415T083000@example.com'
     attachments:
       - fmttype: string
@@ -64,6 +66,7 @@ x-examples:
 properties:
   id:
     type: string
+    format: uuid
   organizer:
     $ref: ./organizer.v1.yaml
   summary:
@@ -108,7 +111,7 @@ properties:
   geo:
     type: string
   location:
-    type: string
+    $ref: ./location.v1.yaml
   last-modified:
     type: string
     format: date-time

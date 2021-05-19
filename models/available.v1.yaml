@@ -1,0 +1,58 @@
+title: available.v1
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  dtstart:
+    type: string
+    format: date-time
+  dtend:
+    type: string
+    format: date-time
+  duration:
+    type: string
+    format: duration
+  summary:
+    type: string
+  recurrence-id:
+    type: string
+    format: date-time
+  location:
+    $ref: ./location.v1.yaml
+  description:
+    type: string
+  created:
+    type: string
+    format: date-time
+  last-modified:
+    type: string
+    format: date-time
+  rrule:
+    type: string
+  categories:
+    type: array
+    items:
+      type: string
+  comments:
+    type: array
+    items:
+      type: string
+  exdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  rdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  contacts:
+    type: array
+    items:
+      type: string
+required:
+  - id
+  - dtstart
+x-examples: {}

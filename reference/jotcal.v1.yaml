@@ -53,12 +53,7 @@ paths:
                   type: string
                   enum:
                     - GREGORIAN
-            examples:
-              example-1:
-                value:
-                  name: string
-                  description: string
-                  calscale: GREGORIAN
+            examples: {}
   /events:
     get:
       summary: Your GET endpoint
@@ -101,13 +96,7 @@ paths:
                 - summary
                 - dtstart
                 - calendar
-            examples:
-              example-1:
-                value:
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  calendar: string
+            examples: {}
   /todos:
     get:
       summary: Your GET endpoint
@@ -146,12 +135,7 @@ paths:
                 - organizer
                 - calendar
                 - summary
-            examples:
-              example-1:
-                value:
-                  organizer: string
-                  calendar: string
-                  summary: string
+            examples: {}
   /journals:
     get:
       summary: Your GET endpoint
@@ -189,12 +173,7 @@ paths:
                 - organizer
                 - calendar
                 - summary
-            examples:
-              example-1:
-                value:
-                  organizer: string
-                  calendar: string
-                  summary: string
+            examples: {}
   /freebusy:
     get:
       summary: Your GET endpoint
@@ -232,22 +211,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/calendar.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  calscale: GREGORIAN
-                  name: string
-                  description: string
-                  last-modified: '2019-08-24T14:15:22Z'
-                  url: 'http://example.com'
-                  categories:
-                    - string
-                  refresh-interval: string
-                  source: 'http://example.com'
-                  color: string
-                  image: string
-                  conference: 'http://example.com'
+            examples: {}
     patch:
       summary: ''
       operationId: update-calendar
@@ -259,22 +223,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/calendar.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  calscale: GREGORIAN
-                  name: string
-                  description: string
-                  last-modified: '2019-08-24T14:15:22Z'
-                  url: 'http://example.com'
-                  categories:
-                    - string
-                  refresh-interval: string
-                  source: 'http://example.com'
-                  color: string
-                  image: string
-                  conference: 'http://example.com'
+            examples: {}
     delete:
       summary: ''
       operationId: delete-calendar
@@ -313,12 +262,7 @@ paths:
                   oneOf:
                     - $ref: ../models/trigger.v1.yaml
                     - $ref: ../models/triggerRel.v1.yaml
-            examples:
-              example-1:
-                value:
-                  action: AUDIO
-                  trigger:
-                    dtstart: '2019-08-24T14:15:22Z'
+            examples: {}
       description: Create a new component alarm
     parameters:
       - $ref: '#/components/parameters/Uid'
@@ -349,33 +293,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/alarm.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  action: AUDIO
-                  trigger:
-                    dtstart: '2019-08-24T14:15:22Z'
-                  description: string
-                  duration: PT15M
-                  repeat: 1
-                  summary: string
-                  attendees:
-                    - cal-address: 'mailto:joecool@example.com'
-                      cu-type: INDIVIDUAL
-                      member: 'mailto:DEV-GROUP@example.com'
-                      role: REQ-PARTICIPANT
-                      partstat: NEEDS-ACTION
-                      rsvp: false
-                      delto: 'mailto:joecool@example.com'
-                      delfrom: 'mailto:joecool@example.com'
-                      sentby: 'mailto:joecool@example.com'
-                      cn: string
-                      dir: 'http://example.com'
-                      language: en-US
-                  attachments:
-                    - fmttype: string
-                      url: 'http://example.com'
+            examples: {}
           application/xml:
             schema:
               $ref: ../models/alarm.v1.yaml
@@ -549,15 +467,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/availability.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  dtend: '2019-08-24T14:15:22Z'
-                  rrule: string
+            examples: {}
         description: ''
       description: Replace an existing availability definition
     patch:
@@ -571,15 +481,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/availability.v1.yaml
-            examples:
-              example-1:
-                value:
-                  id: string
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  dtend: '2019-08-24T14:15:22Z'
-                  rrule: string
+            examples: {}
       description: Update an existing availability definition
     parameters:
       - name: Uid
@@ -615,11 +517,7 @@ paths:
                   format: uri
               required:
                 - url
-            examples:
-              example-1:
-                value:
-                  fmttype: string
-                  url: 'http://example.com'
+            examples: {}
     parameters:
       - $ref: '#/components/parameters/Uid'
   '/attachment/{Uid}/{Index}':
@@ -636,9 +534,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-              examples:
-                example-1:
-                  value: {}
+              examples: {}
     parameters:
       - name: Uid
         in: path
@@ -708,6 +604,7 @@ components:
             type: array
             items:
               $ref: ../models/event.v1.yaml
+          examples: {}
     todo-list:
       description: A list of calendar todos
       content:
@@ -737,12 +634,14 @@ components:
         application/json:
           schema:
             $ref: ../models/journal.v1.yaml
+          examples: {}
     todo:
       description: A calendar todo component
       content:
         application/json:
           schema:
             $ref: ../models/todo.v1.yaml
+          examples: {}
     calendar:
       description: A grouping of calendar components
       content:
@@ -752,19 +651,19 @@ components:
           examples:
             example-1:
               value:
-                id: string
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 calscale: GREGORIAN
-                name: string
-                description: string
+                name: 'My Social Calendar '
+                description: 'A collection of social events, journals, tasks and availability'
                 last-modified: '2019-08-24T14:15:22Z'
-                url: 'http://example.com'
+                url: 'https://calendar.example.com/mysocialcalendar.html'
                 categories:
-                  - string
-                refresh-interval: string
-                source: 'http://example.com'
-                color: string
-                image: string
-                conference: 'http://example.com'
+                  - social
+                refresh-interval: P1W
+                source: 'https://calendar.example.com/mysocialcalendar.ics'
+                color: red
+                image: 'https://calendar.example.com/mysocialcalendar.png'
+                conference: 'https://meeting.example.com/mysocialcalendar'
     calendar-list:
       description: A list of calendar definitions
       content:
@@ -773,22 +672,7 @@ components:
             type: array
             items:
               $ref: ../models/calendar.v1.yaml
-          examples:
-            example-1:
-              value:
-                - id: string
-                  calscale: GREGORIAN
-                  name: string
-                  description: string
-                  last-modified: '2019-08-24T14:15:22Z'
-                  url: 'http://example.com'
-                  categories:
-                    - string
-                  refresh-interval: string
-                  source: 'http://example.com'
-                  color: string
-                  image: string
-                  conference: 'http://example.com'
+          examples: {}
     alarm-list:
       description: A list of component alarms
       content:
@@ -797,66 +681,14 @@ components:
             type: array
             items:
               $ref: ../models/alarm.v1.yaml
-          examples:
-            example-1:
-              value:
-                - id: string
-                  action: AUDIO
-                  trigger:
-                    dtstart: '2019-08-24T14:15:22Z'
-                  description: string
-                  duration: PT15M
-                  repeat: 1
-                  summary: string
-                  attendees:
-                    - cal-address: 'mailto:joecool@example.com'
-                      cu-type: INDIVIDUAL
-                      member: 'mailto:DEV-GROUP@example.com'
-                      role: REQ-PARTICIPANT
-                      partstat: NEEDS-ACTION
-                      rsvp: false
-                      delto: 'mailto:joecool@example.com'
-                      delfrom: 'mailto:joecool@example.com'
-                      sentby: 'mailto:joecool@example.com'
-                      cn: string
-                      dir: 'http://example.com'
-                      language: en-US
-                  attachments:
-                    - fmttype: string
-                      url: 'http://example.com'
+          examples: {}
     alarm:
       description: A component alarm
       content:
         application/json:
           schema:
             $ref: ../models/alarm.v1.yaml
-          examples:
-            example-1:
-              value:
-                id: string
-                action: AUDIO
-                trigger:
-                  dtstart: '2019-08-24T14:15:22Z'
-                description: string
-                duration: PT15M
-                repeat: 1
-                summary: string
-                attendees:
-                  - cal-address: 'mailto:joecool@example.com'
-                    cu-type: INDIVIDUAL
-                    member: 'mailto:DEV-GROUP@example.com'
-                    role: REQ-PARTICIPANT
-                    partstat: NEEDS-ACTION
-                    rsvp: false
-                    delto: 'mailto:joecool@example.com'
-                    delfrom: 'mailto:joecool@example.com'
-                    sentby: 'mailto:joecool@example.com'
-                    cn: string
-                    dir: 'http://example.com'
-                    language: en-US
-                attachments:
-                  - fmttype: string
-                    url: 'http://example.com'
+          examples: {}
     availability-list:
       description: A list of user availability definitions
       content:
@@ -865,15 +697,7 @@ components:
             type: array
             items:
               $ref: ../models/availability.v1.yaml
-          examples:
-            example-1:
-              value:
-                - id: string
-                  organizer: string
-                  summary: string
-                  dtstart: '2019-08-24T14:15:22Z'
-                  dtend: '2019-08-24T14:15:22Z'
-                  rrule: string
+          examples: {}
     attachment-list:
       description: A list of component attachments
       content:
@@ -911,6 +735,7 @@ components:
         application/json:
           schema:
             $ref: ../models/availability.v1.yaml
+          examples: {}
   parameters:
     Uid:
       name: Uid
@@ -925,7 +750,6 @@ components:
       required: false
       schema:
         type: boolean
-        default: 'false'
       description: Include previous revisions of requested component
     calendar:
       name: calendar

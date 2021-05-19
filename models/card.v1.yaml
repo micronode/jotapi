@@ -1,64 +1,7 @@
 title: card
 type: object
 description: ''
-x-examples:
-  example-1:
-    id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
-    fn:
-      - 'Mr. John Q. Public\, Esq.'
-    kind: individual
-    sources:
-      - 'ldap://ldap.example.com/cn=Babs%20Jensen,%20o=Babsco,%20c=US'
-    'n':
-      surnames: string
-      given: string
-      additional: string
-      prefixes: string
-      suffixes: string
-    nicknames:
-      - string
-    photos:
-      - 'http://www.example.com/pub/photos/jqpublic.gif'
-    bday: '2019-08-24'
-    anniversary: '2019-08-24'
-    gender:
-      sex: M
-      identity: string
-    adr:
-      - pobox: string
-        extended: string
-        street: string
-        locality: string
-        region: string
-        postalcode: string
-        country: string
-        label: string
-        geo: 'geo:12.3457,78.910'
-    tel: 'tel:+1-555-555-5555;ext=5555'
-    email: jqpublic@xyz.example.com
-    impp: 'xmpp:alice@example.com'
-    lang: fr
-    tz: Raleigh/North America
-    geo: 'geo:37.386013,-122.082932'
-    title: Research Scientist
-    role: Project Leader
-    logos: 'http://www.example.com/pub/logos/abccorp.jpg'
-    org:
-      - name: 'ABC\, Inc.'
-        ou:
-          - North American Division
-    related: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
-    categories:
-      - 'INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY'
-    note:
-      - string
-    rev: '2019-08-24T14:15:22Z'
-    sound: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
-    url: 'http://example.org/restaurant.french/~chezchic.html'
-    key: 'http://www.example.com/keys/jdoe.cer'
-    fburl: 'http://www.example.com/busy/janedoe'
-    caladruri: 'mailto:janedoe@example.com'
-    caluri: 'http://cal.example.com/calA'
+x-examples: {}
 properties:
   id:
     type: string

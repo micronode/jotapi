@@ -1,11 +1,6 @@
 title: fbperiod
 type: object
-x-examples:
-  example-1:
-    start: '2019-08-24T14:15:22Z'
-    end: '2019-08-24T14:15:22Z'
-    fbtype: BUSY
-    duration: PT5H30M
+x-examples: {}
 properties:
   start:
     type: string

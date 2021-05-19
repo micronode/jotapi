@@ -1,11 +1,77 @@
 title: journal
 type: object
 description: A calendar journal component
+x-examples: {}
 properties:
   id:
     type: string
+    format: uuid
   organizer:
     $ref: ./organizer.v1.yaml
+  summary:
+    type: string
+  dtstamp:
+    type: string
+    format: date-time
+  sequence:
+    type: integer
+  recurrence-id:
+    type: string
+    format: date-time
+  class:
+    type: string
+    enum:
+      - PUBLIC
+      - PRIVATE
+      - CONFIDENTIAL
+  status:
+    type: string
+    enum:
+      - DRAFT
+      - FINAL
+      - CANCELLED
+  rrule:
+    type: string
+  description:
+    type: string
+  url:
+    type: string
+    format: uri
+  last-modified:
+    type: string
+    format: date-time
+  categories:
+    type: array
+    items:
+      type: string
+  comments:
+    type: array
+    items:
+      $ref: ./comment.v1.yaml
+  attachments:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./attachment.v1.yaml
+        - $ref: ./attachmentRef.v1.yaml
+  related-to:
+    $ref: ./related.v1.yaml
+  rdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  exdates:
+    type: array
+    items:
+      type: string
+      format: date-time
+  attendees:
+    $ref: ./attendee.v1.yaml
+  contacts:
+    type: array
+    items:
+      $ref: ./contact.v1.yaml
 required:
   - id
   - organizer

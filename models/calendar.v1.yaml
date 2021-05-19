@@ -1,54 +1,58 @@
 title: calendar
 type: object
 description: A collection of calendar components
-x-examples:
-  example-1:
-    id: string
-    calscale: GREGORIAN
-    name: string
-    description: string
-    last-modified: '2019-08-24T14:15:22Z'
-    url: 'http://example.com'
-    categories:
-      - string
-    refresh-interval: string
-    source: 'http://example.com'
-    color: string
-    image: string
-    conference: 'http://example.com'
+x-examples: {}
 properties:
   id:
     type: string
+    format: uuid
   calscale:
     type: string
     enum:
       - GREGORIAN
   name:
     type: string
+    example: 'My Social Calendar '
   description:
     type: string
+    example: 'A collection of social events, journals, tasks and availability'
   last-modified:
     type: string
     format: date-time
   url:
     type: string
     format: uri
+    example: 'https://calendar.example.com/mysocialcalendar.html'
   categories:
     type: array
     items:
       type: string
+      example: social
   refresh-interval:
     type: string
+    format: duration
+    example: P1W
   source:
     type: string
     format: uri
+    example: 'https://calendar.example.com/mysocialcalendar.ics'
   color:
     type: string
+    enum:
+      - red
+      - green
+      - blue
+      - yellow
+      - orange
+      - purple
   image:
     type: string
+    format: uri
+    example: 'https://calendar.example.com/mysocialcalendar.png'
   conference:
     type: string
     format: uri
+    example: 'https://meeting.example.com/mysocialcalendar'
 required:
   - id
   - calscale

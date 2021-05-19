@@ -1,9 +1,6 @@
 title: attachment
 type: object
-x-examples:
-  example-1:
-    fmttype: string
-    url: 'http://example.com'
+x-examples: {}
 properties:
   fmttype:
     type: string
