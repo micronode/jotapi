@@ -12,3 +12,4 @@ properties:
     type: string
   suffixes:
     type: string
+x-internal: true

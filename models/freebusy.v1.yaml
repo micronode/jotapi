@@ -30,5 +30,11 @@ properties:
       $ref: ./comment.v1.yaml
   contact:
     $ref: ./contact.v1.yaml
+  styled-description:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./styledDescription.v1.yaml
+        - $ref: ./styledDescriptionRef.v1.yaml
 required:
   - id

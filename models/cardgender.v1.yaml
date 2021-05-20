@@ -11,3 +11,4 @@ properties:
       - U
   identity:
     type: string
+x-internal: true

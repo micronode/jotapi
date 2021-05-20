@@ -20,3 +20,4 @@ properties:
     type: string
     format: duration
     example: PT5H30M
+x-internal: true

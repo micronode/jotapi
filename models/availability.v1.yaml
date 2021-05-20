@@ -1,6 +1,54 @@
 title: availability
 type: object
-x-examples: {}
+x-examples:
+  example-1:
+    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    organizer:
+      cal-address: 'mailto:jane_doe@example.com'
+      cn: string
+      dir: 'http://example.com'
+      sent-by: 'mailto:joecool@example.com'
+      language: en-US
+    summary: string
+    dtstart: '2019-08-24T14:15:22Z'
+    dtend: '2019-08-24T14:15:22Z'
+    rrule: string
+    sequence: 0
+    class: PUBLIC
+    priority: 0
+    description: string
+    url: string
+    location:
+      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      name: The venue
+    last-modified: '2019-08-24T14:15:22Z'
+    created: '2019-08-24T14:15:22Z'
+    duration: PT15M
+    busytype: BUSY
+    available:
+      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+        dtstart: '2019-08-24T14:15:22Z'
+        dtend: '2019-08-24T14:15:22Z'
+        duration: PT15M
+        summary: string
+        recurrence-id: '2019-08-24T14:15:22Z'
+        location:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: The venue
+        description: string
+        created: '2019-08-24T14:15:22Z'
+        last-modified: '2019-08-24T14:15:22Z'
+        rrule: string
+        categories:
+          - string
+        comments:
+          - string
+        exdates:
+          - '2019-08-24T14:15:22Z'
+        rdates:
+          - '2019-08-24T14:15:22Z'
+        contacts:
+          - string
 properties:
   id:
     type: string
@@ -42,6 +90,7 @@ properties:
   duration:
     type: string
     format: duration
+    example: PT15M
   busytype:
     type: string
     enum:

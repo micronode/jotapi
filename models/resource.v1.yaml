@@ -14,3 +14,4 @@ properties:
     example: 'CID:part3.msg.970415T083000@example.com'
 required:
   - id
+x-internal: false

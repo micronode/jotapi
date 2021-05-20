@@ -1,6 +1,9 @@
 title: triggerRel
 type: object
 description: Alarm trigger relative to parent component start time
+x-examples:
+  example-1:
+    duration: PT15M
 properties:
   duration:
     type: string
@@ -8,3 +11,4 @@ properties:
     example: PT15M
 required:
   - duration
+x-internal: true

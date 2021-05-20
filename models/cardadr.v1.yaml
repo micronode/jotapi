@@ -22,3 +22,4 @@ properties:
     format: uri
     example: 'geo:12.3457,78.910'
 x-examples: {}
+x-internal: true

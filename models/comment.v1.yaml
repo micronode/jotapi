@@ -7,3 +7,4 @@ properties:
     type: string
 required:
   - text
+x-internal: true

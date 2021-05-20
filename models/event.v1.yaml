@@ -18,7 +18,7 @@ x-examples:
     priority: 0
     status: TENTATIVE
     dtend: '2019-08-24T14:15:22Z'
-    duration: string
+    duration: PT15M
     rrule: string
     description: string
     url: 'http://example.com'
@@ -40,7 +40,7 @@ x-examples:
       - fmttype: string
         url: 'http://example.com'
     related-to:
-      - id: 19960401-080045-4000F192713-0052@example.com
+      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
         reltype: PARENT
     rdates:
       - '2019-08-24T14:15:22Z'
@@ -63,6 +63,15 @@ x-examples:
     contacts:
       - text: string
         altrep: string
+    styled-description:
+      - fmttype: text/html
+        text: <h1>Test Event</h1><p>An example event description<p>
+        derived: true
+    structured-data:
+      - fmttype: string
+        schema: string
+        encoding: BASE64
+        text: string
 properties:
   id:
     type: string
@@ -101,6 +110,7 @@ properties:
   duration:
     type: string
     format: duration
+    example: PT15M
   rrule:
     type: string
   description:
@@ -164,6 +174,18 @@ properties:
     type: array
     items:
       $ref: ./contact.v1.yaml
+  styled-description:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./styledDescription.v1.yaml
+        - $ref: ./styledDescriptionRef.v1.yaml
+  structured-data:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./structuredData.v1.yaml
+        - $ref: ./structuredDataRef.v1.yaml
 required:
   - id
   - organizer

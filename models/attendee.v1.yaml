@@ -1,6 +1,20 @@
 title: attendee
 type: object
-x-examples: {}
+x-examples:
+  example-1:
+    cal-address: 'mailto:joecool@example.com'
+    cu-type: INDIVIDUAL
+    member: 'mailto:DEV-GROUP@example.com'
+    role: REQ-PARTICIPANT
+    partstat: NEEDS-ACTION
+    rsvp: false
+    delto: 'mailto:joecool@example.com'
+    delfrom: 'mailto:joecool@example.com'
+    sentby: 'mailto:joecool@example.com'
+    cn: string
+    dir: 'http://example.com'
+    language: en-US
+description: ''
 properties:
   cal-address:
     type: string
@@ -35,7 +49,6 @@ properties:
       - DECLINED
       - TENTATIVE
       - DELEGATED
-    default: NEEDS-ACTION
   rsvp:
     type: boolean
     default: false
@@ -59,4 +72,4 @@ properties:
   language:
     type: string
     example: en-US
-description: ''
+x-internal: true

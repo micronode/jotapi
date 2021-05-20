@@ -18,3 +18,4 @@ properties:
     default: PARENT
 required:
   - id
+x-internal: true

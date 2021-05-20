@@ -1,11 +1,10 @@
-title: attachmentRef
+title: structuredDataRef
 type: object
-x-examples:
-  example-1:
-    fmttype: string
-    url: 'http://example.com'
+x-internal: true
 properties:
   fmttype:
+    type: string
+  schema:
     type: string
   url:
     type: string

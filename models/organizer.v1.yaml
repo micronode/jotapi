@@ -24,3 +24,4 @@ x-examples:
     dir: 'http://example.com'
     sent-by: 'mailto:joecool@example.com'
     language: en-US
+x-internal: true

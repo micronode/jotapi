@@ -1,9 +1,15 @@
 title: attachment
 type: object
+x-examples:
+  example-1:
+    fmttype: string
+    binary: string
 properties:
   fmttype:
     type: string
   binary:
     type: string
     format: binary
-x-examples: {}
+required:
+  - fmttype
+  - binary

@@ -1,0 +1,19 @@
+title: styledDescriptionRef.v1
+type: object
+x-examples:
+  example-1:
+    fmttype: text/html
+    url: string
+    derived: true
+x-internal: true
+properties:
+  fmttype:
+    type: string
+    default: text/html
+  url:
+    type: string
+  derived:
+    type: boolean
+required:
+  - fmttype
+  - url

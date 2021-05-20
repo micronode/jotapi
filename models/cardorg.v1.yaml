@@ -10,3 +10,4 @@ properties:
     items:
       type: string
       example: North American Division
+x-internal: true

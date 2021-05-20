@@ -7,3 +7,7 @@ properties:
     format: date-time
 required:
   - dtstart
+x-examples:
+  example-1:
+    dtstart: '2019-08-24T14:15:22Z'
+x-internal: true

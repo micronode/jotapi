@@ -1,0 +1,18 @@
+title: structuredData
+type: object
+x-examples: {}
+x-internal: true
+properties:
+  fmttype:
+    type: string
+  schema:
+    type: string
+  encoding:
+    type: string
+    enum:
+      - BASE64
+  text:
+    type: string
+required:
+  - fmttype
+  - text

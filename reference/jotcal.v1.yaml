@@ -53,7 +53,12 @@ paths:
                   type: string
                   enum:
                     - GREGORIAN
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  name: string
+                  description: string
+                  calscale: GREGORIAN
   /events:
     get:
       summary: Your GET endpoint
@@ -83,7 +88,7 @@ paths:
               type: object
               properties:
                 organizer:
-                  type: string
+                  $ref: ../models/organizer.v1.yaml
                 summary:
                   type: string
                 dtstart:
@@ -91,12 +96,24 @@ paths:
                   format: date-time
                 calendar:
                   type: string
+                  format: uuid
               required:
                 - organizer
                 - summary
                 - dtstart
                 - calendar
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  organizer:
+                    cal-address: 'mailto:jane_doe@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    sent-by: 'mailto:joecool@example.com'
+                    language: en-US
+                  summary: string
+                  dtstart: '2019-08-24T14:15:22Z'
+                  calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
   /todos:
     get:
       summary: Your GET endpoint
@@ -126,16 +143,27 @@ paths:
               type: object
               properties:
                 organizer:
-                  type: string
+                  $ref: ../models/organizer.v1.yaml
                 calendar:
                   type: string
+                  format: uuid
                 summary:
                   type: string
               required:
                 - organizer
                 - calendar
                 - summary
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  organizer:
+                    cal-address: 'mailto:jane_doe@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    sent-by: 'mailto:joecool@example.com'
+                    language: en-US
+                  calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+                  summary: string
   /journals:
     get:
       summary: Your GET endpoint
@@ -164,16 +192,27 @@ paths:
               type: object
               properties:
                 organizer:
-                  type: string
+                  $ref: ../models/organizer.v1.yaml
                 calendar:
                   type: string
+                  format: uuid
                 summary:
                   type: string
               required:
                 - organizer
                 - calendar
                 - summary
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  organizer:
+                    cal-address: 'mailto:jane_doe@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    sent-by: 'mailto:joecool@example.com'
+                    language: en-US
+                  calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+                  summary: string
   /freebusy:
     get:
       summary: Your GET endpoint
@@ -389,6 +428,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/journal.v1.yaml
+            examples: {}
         description: ''
     patch:
       summary: ''
@@ -396,6 +436,12 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/journal.v1.yaml
+            examples: {}
     delete:
       summary: ''
       operationId: delete-journal
@@ -421,10 +467,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ''
       description: Remove an existing todo component
     patch:
       summary: ''
@@ -433,6 +475,12 @@ paths:
         '200':
           $ref: '#/components/responses/todo'
       description: Update an existing todo component
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/todo.v1.yaml
+            examples: {}
     put:
       summary: ''
       operationId: set-todo
@@ -586,6 +634,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/availability'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/availability.v1.yaml
+            examples: {}
 components:
   schemas:
     event-patch:
@@ -621,13 +675,85 @@ components:
             type: array
             items:
               $ref: ../models/journal.v1.yaml
+          examples: {}
     event:
       description: A calendar event
       content:
         application/json:
           schema:
             $ref: ../models/event.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                organizer:
+                  cal-address: 'mailto:jane_doe@example.com'
+                  cn: string
+                  dir: 'http://example.com'
+                  sent-by: 'mailto:joecool@example.com'
+                  language: en-US
+                summary: string
+                dtstart: '2019-08-24T14:15:22Z'
+                sequence: 0
+                recurrence-id: string
+                class: PUBLIC
+                priority: 0
+                status: TENTATIVE
+                dtend: '2019-08-24T14:15:22Z'
+                duration: PT15M
+                rrule: string
+                description: string
+                url: 'http://example.com'
+                geo: string
+                location:
+                  id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                  name: The venue
+                last-modified: '2019-08-24T14:15:22Z'
+                created: '2019-08-24T14:15:22Z'
+                categories:
+                  - string
+                comments:
+                  - text: string
+                    altrep: string
+                resources:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    altrep: 'CID:part3.msg.970415T083000@example.com'
+                attachments:
+                  - fmttype: string
+                    url: 'http://example.com'
+                related-to:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    reltype: PARENT
+                rdates:
+                  - '2019-08-24T14:15:22Z'
+                exdates:
+                  - '2019-08-24T14:15:22Z'
+                attendees:
+                  - cal-address: 'mailto:joecool@example.com'
+                    cu-type: INDIVIDUAL
+                    member: 'mailto:DEV-GROUP@example.com'
+                    role: REQ-PARTICIPANT
+                    partstat: NEEDS-ACTION
+                    rsvp: false
+                    delto: 'mailto:joecool@example.com'
+                    delfrom: 'mailto:joecool@example.com'
+                    sentby: 'mailto:joecool@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    language: en-US
+                transp: OPAQUE
+                contacts:
+                  - text: string
+                    altrep: string
+                styled-description:
+                  - fmttype: text/html
+                    text: <h1>Test Event</h1><p>An example event description<p>
+                    derived: true
+                structured-data:
+                  - fmttype: string
+                    schema: string
+                    encoding: BASE64
+                    text: string
     journal:
       description: A calendar journal component
       content:
@@ -688,7 +814,37 @@ components:
         application/json:
           schema:
             $ref: ../models/alarm.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                action: AUDIO
+                trigger:
+                  dtstart: '2019-08-24T14:15:22Z'
+                description: string
+                duration: PT15M
+                repeat: 1
+                summary: string
+                attendees:
+                  - cal-address: 'mailto:joecool@example.com'
+                    cu-type: INDIVIDUAL
+                    member: 'mailto:DEV-GROUP@example.com'
+                    role: REQ-PARTICIPANT
+                    partstat: NEEDS-ACTION
+                    rsvp: false
+                    delto: 'mailto:joecool@example.com'
+                    delfrom: 'mailto:joecool@example.com'
+                    sentby: 'mailto:joecool@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    language: en-US
+                attachments:
+                  - fmttype: string
+                    url: 'http://example.com'
+                styled-description:
+                  - fmttype: text/html
+                    text: <h1>Test Event</h1><p>An example event description<p>
+                    derived: true
     availability-list:
       description: A list of user availability definitions
       content:

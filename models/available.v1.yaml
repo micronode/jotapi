@@ -1,5 +1,7 @@
-title: available.v1
+title: available
 type: object
+x-examples: {}
+x-internal: true
 properties:
   id:
     type: string
@@ -13,6 +15,7 @@ properties:
   duration:
     type: string
     format: duration
+    example: PT15M
   summary:
     type: string
   recurrence-id:
@@ -55,4 +58,3 @@ properties:
 required:
   - id
   - dtstart
-x-examples: {}

@@ -101,6 +101,7 @@ properties:
   duration:
     type: string
     format: duration
+    example: PT15M
   rrule:
     type: string
   url:
@@ -160,6 +161,18 @@ properties:
     type: array
     items:
       type: string
+  styled-description:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./styledDescription.v1.yaml
+        - $ref: ./styledDescriptionRef.v1.yaml
+  structured-data:
+    type: array
+    items:
+      oneOf:
+        - $ref: ./structuredData.v1.yaml
+        - $ref: ./structuredDataRef.v1.yaml
 required:
   - id
   - organizer
