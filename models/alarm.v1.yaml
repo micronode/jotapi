@@ -2,7 +2,7 @@ title: alarm
 type: object
 x-examples:
   example-1:
-    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
     action: AUDIO
     trigger:
       dtstart: '2019-08-24T14:15:22Z'
@@ -32,7 +32,7 @@ x-examples:
         derived: true
 description: ''
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   action:
@@ -74,6 +74,6 @@ properties:
         - $ref: ./styledDescription.v1.yaml
         - $ref: ./styledDescriptionRef.v1.yaml
 required:
-  - id
+  - uid
   - action
   - trigger

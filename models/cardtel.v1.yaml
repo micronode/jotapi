@@ -1,0 +1,22 @@
+title: cardtel.v1
+type: object
+x-examples:
+  example-1:
+    type:
+      - voice
+    uri: 'tel:+1-555-555-5555;ext=5555'
+    pref: 1
+properties:
+  type:
+    type: array
+    items:
+      type: string
+      example: voice
+  uri:
+    type: string
+    format: uri
+    example: 'tel:+1-555-555-5555;ext=5555'
+  pref:
+    type: integer
+    maximum: 100
+    minimum: 1

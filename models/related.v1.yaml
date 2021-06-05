@@ -5,8 +5,9 @@ x-examples:
     id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     reltype: PARENT
 description: ''
+x-internal: true
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   reltype:
@@ -17,5 +18,4 @@ properties:
       - SIBLING
     default: PARENT
 required:
-  - id
-x-internal: true
+  - uid

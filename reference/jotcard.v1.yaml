@@ -31,6 +31,7 @@ paths:
       operationId: get-groups
       parameters:
         - $ref: '#/components/parameters/categories'
+        - $ref: '#/components/parameters/orgs'
     post:
       summary: ''
       operationId: create-group
@@ -48,18 +49,18 @@ paths:
       parameters:
         - $ref: '#/components/parameters/includeRevisions'
     parameters:
-      - name: Uid
-        in: path
-        required: true
-        schema:
-          type: string
-        description: Unique identifier for a card or group
+      - $ref: '#/components/parameters/Uid'
     put:
       summary: ''
       operationId: set-group
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/groupcard.v1.yaml
     patch:
       summary: ''
       operationId: update-group
@@ -82,6 +83,7 @@ paths:
       operationId: get-cards
       parameters:
         - $ref: '#/components/parameters/categories'
+        - $ref: '#/components/parameters/orgs'
     post:
       summary: ''
       operationId: create-card
@@ -106,6 +108,11 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/card.v1.yaml
     patch:
       summary: ''
       operationId: update-card
@@ -142,21 +149,130 @@ components:
       schema:
         type: string
       description: Include previous revisions of requested card or group
+    orgs:
+      name: orgs
+      in: query
+      required: false
+      schema:
+        type: string
+      description: List of orgs associated with a card
   responses:
     card:
       description: Resoure card
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              id:
-                $ref: ../models/card.v1.yaml
+            $ref: ../models/card.v1.yaml
           examples:
             example-1:
               value:
-                id:
-                  id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                fn:
+                  - 'Mr. John Q. Public\, Esq.'
+                kind: individual
+                sources:
+                  - 'ldap://ldap.example.com/cn=Babs%20Jensen,%20o=Babsco,%20c=US'
+                'n':
+                  surnames: string
+                  given: string
+                  additional: string
+                  prefixes: string
+                  suffixes: string
+                nicknames:
+                  - string
+                photos:
+                  - 'http://www.example.com/pub/photos/jqpublic.gif'
+                bday: '2019-08-24'
+                anniversary: '2019-08-24'
+                gender:
+                  sex: M
+                  identity: string
+                adr:
+                  - pobox: string
+                    extended: string
+                    street: string
+                    locality: string
+                    region: string
+                    postalcode: string
+                    country: string
+                    label: string
+                    geo: 'geo:12.3457,78.910'
+                tel:
+                  - type:
+                      - voice
+                    uri: 'tel:+1-555-555-5555;ext=5555'
+                    pref: 1
+                email:
+                  - type:
+                      - work
+                    address: jqpublic@xyz.example.com
+                    pref: 1
+                impp:
+                  - type:
+                      - jabber
+                    uri: 'xmpp:alice@example.com'
+                    pref: 1
+                lang:
+                  - fr
+                tz:
+                  - Raleigh/North America
+                geo:
+                  - 'geo:37.386013,-122.082932'
+                title:
+                  - Research Scientist
+                role:
+                  - Project Leader
+                logos:
+                  - 'http://www.example.com/pub/logos/abccorp.jpg'
+                org:
+                  - name: 'ABC\, Inc.'
+                    ou:
+                      - North American Division
+                related:
+                  - 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                categories:
+                  - 'INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY'
+                note:
+                  - string
+                rev: '2019-08-24T14:15:22Z'
+                sound:
+                  - 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
+                url:
+                  - 'http://example.org/restaurant.french/~chezchic.html'
+                key:
+                  - 'http://www.example.com/keys/jdoe.cer'
+                fburl:
+                  - 'http://www.example.com/busy/janedoe'
+                caladruri:
+                  - 'mailto:janedoe@example.com'
+                caluri:
+                  - 'http://cal.example.com/calA'
+    groupcard:
+      description: Resource group
+      content:
+        application/json:
+          schema:
+            $ref: ../models/groupcard.v1.yaml
+          examples:
+            example-1:
+              value:
+                id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                fn:
+                  - Funky distribution list
+                members:
+                  - 'mailto:subscriber1@example.com'
+    card-list:
+      description: A list of resource cards
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/card.v1.yaml
+          examples:
+            example-1:
+              value:
+                - id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
                   fn:
                     - 'Mr. John Q. Public\, Esq.'
                   kind: individual
@@ -187,135 +303,69 @@ components:
                       country: string
                       label: string
                       geo: 'geo:12.3457,78.910'
-                  tel: 'tel:+1-555-555-5555;ext=5555'
-                  email: jqpublic@xyz.example.com
-                  impp: 'xmpp:alice@example.com'
-                  lang: fr
-                  tz: Raleigh/North America
-                  geo: 'geo:37.386013,-122.082932'
-                  title: Research Scientist
-                  role: Project Leader
-                  logos: 'http://www.example.com/pub/logos/abccorp.jpg'
+                  tel:
+                    - type:
+                        - voice
+                      uri: 'tel:+1-555-555-5555;ext=5555'
+                      pref: 1
+                  email:
+                    - type:
+                        - work
+                      address: jqpublic@xyz.example.com
+                      pref: 1
+                  impp:
+                    - type:
+                        - jabber
+                      uri: 'xmpp:alice@example.com'
+                      pref: 1
+                  lang:
+                    - fr
+                  tz:
+                    - Raleigh/North America
+                  geo:
+                    - 'geo:37.386013,-122.082932'
+                  title:
+                    - Research Scientist
+                  role:
+                    - Project Leader
+                  logos:
+                    - 'http://www.example.com/pub/logos/abccorp.jpg'
                   org:
                     - name: 'ABC\, Inc.'
                       ou:
                         - North American Division
-                  related: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                  related:
+                    - 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
                   categories:
                     - 'INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY'
                   note:
                     - string
                   rev: '2019-08-24T14:15:22Z'
-                  sound: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
-                  url: 'http://example.org/restaurant.french/~chezchic.html'
-                  key: 'http://www.example.com/keys/jdoe.cer'
-                  fburl: 'http://www.example.com/busy/janedoe'
-                  caladruri: 'mailto:janedoe@example.com'
-                  caluri: 'http://cal.example.com/calA'
-    groupcard:
-      description: Resource group
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              id:
-                $ref: ../models/groupcard.v1.yaml
-          examples:
-            example-1:
-              value:
-                id:
-                  id: string
-                  fn: Funky distribution list
-                  members:
-                    - 'mailto:subscriber1@example.com'
-    card-list:
-      description: A list of resource cards
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              id:
-                type: array
-                items:
-                  $ref: ../models/card.v1.yaml
-          examples:
-            example-1:
-              value:
-                id:
-                  - id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
-                    fn:
-                      - 'Mr. John Q. Public\, Esq.'
-                    kind: individual
-                    sources:
-                      - 'ldap://ldap.example.com/cn=Babs%20Jensen,%20o=Babsco,%20c=US'
-                    'n':
-                      surnames: string
-                      given: string
-                      additional: string
-                      prefixes: string
-                      suffixes: string
-                    nicknames:
-                      - string
-                    photos:
-                      - 'http://www.example.com/pub/photos/jqpublic.gif'
-                    bday: '2019-08-24'
-                    anniversary: '2019-08-24'
-                    gender:
-                      sex: M
-                      identity: string
-                    adr:
-                      - pobox: string
-                        extended: string
-                        street: string
-                        locality: string
-                        region: string
-                        postalcode: string
-                        country: string
-                        label: string
-                        geo: 'geo:12.3457,78.910'
-                    tel: 'tel:+1-555-555-5555;ext=5555'
-                    email: jqpublic@xyz.example.com
-                    impp: 'xmpp:alice@example.com'
-                    lang: fr
-                    tz: Raleigh/North America
-                    geo: 'geo:37.386013,-122.082932'
-                    title: Research Scientist
-                    role: Project Leader
-                    logos: 'http://www.example.com/pub/logos/abccorp.jpg'
-                    org:
-                      - name: 'ABC\, Inc.'
-                        ou:
-                          - North American Division
-                    related: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
-                    categories:
-                      - 'INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY'
-                    note:
-                      - string
-                    rev: '2019-08-24T14:15:22Z'
-                    sound: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
-                    url: 'http://example.org/restaurant.french/~chezchic.html'
-                    key: 'http://www.example.com/keys/jdoe.cer'
-                    fburl: 'http://www.example.com/busy/janedoe'
-                    caladruri: 'mailto:janedoe@example.com'
-                    caluri: 'http://cal.example.com/calA'
+                  sound:
+                    - 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
+                  url:
+                    - 'http://example.org/restaurant.french/~chezchic.html'
+                  key:
+                    - 'http://www.example.com/keys/jdoe.cer'
+                  fburl:
+                    - 'http://www.example.com/busy/janedoe'
+                  caladruri:
+                    - 'mailto:janedoe@example.com'
+                  caluri:
+                    - 'http://cal.example.com/calA'
     groupcard-list:
       description: A list of resource groups
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              id:
-                type: array
-                items:
-                  $ref: ../models/groupcard.v1.yaml
+            type: array
+            items:
+              $ref: ../models/groupcard.v1.yaml
           examples:
             example-1:
               value:
-                id:
-                  - id: string
-                    fn: Funky distribution list
-                    members:
-                      - 'mailto:subscriber1@example.com'
+                - id: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+                  fn:
+                    - Funky distribution list
+                  members:
+                    - 'mailto:subscriber1@example.com'

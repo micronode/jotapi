@@ -34,33 +34,58 @@ x-examples:
         country: string
         label: string
         geo: 'geo:12.3457,78.910'
-    tel: 'tel:+1-555-555-5555;ext=5555'
-    email: jqpublic@xyz.example.com
-    impp: 'xmpp:alice@example.com'
-    lang: fr
-    tz: Raleigh/North America
-    geo: 'geo:37.386013,-122.082932'
-    title: Research Scientist
-    role: Project Leader
-    logos: 'http://www.example.com/pub/logos/abccorp.jpg'
+    tel:
+      - type:
+          - voice
+        uri: 'tel:+1-555-555-5555;ext=5555'
+        pref: 1
+    email:
+      - type:
+          - work
+        address: jqpublic@xyz.example.com
+        pref: 1
+    impp:
+      - type:
+          - jabber
+        uri: 'xmpp:alice@example.com'
+        pref: 1
+    lang:
+      - fr
+    tz:
+      - Raleigh/North America
+    geo:
+      - 'geo:37.386013,-122.082932'
+    title:
+      - Research Scientist
+    role:
+      - Project Leader
+    logos:
+      - 'http://www.example.com/pub/logos/abccorp.jpg'
     org:
       - name: 'ABC\, Inc.'
         ou:
           - North American Division
-    related: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
+    related:
+      - 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
     categories:
       - 'INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY'
     note:
       - string
     rev: '2019-08-24T14:15:22Z'
-    sound: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
-    url: 'http://example.org/restaurant.french/~chezchic.html'
-    key: 'http://www.example.com/keys/jdoe.cer'
-    fburl: 'http://www.example.com/busy/janedoe'
-    caladruri: 'mailto:janedoe@example.com'
-    caluri: 'http://cal.example.com/calA'
+    sound:
+      - 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
+    url:
+      - 'http://example.org/restaurant.french/~chezchic.html'
+    key:
+      - 'http://www.example.com/keys/jdoe.cer'
+    fburl:
+      - 'http://www.example.com/busy/janedoe'
+    caladruri:
+      - 'mailto:janedoe@example.com'
+    caluri:
+      - 'http://cal.example.com/calA'
 properties:
-  id:
+  uid:
     type: string
     format: uri
     example: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
@@ -78,26 +103,25 @@ properties:
       - location
       - group
     default: individual
-  sources:
+  source:
     type: array
-    format: uri
     items:
       type: string
       format: uri
       example: 'ldap://ldap.example.com/cn=Babs%20Jensen,%20o=Babsco,%20c=US'
   'n':
     $ref: ./cardn.v1.yaml
-  nicknames:
+  nickname:
     type: array
     items:
       type: string
-  photos:
+  photo:
     type: array
     format: uri
     items:
       type: string
       format: uri
-      example: 'http://www.example.com/pub/photos/jqpublic.gif'
+      example: 'https://dummyimage.com/150/de11de/fff.png&text=Photo'
   bday:
     type: string
     format: date
@@ -112,73 +136,56 @@ properties:
       $ref: ./cardadr.v1.yaml
   tel:
     type: array
-    example: 'tel:+1-555-555-5555;ext=5555'
-    uniqueItems: true
+    uniqueItems: false
     items:
-      type: string
-      example: 'tel:+1-555-555-5555;ext=5555'
+      $ref: ./cardtel.v1.yaml
   email:
     type: array
-    example: jqpublic@xyz.example.com
     items:
-      type: string
-      example: jqpublic@xyz.example.com
+      $ref: ./cardemail.v1.yaml
   impp:
     type: array
-    format: uri
-    example: 'xmpp:alice@example.com'
     uniqueItems: true
     items:
-      type: string
-      format: uri
-      example: 'xmpp:alice@example.com'
+      $ref: ./cardimpp.v1.yaml
   lang:
     type: array
-    example: fr
     items:
       type: string
       example: fr
   tz:
     type: array
-    example: Raleigh/North America
     items:
       type: string
       example: Raleigh/North America
   geo:
     type: array
-    format: uri
-    example: 'geo:37.386013,-122.082932'
     items:
       type: string
       example: 'geo:37.386013,-122.082932'
+      format: uri
   title:
     type: array
-    example: Research Scientist
     items:
       type: string
       example: Research Scientist
   role:
     type: array
-    example: Project Leader
     items:
       type: string
       example: Project Leader
-  logos:
+  logo:
     type: array
-    format: uri
-    example: 'http://www.example.com/pub/logos/abccorp.jpg'
     items:
       type: string
       format: uri
-      example: 'http://www.example.com/pub/logos/abccorp.jpg'
+      example: 'https://dummyimage.com/150/de11de/fff.png&text=Logo'
   org:
     type: array
     items:
       $ref: ./cardorg.v1.yaml
   related:
     type: array
-    format: uri
-    example: 'urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6'
     items:
       type: string
       format: uri
@@ -197,48 +204,36 @@ properties:
     format: date-time
   sound:
     type: array
-    format: uri
-    example: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
     items:
       type: string
       example: 'CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com'
   url:
     type: array
-    format: uri
-    example: 'http://example.org/restaurant.french/~chezchic.html'
     items:
       type: string
       example: 'http://example.org/restaurant.french/~chezchic.html'
   key:
     type: array
-    format: uri
-    example: 'http://www.example.com/keys/jdoe.cer'
     items:
       type: string
       example: 'http://www.example.com/keys/jdoe.cer'
   fburl:
     type: array
-    format: uri
-    example: 'http://www.example.com/busy/janedoe'
     items:
       type: string
       format: uri
       example: 'http://www.example.com/busy/janedoe'
   caladruri:
     type: array
-    format: uri
-    example: 'mailto:janedoe@example.com'
     items:
       type: string
       example: 'mailto:janedoe@example.com'
   caluri:
     type: array
-    format: uri
-    example: 'http://cal.example.com/calA'
     items:
       type: string
       format: uri
       example: 'http://cal.example.com/calA'
 required:
-  - id
+  - uid
   - fn

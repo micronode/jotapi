@@ -2,7 +2,7 @@ title: availability
 type: object
 x-examples:
   example-1:
-    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
     organizer:
       cal-address: 'mailto:jane_doe@example.com'
       cn: string
@@ -12,45 +12,20 @@ x-examples:
     summary: string
     dtstart: '2019-08-24T14:15:22Z'
     dtend: '2019-08-24T14:15:22Z'
-    rrule: string
     sequence: 0
     class: PUBLIC
     priority: 0
     description: string
     url: string
     location:
-      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
       name: The venue
     last-modified: '2019-08-24T14:15:22Z'
     created: '2019-08-24T14:15:22Z'
     duration: PT15M
     busytype: BUSY
-    available:
-      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-        dtstart: '2019-08-24T14:15:22Z'
-        dtend: '2019-08-24T14:15:22Z'
-        duration: PT15M
-        summary: string
-        recurrence-id: '2019-08-24T14:15:22Z'
-        location:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          name: The venue
-        description: string
-        created: '2019-08-24T14:15:22Z'
-        last-modified: '2019-08-24T14:15:22Z'
-        rrule: string
-        categories:
-          - string
-        comments:
-          - string
-        exdates:
-          - '2019-08-24T14:15:22Z'
-        rdates:
-          - '2019-08-24T14:15:22Z'
-        contacts:
-          - string
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   organizer:
@@ -63,8 +38,6 @@ properties:
   dtend:
     type: string
     format: date-time
-  rrule:
-    type: string
   sequence:
     type: integer
   class:
@@ -97,10 +70,6 @@ properties:
       - BUSY
       - BUSY-UNAVAILABLE
       - BUSY-TENTATIVE
-  available:
-    type: array
-    items:
-      $ref: ./available.v1.yaml
 required:
-  - id
+  - uid
   - organizer

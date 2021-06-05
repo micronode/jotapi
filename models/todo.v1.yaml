@@ -3,7 +3,7 @@ type: object
 description: A calendar task component
 x-examples:
   example-1:
-    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
     organizer:
       cal-address: 'mailto:jane_doe@example.com'
       cn: string
@@ -18,12 +18,12 @@ x-examples:
     priority: 0
     status: NEEDS-ACTION
     due: '2019-08-24T14:15:22Z'
-    duration: string
+    duration: PT15M
     rrule: string
     url: 'http://example.com'
     geo: string
     location:
-      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
       name: The venue
     last-modified: '2019-08-24T14:15:22Z'
     created: '2019-08-24T14:15:22Z'
@@ -34,13 +34,13 @@ x-examples:
     comments:
       - string
     resources:
-      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
         altrep: 'CID:part3.msg.970415T083000@example.com'
     attachments:
       - fmttype: string
         url: 'http://example.com'
     related-to:
-      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
         reltype: PARENT
     rdates:
       - string
@@ -61,8 +61,17 @@ x-examples:
         language: en-US
     contacts:
       - string
+    styled-description:
+      - fmttype: text/html
+        text: <h1>Test Event</h1><p>An example event description<p>
+        derived: true
+    structured-data:
+      - fmttype: string
+        schema: string
+        encoding: BASE64
+        text: string
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   organizer:
@@ -104,11 +113,13 @@ properties:
     example: PT15M
   rrule:
     type: string
+    example: FREQ=WEEKLY
   url:
     type: string
     format: uri
   geo:
     type: string
+    example: 49.8932;40.3834
   location:
     $ref: ./location.v1.yaml
   last-modified:
@@ -127,7 +138,7 @@ properties:
     type: array
     items:
       type: string
-  comments:
+  comment:
     type: array
     items:
       type: string
@@ -135,7 +146,7 @@ properties:
     type: array
     items:
       $ref: ./resource.v1.yaml
-  attachments:
+  attach:
     type: array
     items:
       oneOf:
@@ -145,19 +156,19 @@ properties:
     type: array
     items:
       $ref: ./related.v1.yaml
-  rdates:
+  rdate:
     type: array
     items:
       type: string
-  exdates:
+  exdate:
     type: array
     items:
       type: string
-  attendees:
+  attendee:
     type: array
     items:
       $ref: ./attendee.v1.yaml
-  contacts:
+  contact:
     type: array
     items:
       type: string
@@ -174,5 +185,5 @@ properties:
         - $ref: ./structuredData.v1.yaml
         - $ref: ./structuredDataRef.v1.yaml
 required:
-  - id
+  - uid
   - organizer

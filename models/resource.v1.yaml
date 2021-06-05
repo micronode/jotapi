@@ -4,8 +4,9 @@ x-examples:
   example-1:
     id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     altrep: 'CID:part3.msg.970415T083000@example.com'
+x-internal: false
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   altrep:
@@ -13,5 +14,4 @@ properties:
     format: uri
     example: 'CID:part3.msg.970415T083000@example.com'
 required:
-  - id
-x-internal: false
+  - uid

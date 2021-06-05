@@ -1,9 +1,33 @@
 title: available
 type: object
-x-examples: {}
+x-examples:
+  example-1:
+    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+    dtstart: '2019-08-24T14:15:22Z'
+    dtend: '2019-08-24T14:15:22Z'
+    duration: PT15M
+    summary: string
+    recurrence-id: '2019-08-24T14:15:22Z'
+    location:
+      uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+      name: The venue
+    description: string
+    created: '2019-08-24T14:15:22Z'
+    last-modified: '2019-08-24T14:15:22Z'
+    rrule: string
+    categories:
+      - string
+    comments:
+      - string
+    exdates:
+      - '2019-08-24T14:15:22Z'
+    rdates:
+      - '2019-08-24T14:15:22Z'
+    contacts:
+      - string
 x-internal: true
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   dtstart:
@@ -33,6 +57,7 @@ properties:
     format: date-time
   rrule:
     type: string
+    example: FREQ=WEEKLY
   categories:
     type: array
     items:
@@ -56,5 +81,5 @@ properties:
     items:
       type: string
 required:
-  - id
+  - uid
   - dtstart

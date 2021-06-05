@@ -269,7 +269,7 @@ paths:
       responses:
         '200':
           description: OK
-  '/alarms/{Uid}':
+  '/alarms/{Type}/{Uid}':
     get:
       summary: List component alarms
       tags: []
@@ -302,9 +302,23 @@ paths:
                     - $ref: ../models/trigger.v1.yaml
                     - $ref: ../models/triggerRel.v1.yaml
             examples: {}
-      description: Create a new component alarm
+      description: |-
+        Create a new component alarm.
+
+        NOTE: When an alarm is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
     parameters:
-      - $ref: '#/components/parameters/Uid'
+      - name: Uid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
+      - name: Type
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'A component type; used to manage alarms, attachments, etc. associated with a component'
   '/alarm/{Uid}':
     get:
       summary: Get a component alarm
@@ -336,7 +350,10 @@ paths:
           application/xml:
             schema:
               $ref: ../models/alarm.v1.yaml
-      description: Replace an existing component alarm
+      description: |-
+        Replace an existing component alarm.
+
+        NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
     patch:
       summary: Update a component alarm
       operationId: update-alarm
@@ -348,14 +365,20 @@ paths:
           application/json:
             schema:
               $ref: ../models/alarm.v1.yaml
-      description: Update an existing component alarm
+      description: |-
+        Update an existing component alarm.
+
+        NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
     delete:
       summary: Delete a component alarm
       operationId: delete-alarm
       responses:
         '200':
           description: OK
-      description: Delete an existing component alarm
+      description: |-
+        Delete an existing component alarm.
+
+        NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
   '/event/{Uid}':
     get:
       summary: Your GET endpoint
@@ -538,7 +561,7 @@ paths:
         schema:
           type: string
         description: Unique identifier for a component or calendar
-  '/attachments/{Uid}':
+  '/attachments/{Type}/{Uid}':
     get:
       summary: Your GET endpoint
       tags: []
@@ -566,23 +589,15 @@ paths:
               required:
                 - url
             examples: {}
-    parameters:
-      - $ref: '#/components/parameters/Uid'
-  '/attachment/{Uid}/{Index}':
-    get:
-      summary: Your GET endpoint
-      tags: []
-      operationId: get-attachment
-      description: Return content of an encoded binary attachment
-      responses:
-        '200':
-          description: OK
-          content:
-            application/octet-stream:
-              schema:
-                type: object
-                properties: {}
-              examples: {}
+          application/octet-stream:
+            schema:
+              type: object
+              properties: {}
+        description: Upload binary content of attachment
+      description: |-
+        Upload a new attachment to the component specified by UID path parameter.
+
+        NOTE: When an attachment is uploaded the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
     parameters:
       - name: Uid
         in: path
@@ -590,19 +605,70 @@ paths:
         schema:
           type: string
         description: Unique identifier for a component or calendar
-      - schema:
-          type: string
-        name: Index
+      - name: Type
         in: path
         required: true
-        description: Index of the requested attachment
+        schema:
+          type: string
+          enum:
+            - event
+            - todo
+            - journal
+            - availability
+            - alarm
+            - available
+        description: 'A component type; used to manage alarms, attachments, etc. associated with a component'
+  '/attachment/{Type}/{Uid}/{Digest}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-attachment
+      description: Return content of an encoded binary attachment
+      responses:
+        '200':
+          $ref: '#/components/responses/attachment'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accept
+          description: Indicates the attachment content is requested if matches the advertised content type
+    parameters:
+      - schema:
+          type: string
+        name: Digest
+        in: path
+        required: true
+        description: Message digest of the requested attachment or reference
+      - name: Type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+            - event
+            - todo
+            - journal
+            - availability
+            - alarm
+            - available
+        description: 'A component type; used to manage alarms, attachments, etc. associated with a component'
+      - name: Uid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
     put:
       summary: ''
       operationId: set-attachment
       responses:
         '200':
           description: OK
-      description: Replace an encoded binary attachment
+      description: |-
+        Replace an encoded binary attachment.
+
+        NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
       requestBody:
         content:
           application/octet-stream:
@@ -616,7 +682,10 @@ paths:
       responses:
         '200':
           description: OK
-      description: Delete an encoded attachment
+      description: |-
+        Delete an encoded attachment.
+
+        NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
   /availability:
     get:
       summary: Your GET endpoint
@@ -640,6 +709,78 @@ paths:
             schema:
               $ref: ../models/availability.v1.yaml
             examples: {}
+  '/available/availability/{Uid}':
+    parameters:
+      - name: Uid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/available-list'
+      operationId: list-available
+      description: Return a list of available definitions for the specified availability id.
+    post:
+      summary: ''
+      operationId: create-available
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Create a new available definition for the specified availability id.
+
+        NOTE: When an available definition is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+  '/available/{Uid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/available-list'
+      operationId: get-available
+      description: Return a list of available components (including recurrence ovverides) representing an available definition
+    parameters:
+      - name: Uid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for a component or calendar
+    put:
+      summary: ''
+      operationId: set-available
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Replace an existing available definition with a new value.
+
+        NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+    patch:
+      summary: ''
+      operationId: update-available
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Update an existing available definition.
+
+        NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+    delete:
+      summary: ''
+      operationId: delete-available
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Delete an existing available definition.
+
+        NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
 components:
   schemas:
     event-patch:
@@ -682,78 +823,7 @@ components:
         application/json:
           schema:
             $ref: ../models/event.v1.yaml
-          examples:
-            example-1:
-              value:
-                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                organizer:
-                  cal-address: 'mailto:jane_doe@example.com'
-                  cn: string
-                  dir: 'http://example.com'
-                  sent-by: 'mailto:joecool@example.com'
-                  language: en-US
-                summary: string
-                dtstart: '2019-08-24T14:15:22Z'
-                sequence: 0
-                recurrence-id: string
-                class: PUBLIC
-                priority: 0
-                status: TENTATIVE
-                dtend: '2019-08-24T14:15:22Z'
-                duration: PT15M
-                rrule: string
-                description: string
-                url: 'http://example.com'
-                geo: string
-                location:
-                  id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                  name: The venue
-                last-modified: '2019-08-24T14:15:22Z'
-                created: '2019-08-24T14:15:22Z'
-                categories:
-                  - string
-                comments:
-                  - text: string
-                    altrep: string
-                resources:
-                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    altrep: 'CID:part3.msg.970415T083000@example.com'
-                attachments:
-                  - fmttype: string
-                    url: 'http://example.com'
-                related-to:
-                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    reltype: PARENT
-                rdates:
-                  - '2019-08-24T14:15:22Z'
-                exdates:
-                  - '2019-08-24T14:15:22Z'
-                attendees:
-                  - cal-address: 'mailto:joecool@example.com'
-                    cu-type: INDIVIDUAL
-                    member: 'mailto:DEV-GROUP@example.com'
-                    role: REQ-PARTICIPANT
-                    partstat: NEEDS-ACTION
-                    rsvp: false
-                    delto: 'mailto:joecool@example.com'
-                    delfrom: 'mailto:joecool@example.com'
-                    sentby: 'mailto:joecool@example.com'
-                    cn: string
-                    dir: 'http://example.com'
-                    language: en-US
-                transp: OPAQUE
-                contacts:
-                  - text: string
-                    altrep: string
-                styled-description:
-                  - fmttype: text/html
-                    text: <h1>Test Event</h1><p>An example event description<p>
-                    derived: true
-                structured-data:
-                  - fmttype: string
-                    schema: string
-                    encoding: BASE64
-                    text: string
+          examples: {}
     journal:
       description: A calendar journal component
       content:
@@ -777,7 +847,7 @@ components:
           examples:
             example-1:
               value:
-                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
                 calscale: GREGORIAN
                 name: 'My Social Calendar '
                 description: 'A collection of social events, journals, tasks and availability'
@@ -814,37 +884,7 @@ components:
         application/json:
           schema:
             $ref: ../models/alarm.v1.yaml
-          examples:
-            example-1:
-              value:
-                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                action: AUDIO
-                trigger:
-                  dtstart: '2019-08-24T14:15:22Z'
-                description: string
-                duration: PT15M
-                repeat: 1
-                summary: string
-                attendees:
-                  - cal-address: 'mailto:joecool@example.com'
-                    cu-type: INDIVIDUAL
-                    member: 'mailto:DEV-GROUP@example.com'
-                    role: REQ-PARTICIPANT
-                    partstat: NEEDS-ACTION
-                    rsvp: false
-                    delto: 'mailto:joecool@example.com'
-                    delfrom: 'mailto:joecool@example.com'
-                    sentby: 'mailto:joecool@example.com'
-                    cn: string
-                    dir: 'http://example.com'
-                    language: en-US
-                attachments:
-                  - fmttype: string
-                    url: 'http://example.com'
-                styled-description:
-                  - fmttype: text/html
-                    text: <h1>Test Event</h1><p>An example event description<p>
-                    derived: true
+          examples: {}
     availability-list:
       description: A list of user availability definitions
       content:
@@ -853,7 +893,32 @@ components:
             type: array
             items:
               $ref: ../models/availability.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  organizer:
+                    cal-address: 'mailto:jane_doe@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    sent-by: 'mailto:joecool@example.com'
+                    language: en-US
+                  summary: string
+                  dtstart: '2019-08-24T14:15:22Z'
+                  dtend: '2019-08-24T14:15:22Z'
+                  rrule: FREQ=WEEKLY
+                  sequence: 0
+                  class: PUBLIC
+                  priority: 0
+                  description: string
+                  url: string
+                  location:
+                    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                    name: The venue
+                  last-modified: '2019-08-24T14:15:22Z'
+                  created: '2019-08-24T14:15:22Z'
+                  duration: PT15M
+                  busytype: BUSY
     attachment-list:
       description: A list of component attachments
       content:
@@ -861,23 +926,32 @@ components:
           schema:
             type: array
             items:
-              $ref: ../models/attachmentRef.v1.yaml
+              oneOf:
+                - $ref: ../models/attachment.v1.yaml
+                - $ref: ../models/attachmentRef.v1.yaml
           examples:
             example-1:
               value:
                 - fmttype: string
-                  url: 'http://example.com'
+                  binary: string
     attachment:
       description: A component attachment
       content:
         application/json:
           schema:
-            $ref: ../models/attachmentRef.v1.yaml
+            oneOf:
+              - $ref: ../models/attachment.v1.yaml
+              - $ref: ../models/attachmentRef.v1.yaml
           examples:
             example-1:
               value:
                 fmttype: string
-                url: 'http://example.com'
+                binary: string
+        application/octet-stream:
+          schema:
+            type: object
+            properties: {}
+          examples: {}
     freebusy:
       description: A free/busy schedule definition
       content:
@@ -891,6 +965,49 @@ components:
         application/json:
           schema:
             $ref: ../models/availability.v1.yaml
+          examples:
+            example-1:
+              value:
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                organizer:
+                  cal-address: 'mailto:jane_doe@example.com'
+                  cn: string
+                  dir: 'http://example.com'
+                  sent-by: 'mailto:joecool@example.com'
+                  language: en-US
+                summary: string
+                dtstart: '2019-08-24T14:15:22Z'
+                dtend: '2019-08-24T14:15:22Z'
+                sequence: 0
+                class: PUBLIC
+                priority: 0
+                description: string
+                url: string
+                location:
+                  uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  name: The venue
+                last-modified: '2019-08-24T14:15:22Z'
+                created: '2019-08-24T14:15:22Z'
+                duration: PT15M
+                busytype: BUSY
+    available:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: ../models/available.v1.yaml
+          examples: {}
+    available-list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../models/available.v1.yaml
           examples: {}
   parameters:
     Uid:
@@ -956,4 +1073,18 @@ components:
       schema:
         type: string
       description: Owner of calendars and components
+    Type:
+      name: Type
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - event
+          - todo
+          - journal
+          - availability
+          - alarm
+          - available
+      description: 'A component type; used to manage alarms, attachments, etc. associated with a component'
   securitySchemes: {}

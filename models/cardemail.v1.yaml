@@ -1,0 +1,21 @@
+title: cardemail.v1
+type: object
+x-examples:
+  example-1:
+    type:
+      - work
+    address: jqpublic@xyz.example.com
+    pref: 1
+properties:
+  type:
+    type: array
+    items:
+      type: string
+      example: work
+  address:
+    type: string
+    example: jqpublic@xyz.example.com
+  pref:
+    type: integer
+    minimum: 1
+    maximum: 100

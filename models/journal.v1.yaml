@@ -3,7 +3,7 @@ type: object
 description: A calendar journal component
 x-examples:
   example-1:
-    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
     organizer:
       cal-address: 'mailto:jane_doe@example.com'
       cn: string
@@ -22,37 +22,46 @@ x-examples:
     last-modified: '2019-08-24T14:15:22Z'
     categories:
       - string
-    comments:
+    comment:
       - text: string
         altrep: string
-    attachments:
+    attach:
       - fmttype: string
         binary: string
     related-to:
-      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
       reltype: PARENT
-    rdates:
+    rdate:
       - '2019-08-24T14:15:22Z'
-    exdates:
+    exdate:
       - '2019-08-24T14:15:22Z'
-    attendees:
-      cal-address: 'mailto:joecool@example.com'
-      cu-type: INDIVIDUAL
-      member: 'mailto:DEV-GROUP@example.com'
-      role: REQ-PARTICIPANT
-      partstat: NEEDS-ACTION
-      rsvp: false
-      delto: 'mailto:joecool@example.com'
-      delfrom: 'mailto:joecool@example.com'
-      sentby: 'mailto:joecool@example.com'
-      cn: string
-      dir: 'http://example.com'
-      language: en-US
-    contacts:
+    attendee:
+      - cal-address: 'mailto:joecool@example.com'
+        cu-type: INDIVIDUAL
+        member: 'mailto:DEV-GROUP@example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    contact:
       - text: string
         altrep: string
+    styled-description:
+      - fmttype: text/html
+        text: <h1>Test Event</h1><p>An example event description<p>
+        derived: true
+    structured-data:
+      - fmttype: string
+        schema: string
+        encoding: BASE64
+        text: string
 properties:
-  id:
+  uid:
     type: string
     format: uuid
   organizer:
@@ -81,6 +90,7 @@ properties:
       - CANCELLED
   rrule:
     type: string
+    example: FREQ=WEEKLY
   description:
     type: string
   url:
@@ -93,11 +103,11 @@ properties:
     type: array
     items:
       type: string
-  comments:
+  comment:
     type: array
     items:
       $ref: ./comment.v1.yaml
-  attachments:
+  attach:
     type: array
     items:
       oneOf:
@@ -105,21 +115,21 @@ properties:
         - $ref: ./attachmentRef.v1.yaml
   related-to:
     $ref: ./related.v1.yaml
-  rdates:
+  rdate:
     type: array
     items:
       type: string
       format: date-time
-  exdates:
+  exdate:
     type: array
     items:
       type: string
       format: date-time
-  attendees:
+  attendee:
     type: array
     items:
       $ref: ./attendee.v1.yaml
-  contacts:
+  contact:
     type: array
     items:
       $ref: ./contact.v1.yaml
@@ -136,5 +146,5 @@ properties:
         - $ref: ./structuredData.v1.yaml
         - $ref: ./structuredDataRef.v1.yaml
 required:
-  - id
+  - uid
   - organizer
