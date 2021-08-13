@@ -3,6 +3,8 @@
 Incident management software typically includes a support roster
 and escalation process for resolution of incidents.
 
+## Model
+
 | Resource Type | Jot Model | Comment                                                         |
 |---------------|-----------|-----------------------------------------------------------------|
 | Operator      | CARD      | A participant in the roster                                     |

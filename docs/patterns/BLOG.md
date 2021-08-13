@@ -3,6 +3,8 @@
 Blogging software provides to ability to publish content using standard templates,
 which can be modeled with jot APIs.
 
+## Model
+
 | Resource Type | Jot Model | Comment                      |
 |---------------|-----------|------------------------------|
 | Blog          | CALENDAR  | Collection of blog articles  |

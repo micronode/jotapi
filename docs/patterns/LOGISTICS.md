@@ -4,6 +4,8 @@ Moving stock, resources and people from one location to another can be a complex
 Examples include courier, ride-share and delivery networks. Building a
 logistics system can be done with jot APIs.
 
+## Model
+
 | Resource Type | Jot Model | Comment                                                   |
 |---------------|-----------|-----------------------------------------------------------|
 | Resource      | CARD      | Stock, person or resource requiring transportation        |

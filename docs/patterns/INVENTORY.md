@@ -3,6 +3,8 @@
 An inventory system tracks the available resources and manages notifications
 and alerts regarding stock.
 
+## Model
+
 | Resource Type | Jot Model | Comment                                       |
 |---------------|-----------|-----------------------------------------------|
 | Product       | CARD      | A product recorded in inventory               |

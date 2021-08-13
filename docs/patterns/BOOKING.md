@@ -3,6 +3,8 @@
 A booking or reservation system includes the ability to reserve available resources
 at different times.
 
+## Model
+
 | Resource Type | Jot Model    | Comment                              |
 |---------------|--------------|--------------------------------------|
 | Resource      | CALENDAR     | A bookable resource                  |
