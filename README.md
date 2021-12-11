@@ -22,22 +22,22 @@ a need to store the majority of the information contained in an iCalendar object
 APIs and payload specifications for persisting calendar data.
 
 
-## REST
+## APIs
 
 REST is a common approach used for open APIs, and is based on the verbs described in the HTTP specification. The 
 following endpoints and HTTP verbs are included in the Jot API:
 
 ### /calendars
 
-* GET
-* POST
+* [**createCalendar**](./docs/api/jotcal/Apis/DefaultApi.md#createCalendar)
+* [**listCalendars**](./docs/api/jotcal/Apis/DefaultApi.md#listCalendars)
 
 ### /calendar/{Uid}
 
-* GET
-* PUT
-* PATCH
-* DELETE
+* [**deleteCalendar**](./docs/api/jotcal/Apis/DefaultApi.md#deleteCalendar)
+* [**getCalendar**](./docs/api/jotcal/Apis/DefaultApi.md#getCalendar)
+* [**setCalendar**](./docs/api/jotcal/Apis/DefaultApi.md#setCalendar)
+* [**updateCalendar**](./docs/api/jotcal/Apis/DefaultApi.md#updateCalendar)
 
 ### /events
 
@@ -120,18 +120,11 @@ In addition to API endpoints Jot API provides data models for transferring paylo
 implementation. Initially these models are direct translations from the iCalendar specification, however in future 
 other data representations such as jCal and JSCalendar may also be supported.
 
-### Calendar
-
-### Event
-
-### Todo
-
-### Journal
-
-### Freebusy
-
-### Availability
-
-### Alarm
-
-### Attachment
+* [calendar](./docs/api/jotcal/Models/calendar.md)
+* [event](./docs/api/jotcal/Models/event.md)
+* [todo](./docs/api/jotcal/Models/todo.md)
+* [journal](./docs/api/jotcal/Models/journal.md)
+* [freebusy](./docs/api/jotcal/Models/freebusy.md)
+* [availability](./docs/api/jotcal/Models/availability.md)
+* [alarm](./docs/api/jotcal/Models/alarm.md)
+* [attachment](./docs/api/jotcal/Models/attachment.md)
