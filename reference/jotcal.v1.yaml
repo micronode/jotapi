@@ -20,6 +20,7 @@ servers:
         default: https
       host:
         default: api.example.com
+    description: JotCal
 paths:
   /calendars:
     get:
@@ -31,7 +32,7 @@ paths:
       operationId: list-calendars
       description: Retrieve a list of visible calendars
       parameters:
-        - $ref: '#/components/parameters/organizer'
+        - $ref: '#/components/parameters/filter'
     parameters: []
     post:
       summary: ''
@@ -70,11 +71,7 @@ paths:
       description: Return a list of visible events
       parameters:
         - $ref: '#/components/parameters/calendar'
-        - $ref: '#/components/parameters/organizer'
-        - $ref: '#/components/parameters/categories'
-        - $ref: '#/components/parameters/class'
-        - $ref: '#/components/parameters/fromDate'
-        - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/filter'
     post:
       summary: ''
       operationId: create-event
@@ -124,11 +121,7 @@ paths:
       operationId: list-todos
       parameters:
         - $ref: '#/components/parameters/calendar'
-        - $ref: '#/components/parameters/class'
-        - $ref: '#/components/parameters/categories'
-        - $ref: '#/components/parameters/fromDate'
-        - $ref: '#/components/parameters/toDate'
-        - $ref: '#/components/parameters/organizer'
+        - $ref: '#/components/parameters/filter'
     post:
       summary: ''
       operationId: create-todo
@@ -174,11 +167,7 @@ paths:
       operationId: list-journals
       parameters:
         - $ref: '#/components/parameters/calendar'
-        - $ref: '#/components/parameters/class'
-        - $ref: '#/components/parameters/categories'
-        - $ref: '#/components/parameters/fromDate'
-        - $ref: '#/components/parameters/toDate'
-        - $ref: '#/components/parameters/organizer'
+        - $ref: '#/components/parameters/filter'
     post:
       summary: ''
       operationId: create-journal
@@ -696,7 +685,8 @@ paths:
       operationId: list-availability
       description: Return a list of availability definitions matching request criteria
       parameters:
-        - $ref: '#/components/parameters/organizer'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/calendar'
     post:
       summary: ''
       operationId: create-availability
@@ -1025,54 +1015,12 @@ components:
         type: boolean
       description: Include previous revisions of requested component
     calendar:
-      name: calendar
+      name: uid
       in: query
       required: false
       schema:
         type: string
       description: Unique id of a calendar to filter components
-    class:
-      name: class
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-          - PUBLIC
-          - PRIVATE
-          - CONFIDENTIAL
-        default: PUBLIC
-      description: Component classification filter
-    categories:
-      name: categories
-      in: query
-      required: false
-      schema:
-        type: string
-      description: List of categories to filter results
-    fromDate:
-      name: fromDate
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date
-      description: Minimum start date of results
-    toDate:
-      name: toDate
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date
-      description: Maximum start date of results
-    organizer:
-      name: organizer
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Owner of calendars and components
     Type:
       name: Type
       in: path
@@ -1087,4 +1035,12 @@ components:
           - alarm
           - available
       description: 'A component type; used to manage alarms, attachments, etc. associated with a component'
+    filter:
+      name: f
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'uid in [''1234-9876-1224'']'
+      description: An ical4j filter expression
   securitySchemes: {}
