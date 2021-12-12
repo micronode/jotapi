@@ -20,12 +20,14 @@ servers:
         default: https
       host:
         default: api.example.com
-    description: JotCal
+    description: JotCal v1
 paths:
   /calendars:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - calendar
+        - list
       responses:
         '200':
           $ref: '#/components/responses/calendar-list'
@@ -38,7 +40,7 @@ paths:
       summary: ''
       operationId: create-calendar
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/calendar'
       requestBody:
         content:
@@ -60,10 +62,15 @@ paths:
                   name: string
                   description: string
                   calscale: GREGORIAN
+      description: Create a new calendar
+      tags:
+        - calendar
   /events:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - event
+        - list
       responses:
         '200':
           $ref: '#/components/responses/event-list'
@@ -76,7 +83,7 @@ paths:
       summary: ''
       operationId: create-event
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/event'
       requestBody:
         content:
@@ -111,10 +118,15 @@ paths:
                   summary: string
                   dtstart: '2019-08-24T14:15:22Z'
                   calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+      description: Create a new event
+      tags:
+        - event
   /todos:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - todo
+        - list
       responses:
         '200':
           $ref: '#/components/responses/todo-list'
@@ -122,11 +134,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/calendar'
         - $ref: '#/components/parameters/filter'
+      description: Reteive a list of todos
     post:
       summary: ''
       operationId: create-todo
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/todo'
       description: Create a new todo component
       requestBody:
@@ -157,10 +170,14 @@ paths:
                     language: en-US
                   calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
                   summary: string
+      tags:
+        - todo
   /journals:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - journal
+        - list
       responses:
         '200':
           $ref: '#/components/responses/journal-list'
@@ -168,11 +185,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/calendar'
         - $ref: '#/components/parameters/filter'
+      description: Retrieve a list of journal entries
     post:
       summary: ''
       operationId: create-journal
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/journal'
       requestBody:
         content:
@@ -202,10 +220,14 @@ paths:
                     language: en-US
                   calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
                   summary: string
+      description: Create a journal entry
+      tags:
+        - journal
   /freebusy:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - freebusy
       responses:
         '200':
           $ref: '#/components/responses/freebusy'
@@ -217,10 +239,12 @@ paths:
               type: object
               properties: {}
         description: Freebusy request
+      description: Retrieve a freebusy specification
   '/calendar/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - calendar
       responses:
         '200':
           $ref: '#/components/responses/calendar'
@@ -240,6 +264,9 @@ paths:
             schema:
               $ref: ../models/calendar.v1.yaml
             examples: {}
+      description: Overwrite a calendar instance
+      tags:
+        - calendar
     patch:
       summary: ''
       operationId: update-calendar
@@ -252,27 +279,35 @@ paths:
             schema:
               $ref: ../models/calendar.v1.yaml
             examples: {}
+      description: Update a calendar instance
+      tags:
+        - calendar
     delete:
       summary: ''
       operationId: delete-calendar
       responses:
         '200':
           description: OK
+      description: Delete a calendar instance
+      tags:
+        - calendar
   '/alarms/{Type}/{Uid}':
     get:
       summary: List component alarms
-      tags: []
+      tags:
+        - alarm
+        - list
       responses:
         '200':
           $ref: '#/components/responses/alarm-list'
       operationId: list-alarms
-      description: Return a list of visible alarms
+      description: Return a list of visible alarms for a component
       parameters: []
     post:
       summary: Create alarm
       operationId: create-alarm
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/alarm'
       requestBody:
         content:
@@ -295,6 +330,8 @@ paths:
         Create a new component alarm.
 
         NOTE: When an alarm is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - alarm
     parameters:
       - name: Uid
         in: path
@@ -311,7 +348,8 @@ paths:
   '/alarm/{Uid}':
     get:
       summary: Get a component alarm
-      tags: []
+      tags:
+        - alarm
       responses:
         '200':
           $ref: '#/components/responses/alarm'
@@ -343,6 +381,8 @@ paths:
         Replace an existing component alarm.
 
         NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - alarm
     patch:
       summary: Update a component alarm
       operationId: update-alarm
@@ -358,6 +398,8 @@ paths:
         Update an existing component alarm.
 
         NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - alarm
     delete:
       summary: Delete a component alarm
       operationId: delete-alarm
@@ -368,10 +410,13 @@ paths:
         Delete an existing component alarm.
 
         NOTE: When an alarm is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - alarm
   '/event/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - event
       responses:
         '200':
           $ref: '#/components/responses/event-list'
@@ -395,6 +440,8 @@ paths:
             examples: {}
         description: ''
       description: Create a new revision by replacing the entire component content with the supplied values.
+      tags:
+        - event
     patch:
       summary: ''
       operationId: update-event
@@ -409,16 +456,22 @@ paths:
             examples: {}
         description: ''
       description: Create a new event revision using values provided in the payload
+      tags:
+        - event
     delete:
       summary: ''
       operationId: delete-event
       responses:
         '200':
           description: OK
+      description: Delete an existing event
+      tags:
+        - event
   '/journal/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - journal
       responses:
         '200':
           $ref: '#/components/responses/journal-list'
@@ -442,6 +495,8 @@ paths:
               $ref: ../models/journal.v1.yaml
             examples: {}
         description: ''
+      tags:
+        - journal
     patch:
       summary: ''
       operationId: update-journal
@@ -454,16 +509,23 @@ paths:
             schema:
               $ref: ../models/journal.v1.yaml
             examples: {}
+      description: Update a journal entry
+      tags:
+        - journal
     delete:
       summary: ''
       operationId: delete-journal
       responses:
         '200':
           description: OK
+      description: Delete a journal entry
+      tags:
+        - journal
   '/todo/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - todo
       responses:
         '200':
           $ref: '#/components/responses/todo-list'
@@ -480,6 +542,8 @@ paths:
         '200':
           description: OK
       description: Remove an existing todo component
+      tags:
+        - todo
     patch:
       summary: ''
       operationId: update-todo
@@ -493,6 +557,8 @@ paths:
             schema:
               $ref: ../models/todo.v1.yaml
             examples: {}
+      tags:
+        - todo
     put:
       summary: ''
       operationId: set-todo
@@ -505,10 +571,13 @@ paths:
           application/json:
             schema:
               $ref: ../models/todo.v1.yaml
+      tags:
+        - todo
   '/availability/{Uid}':
     get:
       summary: Get resource availability
-      tags: []
+      tags:
+        - availability
       responses:
         '200':
           $ref: '#/components/responses/availability-list'
@@ -530,6 +599,8 @@ paths:
             examples: {}
         description: ''
       description: Replace an existing availability definition
+      tags:
+        - availability
     patch:
       summary: ''
       operationId: update-availability
@@ -543,6 +614,8 @@ paths:
               $ref: ../models/availability.v1.yaml
             examples: {}
       description: Update an existing availability definition
+      tags:
+        - availability
     parameters:
       - name: Uid
         in: path
@@ -553,16 +626,19 @@ paths:
   '/attachments/{Type}/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - attachment
+        - list
       responses:
         '200':
           $ref: '#/components/responses/attachment-list'
-      operationId: get-attachments
+      operationId: list-attachments
+      description: Retrieve a list of attachments for a component
     post:
       summary: ''
       operationId: upload-attachment
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/attachment'
       requestBody:
         content:
@@ -587,6 +663,8 @@ paths:
         Upload a new attachment to the component specified by UID path parameter.
 
         NOTE: When an attachment is uploaded the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - attachment
     parameters:
       - name: Uid
         in: path
@@ -610,7 +688,8 @@ paths:
   '/attachment/{Type}/{Uid}/{Digest}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - attachment
       operationId: get-attachment
       description: Return content of an encoded binary attachment
       responses:
@@ -665,6 +744,8 @@ paths:
               type: object
               properties: {}
         description: ''
+      tags:
+        - attachment
     delete:
       summary: ''
       operationId: delete-attachment
@@ -675,10 +756,14 @@ paths:
         Delete an encoded attachment.
 
         NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - attachment
   /availability:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - availability
+        - list
       responses:
         '200':
           $ref: '#/components/responses/availability-list'
@@ -691,7 +776,7 @@ paths:
       summary: ''
       operationId: create-availability
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/availability'
       requestBody:
         content:
@@ -699,6 +784,9 @@ paths:
             schema:
               $ref: ../models/availability.v1.yaml
             examples: {}
+      description: Create a new availability component
+      tags:
+        - availability
   '/available/availability/{Uid}':
     parameters:
       - name: Uid
@@ -709,7 +797,9 @@ paths:
         description: Unique identifier for a component or calendar
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - available
+        - list
       responses:
         '200':
           $ref: '#/components/responses/available-list'
@@ -719,16 +809,19 @@ paths:
       summary: ''
       operationId: create-available
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
       description: |-
         Create a new available definition for the specified availability id.
 
         NOTE: When an available definition is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - available
   '/available/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - available
       responses:
         '200':
           $ref: '#/components/responses/available-list'
@@ -751,6 +844,8 @@ paths:
         Replace an existing available definition with a new value.
 
         NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - available
     patch:
       summary: ''
       operationId: update-available
@@ -761,6 +856,8 @@ paths:
         Update an existing available definition.
 
         NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - available
     delete:
       summary: ''
       operationId: delete-available
@@ -771,6 +868,8 @@ paths:
         Delete an existing available definition.
 
         NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+      tags:
+        - available
 components:
   schemas:
     event-patch:
@@ -1044,3 +1143,14 @@ components:
         example: 'uid in [''1234-9876-1224'']'
       description: An ical4j filter expression
   securitySchemes: {}
+tags:
+  - name: alarm
+  - name: attachment
+  - name: availability
+  - name: available
+  - name: calendar
+  - name: event
+  - name: freebusy
+  - name: journal
+  - name: list
+  - name: todo

@@ -25,29 +25,36 @@ paths:
   /groups:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - group
       responses:
         '200':
           $ref: '#/components/responses/groupcard-list'
-      operationId: get-groups
+      operationId: list-groups
       parameters:
         - $ref: '#/components/parameters/filter'
+      description: Retrieve a list of visible groups
     post:
       summary: ''
       operationId: create-group
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/groupcard'
+      tags:
+        - group
+      description: Create a new card group
   '/group/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - group
       responses:
         '200':
           $ref: '#/components/responses/groupcard'
       operationId: get-group
       parameters:
         - $ref: '#/components/parameters/includeRevisions'
+      description: Retrieve a single card group
     parameters:
       - $ref: '#/components/parameters/Uid'
     put:
@@ -61,44 +68,60 @@ paths:
           application/json:
             schema:
               $ref: ../models/groupcard.v1.yaml
+      tags:
+        - group
+      description: Replace an existing card group
     patch:
       summary: ''
       operationId: update-group
       responses:
         '200':
           description: OK
+      tags:
+        - group
+      description: Update an existing card group
     delete:
       summary: ''
       operationId: delete-group
       responses:
         '200':
           description: OK
+      tags:
+        - group
+      description: Delete an existing card group
   /cards:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - card
       responses:
         '200':
           $ref: '#/components/responses/card-list'
-      operationId: get-cards
+      operationId: list-cards
       parameters:
         - $ref: '#/components/parameters/filter'
+      description: Retrieve a list of cards
     post:
       summary: ''
       operationId: create-card
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/card'
+      tags:
+        - card
+      description: Create a new card
   '/card/{Uid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - card
       responses:
         '200':
           $ref: '#/components/responses/card'
       operationId: get-card
       parameters:
         - $ref: '#/components/parameters/includeRevisions'
+      description: Retrieve a single card
     parameters:
       - $ref: '#/components/parameters/Uid'
     put:
@@ -112,18 +135,29 @@ paths:
           application/json:
             schema:
               $ref: ../models/card.v1.yaml
+      tags:
+        - card
+      description: Replace an existing card
     patch:
       summary: ''
       operationId: update-card
       responses:
         '200':
           description: OK
+      tags:
+        - card
+      description: Update an existing card
     delete:
       summary: ''
       operationId: delete-card
       responses:
         '200':
           description: OK
+        '404':
+          description: Not Found
+      tags:
+        - card
+      description: Delete an existing card
 components:
   schemas: {}
   parameters:
@@ -182,3 +216,6 @@ components:
             items:
               $ref: ../models/groupcard.v1.yaml
           examples: {}
+tags:
+  - name: card
+  - name: group
