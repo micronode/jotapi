@@ -7,18 +7,18 @@ All URIs are relative to *https://api.example.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**createCard**](Apis/DefaultApi.md#createcard) | **POST** /cards | 
-*DefaultApi* | [**createGroup**](Apis/DefaultApi.md#creategroup) | **POST** /groups | 
-*DefaultApi* | [**deleteCard**](Apis/DefaultApi.md#deletecard) | **DELETE** /card/{Uid} | 
-*DefaultApi* | [**deleteGroup**](Apis/DefaultApi.md#deletegroup) | **DELETE** /group/{Uid} | 
-*DefaultApi* | [**getCard**](Apis/DefaultApi.md#getcard) | **GET** /card/{Uid} | Your GET endpoint
-*DefaultApi* | [**getCards**](Apis/DefaultApi.md#getcards) | **GET** /cards | Your GET endpoint
-*DefaultApi* | [**getGroup**](Apis/DefaultApi.md#getgroup) | **GET** /group/{Uid} | Your GET endpoint
-*DefaultApi* | [**getGroups**](Apis/DefaultApi.md#getgroups) | **GET** /groups | Your GET endpoint
-*DefaultApi* | [**setCard**](Apis/DefaultApi.md#setcard) | **PUT** /card/{Uid} | 
-*DefaultApi* | [**setGroup**](Apis/DefaultApi.md#setgroup) | **PUT** /group/{Uid} | 
-*DefaultApi* | [**updateCard**](Apis/DefaultApi.md#updatecard) | **PATCH** /card/{Uid} | 
-*DefaultApi* | [**updateGroup**](Apis/DefaultApi.md#updategroup) | **PATCH** /group/{Uid} | 
+*CardApi* | [**createCard**](Apis/CardApi.md#createcard) | **POST** /cards | Create a new card
+*CardApi* | [**deleteCard**](Apis/CardApi.md#deletecard) | **DELETE** /card/{Uid} | Delete an existing card
+*CardApi* | [**getCard**](Apis/CardApi.md#getcard) | **GET** /card/{Uid} | Your GET endpoint
+*CardApi* | [**listCards**](Apis/CardApi.md#listcards) | **GET** /cards | Your GET endpoint
+*CardApi* | [**setCard**](Apis/CardApi.md#setcard) | **PUT** /card/{Uid} | Replace an existing card
+*CardApi* | [**updateCard**](Apis/CardApi.md#updatecard) | **PATCH** /card/{Uid} | Update an existing card
+*GroupApi* | [**createGroup**](Apis/GroupApi.md#creategroup) | **POST** /groups | Create a new card group
+*GroupApi* | [**deleteGroup**](Apis/GroupApi.md#deletegroup) | **DELETE** /group/{Uid} | Delete an existing card group
+*GroupApi* | [**getGroup**](Apis/GroupApi.md#getgroup) | **GET** /group/{Uid} | Your GET endpoint
+*GroupApi* | [**listGroups**](Apis/GroupApi.md#listgroups) | **GET** /groups | Your GET endpoint
+*GroupApi* | [**setGroup**](Apis/GroupApi.md#setgroup) | **PUT** /group/{Uid} | Replace an existing card group
+*GroupApi* | [**updateGroup**](Apis/GroupApi.md#updategroup) | **PATCH** /group/{Uid} | Update an existing card group
 
 
 <a name="documentation-for-models"></a>

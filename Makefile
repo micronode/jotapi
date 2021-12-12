@@ -10,10 +10,8 @@ clean:
 	rm -rf build
 
 docs:
-	$(JOTCAL_GENERATOR) -i /local/reference/jotcal.v1.yaml -g markdown -o /local/docs/api/jotcal \
-		--artifact-id 'jotcal-docs'
-	$(JOTCARD_GENERATOR) -i /local/reference/jotcard.v1.yaml -g markdown -o /local/docs/api/jotcard \
-		--artifact-id 'jotcard-docs'
+	$(OPENAPI_GENERATOR_CLI) generate -i /local/reference/jotcal.v1.yaml -g markdown -o /local/docs/api/jotcal
+	$(OPENAPI_GENERATOR_CLI) generate -i /local/reference/jotcard.v1.yaml -g markdown -o /local/docs/api/jotcard
 
 clients:
 	$(JOTCAL_GENERATOR) -i /local/reference/jotcal.v1.yaml -g java -o /local/sdk/java/jotcal \

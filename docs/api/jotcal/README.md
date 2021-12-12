@@ -7,78 +7,87 @@ All URIs are relative to *https://api.example.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**createAlarm**](Apis/DefaultApi.md#createalarm) | **POST** /alarms/{Type}/{Uid} | Create alarm
-*DefaultApi* | [**createAvailability**](Apis/DefaultApi.md#createavailability) | **POST** /availability | 
-*DefaultApi* | [**createAvailable**](Apis/DefaultApi.md#createavailable) | **POST** /available/availability/{Uid} | Create a new available definition for the specified availability id.  NOTE: When an available definition is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**createCalendar**](Apis/DefaultApi.md#createcalendar) | **POST** /calendars | 
-*DefaultApi* | [**createEvent**](Apis/DefaultApi.md#createevent) | **POST** /events | 
-*DefaultApi* | [**createJournal**](Apis/DefaultApi.md#createjournal) | **POST** /journals | 
-*DefaultApi* | [**createTodo**](Apis/DefaultApi.md#createtodo) | **POST** /todos | Create a new todo component
-*DefaultApi* | [**deleteAlarm**](Apis/DefaultApi.md#deletealarm) | **DELETE** /alarm/{Uid} | Delete a component alarm
-*DefaultApi* | [**deleteAttachment**](Apis/DefaultApi.md#deleteattachment) | **DELETE** /attachment/{Type}/{Uid}/{Digest} | Delete an encoded attachment.  NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**deleteAvailable**](Apis/DefaultApi.md#deleteavailable) | **DELETE** /available/{Uid} | Delete an existing available definition.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**deleteCalendar**](Apis/DefaultApi.md#deletecalendar) | **DELETE** /calendar/{Uid} | 
-*DefaultApi* | [**deleteEvent**](Apis/DefaultApi.md#deleteevent) | **DELETE** /event/{Uid} | 
-*DefaultApi* | [**deleteJournal**](Apis/DefaultApi.md#deletejournal) | **DELETE** /journal/{Uid} | 
-*DefaultApi* | [**deleteTodo**](Apis/DefaultApi.md#deletetodo) | **DELETE** /todo/{Uid} | Remove an existing todo component
-*DefaultApi* | [**getAlarm**](Apis/DefaultApi.md#getalarm) | **GET** /alarm/{Uid} | Get a component alarm
-*DefaultApi* | [**getAttachment**](Apis/DefaultApi.md#getattachment) | **GET** /attachment/{Type}/{Uid}/{Digest} | Your GET endpoint
-*DefaultApi* | [**getAttachments**](Apis/DefaultApi.md#getattachments) | **GET** /attachments/{Type}/{Uid} | Your GET endpoint
-*DefaultApi* | [**getAvailability**](Apis/DefaultApi.md#getavailability) | **GET** /availability/{Uid} | Get resource availability
-*DefaultApi* | [**getAvailable**](Apis/DefaultApi.md#getavailable) | **GET** /available/{Uid} | Your GET endpoint
-*DefaultApi* | [**getCalendar**](Apis/DefaultApi.md#getcalendar) | **GET** /calendar/{Uid} | Your GET endpoint
-*DefaultApi* | [**getEvent**](Apis/DefaultApi.md#getevent) | **GET** /event/{Uid} | Your GET endpoint
-*DefaultApi* | [**getJournal**](Apis/DefaultApi.md#getjournal) | **GET** /journal/{Uid} | Your GET endpoint
-*DefaultApi* | [**getTodo**](Apis/DefaultApi.md#gettodo) | **GET** /todo/{Uid} | Your GET endpoint
-*DefaultApi* | [**listAlarms**](Apis/DefaultApi.md#listalarms) | **GET** /alarms/{Type}/{Uid} | List component alarms
-*DefaultApi* | [**listAvailability**](Apis/DefaultApi.md#listavailability) | **GET** /availability | Your GET endpoint
-*DefaultApi* | [**listAvailable**](Apis/DefaultApi.md#listavailable) | **GET** /available/availability/{Uid} | Your GET endpoint
-*DefaultApi* | [**listCalendars**](Apis/DefaultApi.md#listcalendars) | **GET** /calendars | Your GET endpoint
-*DefaultApi* | [**listEvents**](Apis/DefaultApi.md#listevents) | **GET** /events | Your GET endpoint
-*DefaultApi* | [**listJournals**](Apis/DefaultApi.md#listjournals) | **GET** /journals | Your GET endpoint
-*DefaultApi* | [**listTodos**](Apis/DefaultApi.md#listtodos) | **GET** /todos | Your GET endpoint
-*DefaultApi* | [**requestFreebusy**](Apis/DefaultApi.md#requestfreebusy) | **GET** /freebusy | Your GET endpoint
-*DefaultApi* | [**setAlarm**](Apis/DefaultApi.md#setalarm) | **PUT** /alarm/{Uid} | Set a component alarm
-*DefaultApi* | [**setAttachment**](Apis/DefaultApi.md#setattachment) | **PUT** /attachment/{Type}/{Uid}/{Digest} | Replace an encoded binary attachment.  NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**setAvailability**](Apis/DefaultApi.md#setavailability) | **PUT** /availability/{Uid} | Replace an existing availability definition
-*DefaultApi* | [**setAvailable**](Apis/DefaultApi.md#setavailable) | **PUT** /available/{Uid} | Replace an existing available definition with a new value.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**setCalendar**](Apis/DefaultApi.md#setcalendar) | **PUT** /calendar/{Uid} | 
-*DefaultApi* | [**setEvent**](Apis/DefaultApi.md#setevent) | **PUT** /event/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
-*DefaultApi* | [**setJournal**](Apis/DefaultApi.md#setjournal) | **PUT** /journal/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
-*DefaultApi* | [**setTodo**](Apis/DefaultApi.md#settodo) | **PUT** /todo/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
-*DefaultApi* | [**updateAlarm**](Apis/DefaultApi.md#updatealarm) | **PATCH** /alarm/{Uid} | Update a component alarm
-*DefaultApi* | [**updateAvailability**](Apis/DefaultApi.md#updateavailability) | **PATCH** /availability/{Uid} | Update an existing availability definition
-*DefaultApi* | [**updateAvailable**](Apis/DefaultApi.md#updateavailable) | **PATCH** /available/{Uid} | Update an existing available definition.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
-*DefaultApi* | [**updateCalendar**](Apis/DefaultApi.md#updatecalendar) | **PATCH** /calendar/{Uid} | 
-*DefaultApi* | [**updateEvent**](Apis/DefaultApi.md#updateevent) | **PATCH** /event/{Uid} | Create a new event revision using values provided in the payload
-*DefaultApi* | [**updateJournal**](Apis/DefaultApi.md#updatejournal) | **PATCH** /journal/{Uid} | 
-*DefaultApi* | [**updateTodo**](Apis/DefaultApi.md#updatetodo) | **PATCH** /todo/{Uid} | Update an existing todo component
-*DefaultApi* | [**uploadAttachment**](Apis/DefaultApi.md#uploadattachment) | **POST** /attachments/{Type}/{Uid} | Upload a new attachment to the component specified by UID path parameter.  NOTE: When an attachment is uploaded the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AlarmApi* | [**createAlarm**](Apis/AlarmApi.md#createalarm) | **POST** /alarms/{Type}/{Uid} | Create alarm
+*AlarmApi* | [**deleteAlarm**](Apis/AlarmApi.md#deletealarm) | **DELETE** /alarm/{Uid} | Delete a component alarm
+*AlarmApi* | [**getAlarm**](Apis/AlarmApi.md#getalarm) | **GET** /alarm/{Uid} | Get a component alarm
+*AlarmApi* | [**listAlarms**](Apis/AlarmApi.md#listalarms) | **GET** /alarms/{Type}/{Uid} | List component alarms
+*AlarmApi* | [**setAlarm**](Apis/AlarmApi.md#setalarm) | **PUT** /alarm/{Uid} | Set a component alarm
+*AlarmApi* | [**updateAlarm**](Apis/AlarmApi.md#updatealarm) | **PATCH** /alarm/{Uid} | Update a component alarm
+*AttachmentApi* | [**deleteAttachment**](Apis/AttachmentApi.md#deleteattachment) | **DELETE** /attachment/{Type}/{Uid}/{Digest} | Delete an encoded attachment.  NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AttachmentApi* | [**getAttachment**](Apis/AttachmentApi.md#getattachment) | **GET** /attachment/{Type}/{Uid}/{Digest} | Your GET endpoint
+*AttachmentApi* | [**listAttachments**](Apis/AttachmentApi.md#listattachments) | **GET** /attachments/{Type}/{Uid} | Your GET endpoint
+*AttachmentApi* | [**setAttachment**](Apis/AttachmentApi.md#setattachment) | **PUT** /attachment/{Type}/{Uid}/{Digest} | Replace an encoded binary attachment.  NOTE: When an attachment is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AttachmentApi* | [**uploadAttachment**](Apis/AttachmentApi.md#uploadattachment) | **POST** /attachments/{Type}/{Uid} | Upload a new attachment to the component specified by UID path parameter.  NOTE: When an attachment is uploaded the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AvailabilityApi* | [**createAvailability**](Apis/AvailabilityApi.md#createavailability) | **POST** /availability | Create a new availability component
+*AvailabilityApi* | [**getAvailability**](Apis/AvailabilityApi.md#getavailability) | **GET** /availability/{Uid} | Get resource availability
+*AvailabilityApi* | [**listAvailability**](Apis/AvailabilityApi.md#listavailability) | **GET** /availability | Your GET endpoint
+*AvailabilityApi* | [**setAvailability**](Apis/AvailabilityApi.md#setavailability) | **PUT** /availability/{Uid} | Replace an existing availability definition
+*AvailabilityApi* | [**updateAvailability**](Apis/AvailabilityApi.md#updateavailability) | **PATCH** /availability/{Uid} | Update an existing availability definition
+*AvailableApi* | [**createAvailable**](Apis/AvailableApi.md#createavailable) | **POST** /available/availability/{Uid} | Create a new available definition for the specified availability id.  NOTE: When an available definition is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AvailableApi* | [**deleteAvailable**](Apis/AvailableApi.md#deleteavailable) | **DELETE** /available/{Uid} | Delete an existing available definition.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AvailableApi* | [**getAvailable**](Apis/AvailableApi.md#getavailable) | **GET** /available/{Uid} | Your GET endpoint
+*AvailableApi* | [**listAvailable**](Apis/AvailableApi.md#listavailable) | **GET** /available/availability/{Uid} | Your GET endpoint
+*AvailableApi* | [**setAvailable**](Apis/AvailableApi.md#setavailable) | **PUT** /available/{Uid} | Replace an existing available definition with a new value.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*AvailableApi* | [**updateAvailable**](Apis/AvailableApi.md#updateavailable) | **PATCH** /available/{Uid} | Update an existing available definition.  NOTE: When an available definition is modified the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
+*CalendarApi* | [**createCalendar**](Apis/CalendarApi.md#createcalendar) | **POST** /calendars | Create a new calendar
+*CalendarApi* | [**deleteCalendar**](Apis/CalendarApi.md#deletecalendar) | **DELETE** /calendar/{Uid} | Delete a calendar instance
+*CalendarApi* | [**getCalendar**](Apis/CalendarApi.md#getcalendar) | **GET** /calendar/{Uid} | Your GET endpoint
+*CalendarApi* | [**listCalendars**](Apis/CalendarApi.md#listcalendars) | **GET** /calendars | Your GET endpoint
+*CalendarApi* | [**setCalendar**](Apis/CalendarApi.md#setcalendar) | **PUT** /calendar/{Uid} | Overwrite a calendar instance
+*CalendarApi* | [**updateCalendar**](Apis/CalendarApi.md#updatecalendar) | **PATCH** /calendar/{Uid} | Update a calendar instance
+*EventApi* | [**createEvent**](Apis/EventApi.md#createevent) | **POST** /events | Create a new event
+*EventApi* | [**deleteEvent**](Apis/EventApi.md#deleteevent) | **DELETE** /event/{Uid} | Delete an existing event
+*EventApi* | [**getEvent**](Apis/EventApi.md#getevent) | **GET** /event/{Uid} | Your GET endpoint
+*EventApi* | [**listEvents**](Apis/EventApi.md#listevents) | **GET** /events | Your GET endpoint
+*EventApi* | [**setEvent**](Apis/EventApi.md#setevent) | **PUT** /event/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
+*EventApi* | [**updateEvent**](Apis/EventApi.md#updateevent) | **PATCH** /event/{Uid} | Create a new event revision using values provided in the payload
+*FreebusyApi* | [**requestFreebusy**](Apis/FreebusyApi.md#requestfreebusy) | **GET** /freebusy | Your GET endpoint
+*JournalApi* | [**createJournal**](Apis/JournalApi.md#createjournal) | **POST** /journals | Create a journal entry
+*JournalApi* | [**deleteJournal**](Apis/JournalApi.md#deletejournal) | **DELETE** /journal/{Uid} | Delete a journal entry
+*JournalApi* | [**getJournal**](Apis/JournalApi.md#getjournal) | **GET** /journal/{Uid} | Your GET endpoint
+*JournalApi* | [**listJournals**](Apis/JournalApi.md#listjournals) | **GET** /journals | Your GET endpoint
+*JournalApi* | [**setJournal**](Apis/JournalApi.md#setjournal) | **PUT** /journal/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
+*JournalApi* | [**updateJournal**](Apis/JournalApi.md#updatejournal) | **PATCH** /journal/{Uid} | Update a journal entry
+*ListApi* | [**listAlarms**](Apis/ListApi.md#listalarms) | **GET** /alarms/{Type}/{Uid} | List component alarms
+*ListApi* | [**listAttachments**](Apis/ListApi.md#listattachments) | **GET** /attachments/{Type}/{Uid} | Your GET endpoint
+*ListApi* | [**listAvailability**](Apis/ListApi.md#listavailability) | **GET** /availability | Your GET endpoint
+*ListApi* | [**listAvailable**](Apis/ListApi.md#listavailable) | **GET** /available/availability/{Uid} | Your GET endpoint
+*ListApi* | [**listCalendars**](Apis/ListApi.md#listcalendars) | **GET** /calendars | Your GET endpoint
+*ListApi* | [**listEvents**](Apis/ListApi.md#listevents) | **GET** /events | Your GET endpoint
+*ListApi* | [**listJournals**](Apis/ListApi.md#listjournals) | **GET** /journals | Your GET endpoint
+*ListApi* | [**listTodos**](Apis/ListApi.md#listtodos) | **GET** /todos | Your GET endpoint
+*TodoApi* | [**createTodo**](Apis/TodoApi.md#createtodo) | **POST** /todos | Create a new todo component
+*TodoApi* | [**deleteTodo**](Apis/TodoApi.md#deletetodo) | **DELETE** /todo/{Uid} | Remove an existing todo component
+*TodoApi* | [**getTodo**](Apis/TodoApi.md#gettodo) | **GET** /todo/{Uid} | Your GET endpoint
+*TodoApi* | [**listTodos**](Apis/TodoApi.md#listtodos) | **GET** /todos | Your GET endpoint
+*TodoApi* | [**setTodo**](Apis/TodoApi.md#settodo) | **PUT** /todo/{Uid} | Create a new revision by replacing the entire component content with the supplied values.
+*TodoApi* | [**updateTodo**](Apis/TodoApi.md#updatetodo) | **PATCH** /todo/{Uid} | Update an existing todo component
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
  - [alarm](./Models/alarm.md)
+ - [alarm-spec](./Models/alarm-spec.md)
+ - [attach-spec](./Models/attach-spec.md)
  - [attachment](./Models/attachment.md)
  - [attachmentRef](./Models/attachmentRef.md)
  - [attendee](./Models/attendee.md)
  - [availability](./Models/availability.md)
+ - [availability-spec](./Models/availability-spec.md)
  - [available](./Models/available.md)
+ - [available-spec](./Models/available-spec.md)
  - [calendar](./Models/calendar.md)
+ - [calendar-spec](./Models/calendar-spec.md)
  - [comment](./Models/comment.md)
  - [contact](./Models/contact.md)
  - [event](./Models/event.md)
  - [event-patch](./Models/event-patch.md)
+ - [event-spec](./Models/event-spec.md)
  - [fbperiod](./Models/fbperiod.md)
  - [freebusy](./Models/freebusy.md)
- - [inline_object](./Models/inline_object.md)
- - [inline_object_1](./Models/inline_object_1.md)
- - [inline_object_2](./Models/inline_object_2.md)
- - [inline_object_3](./Models/inline_object_3.md)
- - [inline_object_4](./Models/inline_object_4.md)
- - [inline_object_5](./Models/inline_object_5.md)
  - [journal](./Models/journal.md)
+ - [journal-spec](./Models/journal-spec.md)
  - [location](./Models/location.md)
  - [organizer](./Models/organizer.md)
  - [related](./Models/related.md)
@@ -88,6 +97,7 @@ Class | Method | HTTP request | Description
  - [styledDescription](./Models/styledDescription.md)
  - [styledDescriptionRef](./Models/styledDescriptionRef.md)
  - [todo](./Models/todo.md)
+ - [todo-spec](./Models/todo-spec.md)
  - [trigger](./Models/trigger.md)
  - [triggerRel](./Models/triggerRel.md)
 
