@@ -46,22 +46,12 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: string
-                calscale:
-                  type: string
-                  enum:
-                    - GREGORIAN
+              $ref: '#/components/schemas/calendar-spec'
             examples:
               example-1:
                 value:
                   name: string
                   description: string
-                  calscale: GREGORIAN
       description: Create a new calendar
       tags:
         - calendar
@@ -89,23 +79,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                organizer:
-                  $ref: ../models/organizer.v1.yaml
-                summary:
-                  type: string
-                dtstart:
-                  type: string
-                  format: date-time
-                calendar:
-                  type: string
-                  format: uuid
-              required:
-                - organizer
-                - summary
-                - dtstart
-                - calendar
+              $ref: '#/components/schemas/event-spec'
             examples:
               example-1:
                 value:
@@ -146,19 +120,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                organizer:
-                  $ref: ../models/organizer.v1.yaml
-                calendar:
-                  type: string
-                  format: uuid
-                summary:
-                  type: string
-              required:
-                - organizer
-                - calendar
-                - summary
+              $ref: '#/components/schemas/todo-spec'
             examples:
               example-1:
                 value:
@@ -196,19 +158,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                organizer:
-                  $ref: ../models/organizer.v1.yaml
-                calendar:
-                  type: string
-                  format: uuid
-                summary:
-                  type: string
-              required:
-                - organizer
-                - calendar
-                - summary
+              $ref: '#/components/schemas/journal-spec'
             examples:
               example-1:
                 value:
@@ -309,29 +259,17 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/alarm'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                action:
-                  type: string
-                  enum:
-                    - AUDIO
-                    - DISPLAY
-                    - EMAIL
-                trigger:
-                  oneOf:
-                    - $ref: ../models/trigger.v1.yaml
-                    - $ref: ../models/triggerRel.v1.yaml
-            examples: {}
       description: |-
         Create a new component alarm.
 
         NOTE: When an alarm is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
       tags:
         - alarm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alarm-spec'
     parameters:
       - name: Uid
         in: path
@@ -644,15 +582,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                fmttype:
-                  type: string
-                url:
-                  type: string
-                  format: uri
-              required:
-                - url
+              $ref: '#/components/schemas/attach-spec'
             examples: {}
           application/octet-stream:
             schema:
@@ -817,6 +747,11 @@ paths:
         NOTE: When an available definition is created the parent component SHOULD also be updated (at least by incremenenting the SEQUENCE property).
       tags:
         - available
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/available-spec'
   '/available/{Uid}':
     get:
       summary: Your GET endpoint
@@ -879,6 +814,126 @@ components:
         id:
           type: string
       description: Partial event data used to update an existing event
+    alarm-spec:
+      title: alarm-spec
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - AUDIO
+            - DISPLAY
+            - EMAIL
+        trigger:
+          oneOf:
+            - $ref: ../models/trigger.v1.yaml
+            - $ref: ../models/triggerRel.v1.yaml
+      x-examples:
+        example-1:
+          action: AUDIO
+          trigger:
+            dtstart: '2019-08-24T14:15:22Z'
+      description: Specification for a new alarm
+    calendar-spec:
+      title: calendar-spec
+      type: object
+      description: Specification for a new calendar
+      x-examples:
+        example-1:
+          name: string
+          description: string
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - name
+    event-spec:
+      title: event-spec
+      type: object
+      properties:
+        summary:
+          type: string
+        calendar:
+          type: string
+          format: uuid
+      required:
+        - summary
+        - calendar
+      x-examples:
+        example-1:
+          summary: string
+          calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+    todo-spec:
+      title: todo-spec
+      type: object
+      properties:
+        summary:
+          type: string
+        calendar:
+          type: string
+          format: uuid
+      required:
+        - summary
+        - calendar
+      x-examples:
+        example-1:
+          summary: string
+          calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+    journal-spec:
+      title: journal-spec
+      type: object
+      properties:
+        summary:
+          type: string
+        calendar:
+          type: string
+          format: uuid
+      required:
+        - summary
+        - calendar
+      x-examples:
+        example-1:
+          summary: string
+          calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+    availability-spec:
+      title: availability-spec
+      type: object
+      properties:
+        summary:
+          type: string
+        calendar:
+          type: string
+          format: uuid
+      required:
+        - summary
+        - calendar
+      x-examples:
+        example-1:
+          summary: string
+          calendar: 0354b24a-d367-43a5-8aab-5912587bfaa6
+    attach-spec:
+      title: attach-spec
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        fmttype:
+          type: string
+      required:
+        - url
+      x-examples:
+        example-1:
+          url: 'http://example.com'
+          fmttype: string
+    available-spec:
+      title: available-spec
+      type: object
+      properties:
+        id:
+          type: string
   responses:
     event-list:
       description: A list of calendar events
@@ -1143,6 +1198,7 @@ components:
         example: 'uid in [''1234-9876-1224'']'
       description: An ical4j filter expression
   securitySchemes: {}
+  requestBodies: {}
 tags:
   - name: alarm
   - name: attachment
