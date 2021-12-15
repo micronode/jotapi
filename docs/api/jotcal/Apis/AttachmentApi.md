@@ -42,7 +42,7 @@ No authorization required
 
 <a name="getAttachment"></a>
 # **getAttachment**
-> oneOf&lt;attachment,attachmentRef&gt; getAttachment(Digest, Type, Uid, Accept)
+> attachment getAttachment(Digest, Type, Uid, Accept)
 
 Your GET endpoint
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**oneOf&lt;attachment,attachmentRef&gt;**](../Models/oneOf&lt;attachment,attachmentRef&gt;.md)
+[**attachment**](../Models/attachment.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List**](../Models/oneOf&lt;attachment,attachmentRef&gt;.md)
+[**List**](../Models/attachment.md)
 
 ### Authorization
 
@@ -130,7 +130,7 @@ No authorization required
 
 <a name="uploadAttachment"></a>
 # **uploadAttachment**
-> oneOf&lt;attachment,attachmentRef&gt; uploadAttachment(Uid, Type, attach-spec)
+> attachment uploadAttachment(Uid, Type, attach-spec)
 
 
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**oneOf&lt;attachment,attachmentRef&gt;**](../Models/oneOf&lt;attachment,attachmentRef&gt;.md)
+[**attachment**](../Models/attachment.md)
 
 ### Authorization
 

@@ -13,6 +13,4 @@ properties:
   styled-description:
     type: array
     items:
-      oneOf:
-        - $ref: ./styledDescription.v1.yaml
-        - $ref: ./styledDescriptionRef.v1.yaml
+      $ref: ./styledDescription.v1.yaml

@@ -1,0 +1,12 @@
+title: styledDescriptionInline.v1
+type: object
+properties:
+  fmttype:
+    type: string
+    default: text/html
+  text:
+    type: string
+    example: <h1>Test Event</h1><p>An example event description<p>
+  derived:
+    type: boolean
+x-internal: true

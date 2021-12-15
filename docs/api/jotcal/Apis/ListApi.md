@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List**](../Models/oneOf&lt;attachment,attachmentRef&gt;.md)
+[**List**](../Models/attachment.md)
 
 ### Authorization
 

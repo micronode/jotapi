@@ -12,3 +12,5 @@ properties:
 required:
   - duration
 x-internal: true
+examples:
+  - duration: PT15M

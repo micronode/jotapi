@@ -1,0 +1,12 @@
+title: triggerAbs
+type: object
+properties:
+  dtstart:
+    type: string
+    format: date-time
+required:
+  - dtstart
+examples:
+  - dtstart: '2019-08-24T14:15:22Z'
+description: Explicit alarm trigger
+x-internal: true

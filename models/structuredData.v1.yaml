@@ -1,18 +1,11 @@
 title: structuredData
-type: object
 x-examples: {}
-x-internal: true
-properties:
-  fmttype:
-    type: string
-  schema:
-    type: string
-  encoding:
-    type: string
-    enum:
-      - BASE64
-  text:
-    type: string
-required:
-  - fmttype
-  - text
+x-internal: false
+oneOf:
+  - $ref: ./structuredDataInline.v1.yaml
+  - $ref: ./structuredDataRef.v1.yaml
+examples:
+  - fmttype: string
+    schema: string
+    encoding: BASE64
+    text: string

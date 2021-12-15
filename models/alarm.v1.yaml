@@ -31,6 +31,35 @@ x-examples:
         text: <h1>Test Event</h1><p>An example event description<p>
         derived: true
 description: ''
+examples:
+  - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+    action: AUDIO
+    trigger:
+      dtstart: '2019-08-24T14:15:22Z'
+    description: string
+    duration: PT15M
+    repeat: 1
+    summary: string
+    attendees:
+      - cal-address: 'mailto:joecool@example.com'
+        cu-type: INDIVIDUAL
+        member: 'mailto:DEV-GROUP@example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    attachments:
+      - fmttype: string
+        binary: string
+    styled-description:
+      - fmttype: text/html
+        text: <h1>Test Event</h1><p>An example event description<p>
+        derived: true
 properties:
   uid:
     type: string
@@ -42,9 +71,7 @@ properties:
       - DISPLAY
       - EMAIL
   trigger:
-    oneOf:
-      - $ref: ./trigger.v1.yaml
-      - $ref: ./triggerRel.v1.yaml
+    $ref: ./trigger.v1.yaml
   description:
     type: string
   duration:
@@ -64,15 +91,11 @@ properties:
     type: array
     uniqueItems: false
     items:
-      oneOf:
-        - $ref: ./attachmentRef.v1.yaml
-        - $ref: ./attachment.v1.yaml
+      $ref: ./attachment.v1.yaml
   styled-description:
     type: array
     items:
-      oneOf:
-        - $ref: ./styledDescription.v1.yaml
-        - $ref: ./styledDescriptionRef.v1.yaml
+      $ref: ./styledDescription.v1.yaml
 required:
   - uid
   - action

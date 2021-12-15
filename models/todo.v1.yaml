@@ -149,9 +149,7 @@ properties:
   attach:
     type: array
     items:
-      oneOf:
-        - $ref: ./attachmentRef.v1.yaml
-        - $ref: ./attachment.v1.yaml
+      $ref: ./attachment.v1.yaml
   related-to:
     type: array
     items:
@@ -175,15 +173,11 @@ properties:
   styled-description:
     type: array
     items:
-      oneOf:
-        - $ref: ./styledDescription.v1.yaml
-        - $ref: ./styledDescriptionRef.v1.yaml
+      $ref: ./styledDescription.v1.yaml
   structured-data:
     type: array
     items:
-      oneOf:
-        - $ref: ./structuredData.v1.yaml
-        - $ref: ./structuredDataRef.v1.yaml
+      $ref: ./structuredData.v1.yaml
 required:
   - uid
   - organizer

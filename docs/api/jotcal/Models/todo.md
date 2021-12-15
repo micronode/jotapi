@@ -25,14 +25,14 @@ Name | Type | Description | Notes
 **categories** | **List** |  | [optional] [default to null]
 **comment** | **List** |  | [optional] [default to null]
 **resources** | [**List**](resource.md) |  | [optional] [default to null]
-**attach** | [**List**](oneOf&lt;attachmentRef,attachment&gt;.md) |  | [optional] [default to null]
+**attach** | [**List**](attachment.md) |  | [optional] [default to null]
 **related-to** | [**List**](related.md) |  | [optional] [default to null]
 **rdate** | **List** |  | [optional] [default to null]
 **exdate** | **List** |  | [optional] [default to null]
 **attendee** | [**List**](attendee.md) |  | [optional] [default to null]
 **contact** | **List** |  | [optional] [default to null]
-**styled-description** | [**List**](oneOf&lt;styledDescription,styledDescriptionRef&gt;.md) |  | [optional] [default to null]
-**structured-data** | [**List**](oneOf&lt;structuredData,structuredDataRef&gt;.md) |  | [optional] [default to null]
+**styled-description** | [**List**](styledDescription.md) |  | [optional] [default to null]
+**structured-data** | [**List**](structuredData.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

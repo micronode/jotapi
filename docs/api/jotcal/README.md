@@ -71,6 +71,7 @@ Class | Method | HTTP request | Description
  - [alarm-spec](./Models/alarm-spec.md)
  - [attach-spec](./Models/attach-spec.md)
  - [attachment](./Models/attachment.md)
+ - [attachmentInline](./Models/attachmentInline.md)
  - [attachmentRef](./Models/attachmentRef.md)
  - [attendee](./Models/attendee.md)
  - [availability](./Models/availability.md)
@@ -93,12 +94,15 @@ Class | Method | HTTP request | Description
  - [related](./Models/related.md)
  - [resource](./Models/resource.md)
  - [structuredData](./Models/structuredData.md)
+ - [structuredDataInline](./Models/structuredDataInline.md)
  - [structuredDataRef](./Models/structuredDataRef.md)
  - [styledDescription](./Models/styledDescription.md)
+ - [styledDescriptionInline](./Models/styledDescriptionInline.md)
  - [styledDescriptionRef](./Models/styledDescriptionRef.md)
  - [todo](./Models/todo.md)
  - [todo-spec](./Models/todo-spec.md)
  - [trigger](./Models/trigger.md)
+ - [triggerAbs](./Models/triggerAbs.md)
  - [triggerRel](./Models/triggerRel.md)
 
 

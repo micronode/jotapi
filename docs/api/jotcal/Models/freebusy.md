@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **attendee** | [**attendee**](attendee.md) |  | [optional] [default to null]
 **comment** | [**List**](comment.md) |  | [optional] [default to null]
 **contact** | [**contact**](contact.md) |  | [optional] [default to null]
-**styled-description** | [**List**](oneOf&lt;styledDescription,styledDescriptionRef&gt;.md) |  | [optional] [default to null]
+**styled-description** | [**List**](styledDescription.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

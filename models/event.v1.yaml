@@ -146,9 +146,7 @@ properties:
   attach:
     type: array
     items:
-      oneOf:
-        - $ref: ./attachmentRef.v1.yaml
-        - $ref: ./attachment.v1.yaml
+      $ref: ./attachment.v1.yaml
   related-to:
     type: array
     items:
@@ -180,17 +178,83 @@ properties:
   styled-description:
     type: array
     items:
-      oneOf:
-        - $ref: ./styledDescription.v1.yaml
-        - $ref: ./styledDescriptionRef.v1.yaml
+      $ref: ./styledDescription.v1.yaml
   structured-data:
     type: array
     items:
-      oneOf:
-        - $ref: ./structuredData.v1.yaml
-        - $ref: ./structuredDataRef.v1.yaml
+      $ref: ./structuredData.v1.yaml
 required:
   - uid
   - organizer
   - summary
   - dtstart
+examples:
+  - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+    organizer:
+      cal-address: 'mailto:jane_doe@example.com'
+      cn: string
+      dir: 'http://example.com'
+      sent-by: 'mailto:joecool@example.com'
+      language: en-US
+    summary: string
+    dtstart: '2019-08-24T14:15:22Z'
+    sequence: 0
+    recurrence-id: '2019-08-24T14:15:22Z'
+    class: PUBLIC
+    priority: 0
+    status: TENTATIVE
+    dtend: '2019-08-24T14:15:22Z'
+    duration: PT15M
+    rrule: FREQ=WEEKLY
+    description: string
+    url: 'http://example.com'
+    geo: 49.8932;40.3834
+    location:
+      uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+      name: The venue
+    last-modified: '2019-08-24T14:15:22Z'
+    created: '2019-08-24T14:15:22Z'
+    categories:
+      - string
+    comment:
+      - text: string
+        altrep: string
+    resources:
+      - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+        altrep: 'CID:part3.msg.970415T083000@example.com'
+    attach:
+      - fmttype: string
+        binary: string
+    related-to:
+      - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+        reltype: PARENT
+    rdate:
+      - '2019-08-24T14:15:22Z'
+    exdate:
+      - '2019-08-24T14:15:22Z'
+    attendee:
+      - cal-address: 'mailto:joecool@example.com'
+        cu-type: INDIVIDUAL
+        member: 'mailto:DEV-GROUP@example.com'
+        role: REQ-PARTICIPANT
+        partstat: NEEDS-ACTION
+        rsvp: false
+        delto: 'mailto:joecool@example.com'
+        delfrom: 'mailto:joecool@example.com'
+        sentby: 'mailto:joecool@example.com'
+        cn: string
+        dir: 'http://example.com'
+        language: en-US
+    transp: OPAQUE
+    contact:
+      - text: string
+        altrep: string
+    styled-description:
+      - fmttype: text/html
+        text: <h1>Test Event</h1><p>An example event description<p>
+        derived: true
+    structured-data:
+      - fmttype: string
+        schema: string
+        encoding: BASE64
+        text: string

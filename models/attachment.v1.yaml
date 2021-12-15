@@ -1,15 +1,11 @@
 title: attachment
-type: object
 x-examples:
   example-1:
     fmttype: string
     binary: string
-properties:
-  fmttype:
-    type: string
-  binary:
-    type: string
-    format: binary
-required:
-  - fmttype
-  - binary
+examples:
+  - fmttype: string
+    binary: string
+oneOf:
+  - $ref: ./attachmentInline.v1.yaml
+  - $ref: ./attachmentRef.v1.yaml

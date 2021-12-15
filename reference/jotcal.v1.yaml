@@ -817,6 +817,12 @@ components:
     alarm-spec:
       title: alarm-spec
       type: object
+      x-examples:
+        example-1:
+          action: AUDIO
+          trigger:
+            dtstart: '2019-08-24T14:15:22Z'
+      description: Specification for a new alarm
       properties:
         action:
           type: string
@@ -825,15 +831,7 @@ components:
             - DISPLAY
             - EMAIL
         trigger:
-          oneOf:
-            - $ref: ../models/trigger.v1.yaml
-            - $ref: ../models/triggerRel.v1.yaml
-      x-examples:
-        example-1:
-          action: AUDIO
-          trigger:
-            dtstart: '2019-08-24T14:15:22Z'
-      description: Specification for a new alarm
+          $ref: ../models/trigger.v1.yaml
     calendar-spec:
       title: calendar-spec
       type: object
@@ -943,7 +941,78 @@ components:
             type: array
             items:
               $ref: ../models/event.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  organizer:
+                    cal-address: 'mailto:jane_doe@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    sent-by: 'mailto:joecool@example.com'
+                    language: en-US
+                  summary: string
+                  dtstart: '2019-08-24T14:15:22Z'
+                  sequence: 0
+                  recurrence-id: '2019-08-24T14:15:22Z'
+                  class: PUBLIC
+                  priority: 0
+                  status: TENTATIVE
+                  dtend: '2019-08-24T14:15:22Z'
+                  duration: PT15M
+                  rrule: FREQ=WEEKLY
+                  description: string
+                  url: 'http://example.com'
+                  geo: 49.8932;40.3834
+                  location:
+                    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                    name: The venue
+                  last-modified: '2019-08-24T14:15:22Z'
+                  created: '2019-08-24T14:15:22Z'
+                  categories:
+                    - string
+                  comment:
+                    - text: string
+                      altrep: string
+                  resources:
+                    - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                      altrep: 'CID:part3.msg.970415T083000@example.com'
+                  attach:
+                    - fmttype: string
+                      binary: string
+                  related-to:
+                    - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                      reltype: PARENT
+                  rdate:
+                    - '2019-08-24T14:15:22Z'
+                  exdate:
+                    - '2019-08-24T14:15:22Z'
+                  attendee:
+                    - cal-address: 'mailto:joecool@example.com'
+                      cu-type: INDIVIDUAL
+                      member: 'mailto:DEV-GROUP@example.com'
+                      role: REQ-PARTICIPANT
+                      partstat: NEEDS-ACTION
+                      rsvp: false
+                      delto: 'mailto:joecool@example.com'
+                      delfrom: 'mailto:joecool@example.com'
+                      sentby: 'mailto:joecool@example.com'
+                      cn: string
+                      dir: 'http://example.com'
+                      language: en-US
+                  transp: OPAQUE
+                  contact:
+                    - text: string
+                      altrep: string
+                  styled-description:
+                    - fmttype: text/html
+                      text: <h1>Test Event</h1><p>An example event description<p>
+                      derived: true
+                  structured-data:
+                    - fmttype: string
+                      schema: string
+                      encoding: BASE64
+                      text: string
     todo-list:
       description: A list of calendar todos
       content:
@@ -960,28 +1029,96 @@ components:
             type: array
             items:
               $ref: ../models/journal.v1.yaml
-          examples: {}
     event:
       description: A calendar event
       content:
         application/json:
           schema:
             $ref: ../models/event.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                organizer:
+                  cal-address: 'mailto:jane_doe@example.com'
+                  cn: string
+                  dir: 'http://example.com'
+                  sent-by: 'mailto:joecool@example.com'
+                  language: en-US
+                summary: string
+                dtstart: '2019-08-24T14:15:22Z'
+                sequence: 0
+                recurrence-id: '2019-08-24T14:15:22Z'
+                class: PUBLIC
+                priority: 0
+                status: TENTATIVE
+                dtend: '2019-08-24T14:15:22Z'
+                duration: PT15M
+                rrule: FREQ=WEEKLY
+                description: string
+                url: 'http://example.com'
+                geo: 49.8932;40.3834
+                location:
+                  uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  name: The venue
+                last-modified: '2019-08-24T14:15:22Z'
+                created: '2019-08-24T14:15:22Z'
+                categories:
+                  - string
+                comment:
+                  - text: string
+                    altrep: string
+                resources:
+                  - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                    altrep: 'CID:part3.msg.970415T083000@example.com'
+                attach:
+                  - fmttype: string
+                    binary: string
+                related-to:
+                  - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                    reltype: PARENT
+                rdate:
+                  - '2019-08-24T14:15:22Z'
+                exdate:
+                  - '2019-08-24T14:15:22Z'
+                attendee:
+                  - cal-address: 'mailto:joecool@example.com'
+                    cu-type: INDIVIDUAL
+                    member: 'mailto:DEV-GROUP@example.com'
+                    role: REQ-PARTICIPANT
+                    partstat: NEEDS-ACTION
+                    rsvp: false
+                    delto: 'mailto:joecool@example.com'
+                    delfrom: 'mailto:joecool@example.com'
+                    sentby: 'mailto:joecool@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    language: en-US
+                transp: OPAQUE
+                contact:
+                  - text: string
+                    altrep: string
+                styled-description:
+                  - fmttype: text/html
+                    text: <h1>Test Event</h1><p>An example event description<p>
+                    derived: true
+                structured-data:
+                  - fmttype: string
+                    schema: string
+                    encoding: BASE64
+                    text: string
     journal:
       description: A calendar journal component
       content:
         application/json:
           schema:
             $ref: ../models/journal.v1.yaml
-          examples: {}
     todo:
       description: A calendar todo component
       content:
         application/json:
           schema:
             $ref: ../models/todo.v1.yaml
-          examples: {}
     calendar:
       description: A grouping of calendar components
       content:
@@ -1012,7 +1149,22 @@ components:
             type: array
             items:
               $ref: ../models/calendar.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  calscale: GREGORIAN
+                  name: 'My Social Calendar '
+                  description: 'A collection of social events, journals, tasks and availability'
+                  last-modified: '2019-08-24T14:15:22Z'
+                  url: 'https://calendar.example.com/mysocialcalendar.html'
+                  categories:
+                    - social
+                  refresh-interval: P1W
+                  source: 'https://calendar.example.com/mysocialcalendar.ics'
+                  color: red
+                  image: 'https://calendar.example.com/mysocialcalendar.png'
+                  conference: 'https://meeting.example.com/mysocialcalendar'
     alarm-list:
       description: A list of component alarms
       content:
@@ -1021,14 +1173,74 @@ components:
             type: array
             items:
               $ref: ../models/alarm.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  action: AUDIO
+                  trigger:
+                    dtstart: '2019-08-24T14:15:22Z'
+                  description: string
+                  duration: PT15M
+                  repeat: 1
+                  summary: string
+                  attendees:
+                    - cal-address: 'mailto:joecool@example.com'
+                      cu-type: INDIVIDUAL
+                      member: 'mailto:DEV-GROUP@example.com'
+                      role: REQ-PARTICIPANT
+                      partstat: NEEDS-ACTION
+                      rsvp: false
+                      delto: 'mailto:joecool@example.com'
+                      delfrom: 'mailto:joecool@example.com'
+                      sentby: 'mailto:joecool@example.com'
+                      cn: string
+                      dir: 'http://example.com'
+                      language: en-US
+                  attachments:
+                    - fmttype: string
+                      binary: string
+                  styled-description:
+                    - fmttype: text/html
+                      text: <h1>Test Event</h1><p>An example event description<p>
+                      derived: true
     alarm:
       description: A component alarm
       content:
         application/json:
           schema:
             $ref: ../models/alarm.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                action: AUDIO
+                trigger:
+                  dtstart: '2019-08-24T14:15:22Z'
+                description: string
+                duration: PT15M
+                repeat: 1
+                summary: string
+                attendees:
+                  - cal-address: 'mailto:joecool@example.com'
+                    cu-type: INDIVIDUAL
+                    member: 'mailto:DEV-GROUP@example.com'
+                    role: REQ-PARTICIPANT
+                    partstat: NEEDS-ACTION
+                    rsvp: false
+                    delto: 'mailto:joecool@example.com'
+                    delfrom: 'mailto:joecool@example.com'
+                    sentby: 'mailto:joecool@example.com'
+                    cn: string
+                    dir: 'http://example.com'
+                    language: en-US
+                attachments:
+                  - fmttype: string
+                    binary: string
+                styled-description:
+                  - fmttype: text/html
+                    text: <h1>Test Event</h1><p>An example event description<p>
+                    derived: true
     availability-list:
       description: A list of user availability definitions
       content:
@@ -1070,9 +1282,7 @@ components:
           schema:
             type: array
             items:
-              oneOf:
-                - $ref: ../models/attachment.v1.yaml
-                - $ref: ../models/attachmentRef.v1.yaml
+              $ref: ../models/attachment.v1.yaml
           examples:
             example-1:
               value:
@@ -1083,9 +1293,7 @@ components:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: ../models/attachment.v1.yaml
-              - $ref: ../models/attachmentRef.v1.yaml
+            $ref: ../models/attachment.v1.yaml
           examples:
             example-1:
               value:
@@ -1102,7 +1310,47 @@ components:
         application/json:
           schema:
             $ref: ../models/freebusy.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                organizer:
+                  cal-address: 'mailto:jane_doe@example.com'
+                  cn: string
+                  dir: 'http://example.com'
+                  sent-by: 'mailto:joecool@example.com'
+                  language: en-US
+                dtstart: '2019-08-24T14:15:22Z'
+                dtend: '2019-08-24T14:15:22Z'
+                url: 'http://www.example.com/calendar/busytime/jsmith.ifb'
+                fbperiods:
+                  - start: '2019-08-24T14:15:22Z'
+                    end: '2019-08-24T14:15:22Z'
+                    fbtype: BUSY
+                    duration: PT5H30M
+                attendee:
+                  cal-address: 'mailto:joecool@example.com'
+                  cu-type: INDIVIDUAL
+                  member: 'mailto:DEV-GROUP@example.com'
+                  role: REQ-PARTICIPANT
+                  partstat: NEEDS-ACTION
+                  rsvp: false
+                  delto: 'mailto:joecool@example.com'
+                  delfrom: 'mailto:joecool@example.com'
+                  sentby: 'mailto:joecool@example.com'
+                  cn: string
+                  dir: 'http://example.com'
+                  language: en-US
+                comment:
+                  - text: string
+                    altrep: string
+                contact:
+                  text: string
+                  altrep: string
+                styled-description:
+                  - fmttype: text/html
+                    text: <h1>Test Event</h1><p>An example event description<p>
+                    derived: true
     availability:
       description: Example response
       content:
@@ -1139,11 +1387,33 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              id:
-                $ref: ../models/available.v1.yaml
-          examples: {}
+            $ref: ../models/available.v1.yaml
+          examples:
+            example-1:
+              value:
+                uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                dtstart: '2019-08-24T14:15:22Z'
+                dtend: '2019-08-24T14:15:22Z'
+                duration: PT15M
+                summary: string
+                recurrence-id: '2019-08-24T14:15:22Z'
+                location:
+                  uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  name: The venue
+                description: string
+                created: '2019-08-24T14:15:22Z'
+                last-modified: '2019-08-24T14:15:22Z'
+                rrule: FREQ=WEEKLY
+                categories:
+                  - string
+                comments:
+                  - string
+                exdates:
+                  - '2019-08-24T14:15:22Z'
+                rdates:
+                  - '2019-08-24T14:15:22Z'
+                contacts:
+                  - string
     available-list:
       description: Example response
       content:
@@ -1152,7 +1422,32 @@ components:
             type: array
             items:
               $ref: ../models/available.v1.yaml
-          examples: {}
+          examples:
+            example-1:
+              value:
+                - uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                  dtstart: '2019-08-24T14:15:22Z'
+                  dtend: '2019-08-24T14:15:22Z'
+                  duration: PT15M
+                  summary: string
+                  recurrence-id: '2019-08-24T14:15:22Z'
+                  location:
+                    uid: 07cc67f4-45d6-494b-adac-09b5cbc7e2b5
+                    name: The venue
+                  description: string
+                  created: '2019-08-24T14:15:22Z'
+                  last-modified: '2019-08-24T14:15:22Z'
+                  rrule: FREQ=WEEKLY
+                  categories:
+                    - string
+                  comments:
+                    - string
+                  exdates:
+                    - '2019-08-24T14:15:22Z'
+                  rdates:
+                    - '2019-08-24T14:15:22Z'
+                  contacts:
+                    - string
   parameters:
     Uid:
       name: Uid

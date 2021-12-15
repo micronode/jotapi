@@ -1,13 +1,11 @@
 title: trigger
-type: object
-description: Explicit alarm trigger
-properties:
-  dtstart:
-    type: string
-    format: date-time
-required:
-  - dtstart
+description: ''
 x-examples:
   example-1:
     dtstart: '2019-08-24T14:15:22Z'
-x-internal: true
+x-internal: false
+oneOf:
+  - $ref: ./triggerAbs.yaml
+  - $ref: ./triggerRel.v1.yaml
+examples:
+  - dtstart: '2019-08-24T14:15:22Z'

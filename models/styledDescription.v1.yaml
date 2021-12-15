@@ -1,20 +1,14 @@
 title: styledDescription
-type: object
 x-examples:
   example-1:
     fmttype: text/html
     text: <h1>Test Event</h1><p>An example event description<p>
     derived: true
-x-internal: true
-properties:
-  fmttype:
-    type: string
-    default: text/html
-  text:
-    type: string
-    example: <h1>Test Event</h1><p>An example event description<p>
-  derived:
-    type: boolean
-required:
-  - fmttype
-  - text
+x-internal: false
+oneOf:
+  - $ref: ./styledDescriptionInline.v1.yaml
+  - $ref: ./styledDescriptionRef.v1.yaml
+examples:
+  - fmttype: text/html
+    text: <h1>Test Event</h1><p>An example event description<p>
+    derived: true

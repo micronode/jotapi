@@ -1,0 +1,13 @@
+type: object
+title: attachmentInline.v1
+format: binary
+examples:
+  - fmttype: string
+    binary: string
+properties:
+  fmttype:
+    type: string
+  binary:
+    type: string
+    format: binary
+x-internal: true

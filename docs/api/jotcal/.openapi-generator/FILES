@@ -13,6 +13,7 @@ Models/alarm-spec.md
 Models/alarm.md
 Models/attach-spec.md
 Models/attachment.md
+Models/attachmentInline.md
 Models/attachmentRef.md
 Models/attendee.md
 Models/availability-spec.md
@@ -35,11 +36,14 @@ Models/organizer.md
 Models/related.md
 Models/resource.md
 Models/structuredData.md
+Models/structuredDataInline.md
 Models/structuredDataRef.md
 Models/styledDescription.md
+Models/styledDescriptionInline.md
 Models/styledDescriptionRef.md
 Models/todo-spec.md
 Models/todo.md
 Models/trigger.md
+Models/triggerAbs.md
 Models/triggerRel.md
 README.md

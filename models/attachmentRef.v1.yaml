@@ -1,15 +1,17 @@
-title: attachmentRef
 type: object
+title: attachmentRef
 x-examples:
   example-1:
     fmttype: string
     url: 'http://example.com'
+examples:
+  - fmttype: string
+    url: 'http://example.com'
+format: uri
 properties:
   fmttype:
     type: string
   url:
     type: string
     format: uri
-required:
-  - fmttype
-  - url
+x-internal: true

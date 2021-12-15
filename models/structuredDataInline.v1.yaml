@@ -1,18 +1,22 @@
-title: structuredDataRef
+title: structuredDataInline.v1
 type: object
-x-internal: true
 properties:
   fmttype:
     type: string
   schema:
     type: string
-  url:
+  encoding:
     type: string
-    format: uri
+    enum:
+      - BASE64
+  text:
+    type: string
 required:
   - fmttype
-  - url
+  - text
 examples:
   - fmttype: string
     schema: string
-    url: 'http://example.com'
+    encoding: BASE64
+    text: string
+x-internal: true
