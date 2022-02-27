@@ -6,7 +6,7 @@ A timesheet system supports recording time against different projects.
 
 | Resource Type      | Jot Model | Comment                                                                                                   |
 |--------------------|-----------|-----------------------------------------------------------------------------------------------------------|
-| Project            | VCARD     | Project members record time against each project they are a part of                                       |
+| Project            | CALENDAR  | Project attendees record time against each project they are a part of                                     |
 | User               | VCARD     | A user required to record time, project administrators, etc.                                              |
 | Timesheet Workflow | VTODO     | A workflow for each project requesting users to submit time record (e.g. recurring Mon-Fri, etc.)         |
 | Reminder           | VALARM    | Notification attached to timesheet workflow                                                               |
