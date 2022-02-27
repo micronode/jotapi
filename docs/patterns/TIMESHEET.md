@@ -51,12 +51,25 @@ the JOT management dashboard (**JOTCLOUD** will automatically notify users via p
 A user application provides the context for member registration, project management, etc. An application is represented
 by a `GROUPCARD`, whereby group members are registered application users.
 
-| API     | Action       | Input                   | Comment                     |
-|---------|--------------|-------------------------|-----------------------------|
-| JOTCARD | create-group | App Name, members, etc. | Create an application group |
+| API     | Action       | Input          | Comment                     |
+|---------|--------------|----------------|-----------------------------|
+| JOTCARD | create-group | App Name, etc. | Create an application group |
 
 _NOTE: Application creation and management are administrative functions that are typically managed externally to the
 application instance._
+
+#### Membership Registration
+
+Users SHOULD only be added to an application upon request, and as such requires a registration request mechanism. A
+registration request may be submitted via creation of a `TODO` workflow. Approval will result in status `COMPLETED`,
+whereas rejection would mean status `CANCELLED`.
+
+| API    | Action      | Input                                             | Comment                          |
+|--------|-------------|---------------------------------------------------|----------------------------------|
+| JOTCAL | create-todo | Requested user UID, attendees (application owner) | Application registration request |
+
+_NOTE: The application owner would see new registration requests in their JOT management dashboard (JOT_CLOUD will
+provide application management functions including user registration requests)._
 
 #### Membership Notification
 
